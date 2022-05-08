@@ -27,7 +27,6 @@ class  RNN(nn.Module):
         self.num_layers = num_layers
         self.embed = nn.Embedding(input_size, hidden_size) # embed (nn.Embedding object): Quick lookup table 
         self.rnn = nn.RNN(hidden_size, hidden_size, num_layers, batch_first=True)
-        print( f"rnn.hidden_size {self.rnn.hidden_size}")
         self.fc = nn.Linear(hidden_size, output_size) # fc: Applies linear transformation (y=xA.T+b) that maps hidden states to target space 
     
     def forward(self, x, hidden_prev):
@@ -44,7 +43,7 @@ class  RNN(nn.Module):
         return hidden
 
 class Generator():
-    def __init__(self, input_string, index2char, char2index, sequence_length=100, batch_size=100, print_every=10):
+    def __init__(self, input_string, index2char, char2index, sequence_length=100, batch_size=100):
         """
         Trains an RNN model that can generate a synthesize text seqence
         -----------------------------------
@@ -59,7 +58,6 @@ class Generator():
         self.sequence_length = sequence_length 
         self.batch_size = batch_size
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        self.print_every = print_every 
 
     def char_tensor(self, string):
         """
@@ -85,8 +83,9 @@ class Generator():
 
         return text_input.long(), text_target.long()
 
-    def generate(self, initial_str="Ab", generated_seq_length=200, temperature=0.85):
+    def generate(self, generated_seq_length=200, temperature=0.25):
         #TODO: Should try to randomnize initial_str? (optional)
+        initial_str = self.index2char[np.random.randint(len(self.index2char))]
         hidden = self.rnn.init_hidden(batch_size=1, device=self.device)
         initial_input = self.char_tensor(initial_str)
         generated_seq = initial_str #TODO: Should try to generate seq dynamically if there is time
@@ -107,26 +106,38 @@ class Generator():
         
         return generated_seq 
 
-    def train(self, hidden_size, num_layers, num_epchs=100, lr=0.01):
+    def train(self, hidden_size, num_layers, num_epchs=100, lr=0.01, print_every=100):
         input_size = len(self.char2index)
         output_size = len(self.char2index)
         self.rnn = RNN(input_size, hidden_size, num_layers, output_size).to(self.device)
         
         optimizer = torch.optim.Adam(self.rnn.parameters(), lr=lr)
-        compute_loss = nn.CrossEntropyLoss(label_smoothing=0.9)
-        writer = SummaryWriter(f'Results/name0')
+        compute_loss = nn.CrossEntropyLoss(label_smoothing=.8)
+        # writer = SummaryWriter(f'Results/name0')
 
         print("Training starting...")
         loss = 0
         toc = time.perf_counter()
+
         for epoch in range(1, num_epchs + 1):
             hidden = self.rnn.init_hidden(self.batch_size, self.device)
             self.rnn.zero_grad()
             x_input, target = self.get_random_batch()
+            # X_test = ""
+            # Y_test = ""
+            # for i in x_input[0]:
+            #     X_test += index2char[i.item()]
+            # for i in target[0]:
+            #     Y_test += index2char[i.item()]
+
+
+            # print(f'X: {X_test}')
+            # print(f'Y: {Y_test}\n')
+
             hidden = self.rnn.init_hidden(self.batch_size, self.device)
 
             for c in range(self.sequence_length):
-
+                x_input[:, c]
                 output, hidden = self.rnn(x_input[:, c], hidden)
                 loss += compute_loss(output, target[:, c])
 
@@ -134,14 +145,14 @@ class Generator():
             optimizer.step()
             loss = loss.item() / self.sequence_length
 
-            if epoch % self.print_every==0:
+            if epoch % print_every==0:
                 time_elapsed_sec = time.perf_counter() - toc
                 time_elapsed = time.strftime("%Hh:%Mm:%Ss", time.gmtime(time_elapsed_sec))
                 print(f"Epoch {epoch}/{num_epchs}, loss: {loss:.2f}, time elapsed: {time_elapsed}")
                 print(self.generate())
                 print()
 
-            writer.add_scalar("Training loss", loss, global_step=loss)
+            # writer.add_scalar("Training loss", loss, global_step=loss)
 
             
 
@@ -151,14 +162,20 @@ if __name__ == '__main__':
     index2char = data_dict["index2char"]
     char2index = data_dict["char2index"]
     SEQUENCE_LENGTH = 25
+    BATCH_SIZE = 10
+    NUM_EPOCHS = 10000
+
     generator = Generator(
         input_string=text, 
         index2char=index2char, 
         char2index=char2index,
         sequence_length=SEQUENCE_LENGTH,
+        batch_size=BATCH_SIZE
         )
     
     generator.train(
-        hidden_size=100, 
-        num_layers=2,
+        hidden_size=256, 
+        num_layers=3,
+        num_epchs=NUM_EPOCHS,
+        print_every=10
     )
