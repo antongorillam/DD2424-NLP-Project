@@ -9,7 +9,7 @@ if __name__ == '__main__':
     index2char = data_dict["index2char"]
     char2index = data_dict["char2index"]
 
-    DIR = "Results"
+    DIR = "../Results"
     SEQUENCE_LENGTH = 25
     BATCH_SIZE = 1
     NUM_EPOCHS = 10000
@@ -17,33 +17,9 @@ if __name__ == '__main__':
     NUM_LAYERS = 2
     TEMPERATURE = 0.28
     LEARNING_RATE = 0.01
+    LABEL_SMOOTHING = 0.8
 
-    rnn_gen =  rnn.Generator(
-        input_string=text, 
-        index2char=index2char, 
-        char2index=char2index,
-        sequence_length=SEQUENCE_LENGTH,
-        batch_size=BATCH_SIZE
-        )
-
-    rnn =  rnn.RNN(
-        input_size=len(index2char), 
-        hidden_size=HIDDEN_SIZE, 
-        num_layers=NUM_LAYERS, 
-        output_size=len(index2char),
-    ).to(rnn_gen.device)
-
-    rnn_gen.train(
-        rnn=rnn,
-        num_epchs=NUM_EPOCHS,
-        print_every=100,
-        lr=LEARNING_RATE,
-        temperature=TEMPERATURE,
-    )
-    
-    rnn_df = pd.DataFrame(rnn_gen.history)
-    rnn_df.to_csv(f'{DIR}/lstm.csv', index=False) # TODO: add model configs to filename
-    # lstm_gen = lstm.Generator(
+    # rnn_gen =  rnn.Generator(
     #     input_string=text, 
     #     index2char=index2char, 
     #     char2index=char2index,
@@ -51,17 +27,48 @@ if __name__ == '__main__':
     #     batch_size=BATCH_SIZE
     #     )
 
-    # lstm = lstm.RNN(
+    # rnn =  rnn.RNN(
     #     input_size=len(index2char), 
     #     hidden_size=HIDDEN_SIZE, 
     #     num_layers=NUM_LAYERS, 
     #     output_size=len(index2char),
-    # ).to(lstm_gen.device)
+    # ).to(rnn_gen.device)
 
-    # lstm_gen.train(
-    #     lstm=lstm,
+    # rnn_gen.train(
+    #     rnn=rnn,
     #     num_epchs=NUM_EPOCHS,
     #     print_every=100,
     #     lr=LEARNING_RATE,
     #     temperature=TEMPERATURE,
+    #     label_smoothing=LABEL_SMOOTHING,
     # )
+    
+    # rnn_df = pd.DataFrame(rnn_gen.history)
+    # rnn_df.to_csv(f'{DIR}/lstm.csv', index=False) # TODO: add model configs to filename
+
+    lstm_gen = lstm.Generator(
+        input_string=text, 
+        index2char=index2char, 
+        char2index=char2index,
+        sequence_length=SEQUENCE_LENGTH,
+        batch_size=BATCH_SIZE
+        )
+
+    lstm = lstm.RNN(
+        input_size=len(index2char), 
+        hidden_size=HIDDEN_SIZE, 
+        num_layers=NUM_LAYERS, 
+        output_size=len(index2char),
+    ).to(lstm_gen.device)
+
+    lstm_gen.train(
+        lstm=lstm,
+        num_epchs=NUM_EPOCHS,
+        print_every=100,
+        lr=LEARNING_RATE,
+        temperature=TEMPERATURE,
+        label_smoothing=LABEL_SMOOTHING,
+    )
+
+    rnn_df = pd.DataFrame(lstm_gen.history)
+    rnn_df.to_csv(f'{DIR}/lstm.csv', index=False) # TODO: add model configs to filename

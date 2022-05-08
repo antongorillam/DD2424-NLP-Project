@@ -136,7 +136,7 @@ class Generator():
         
         return generated_seq 
 
-    def train(self, rnn, num_epchs, temperature=0.2, lr=0.01, print_every=100):
+    def train(self, rnn, num_epchs, temperature=0.2, lr=0.01, print_every=100, label_smoothing=0.8):
         """
         Trains the RNN model
         --------------------
@@ -156,7 +156,7 @@ class Generator():
 
         self.rnn = rnn
         optimizer = torch.optim.Adam(self.rnn.parameters(), lr=lr)
-        compute_loss = nn.CrossEntropyLoss(label_smoothing=0.8)
+        compute_loss = nn.CrossEntropyLoss(label_smoothing=label_smoothing)
         # writer = SummaryWriter(f'Results/name0')
 
         print("Training starting...")
