@@ -25,19 +25,20 @@ class  RNN(nn.Module):
         self.hidden_size = hidden_size
         self.num_layers = num_layers
         self.embed = nn.Embedding(input_size, hidden_size) # embed (nn.Embedding object): Quick lookup table 
-        self.rnn = nn.RNN(hidden_size, hidden_size, num_layers, batch_first=True)
+        self.lstm = nn.LSTM(hidden_size, hidden_size, num_layers, batch_first=True)
         self.fc = nn.Linear(hidden_size, output_size) # fc: Applies linear transformation (y=xA.T+b) that maps hidden states to target space 
     
-    def forward(self, x, hidden_prev):
+    def forward(self, x, hidden_prev, cell_prev):
+        
         out = self.embed(x)
-        out, hidden = self.rnn(out.unsqueeze(1), hidden_prev)
+        out, (hidden, cell) = self.lstm(out.unsqueeze(1), (hidden_prev, cell_prev))
         out = self.fc(out.reshape(out.shape[0], -1))
-        return out, hidden
+        return out, (hidden, cell)
 
     def init_hidden(self, batch_size, device):
         hidden = torch.zeros(self.num_layers, batch_size, self.hidden_size).to(device)
-        # cell = torch.zeros(self.num_layers, batch_size, self.hidden_size).to(device)
-        return hidden
+        cell = torch.zeros(self.num_layers, batch_size, self.hidden_size).to(device)
+        return hidden, cell
 
 class Generator():
     def __init__(self, input_string, index2char, char2index, sequence_length=100, batch_size=100):
@@ -76,15 +77,14 @@ class Generator():
         return tensor
 
     def get_random_batch(self):
-
         text_input = torch.zeros(self.batch_size, self.sequence_length)
         text_target = torch.zeros(self.batch_size, self.sequence_length)
+        
         for i in range(self.batch_size):
             # Pick a random chunk of text
             start_idx = np.random.randint(0, len(self.input_string) - self.sequence_length)
             end_idx = start_idx + self.sequence_length + 1
             text_str = self.input_string[start_idx:end_idx]
-
             text_input[i,:] = self.char_tensor(text_str[:-1])
             text_target[i,:] = self.char_tensor(text_str[1:])
 
@@ -93,18 +93,18 @@ class Generator():
     def generate(self, generated_seq_length=200, temperature=0.20):
 
         initial_str = self.index2char[np.random.randint(len(self.index2char))]
-        hidden = self.rnn.init_hidden(batch_size=1, device=self.device)
+        hidden, cell = self.lstm.init_hidden(batch_size=1, device=self.device)
         initial_input = self.char_tensor(initial_str)
         generated_seq = initial_str #TODO: Should try to generate seq dynamically if there is time
         
         for i in range(len(initial_str) - 1):
             
-            _, hidden = self.rnn(initial_input[i].view(1).to(self.device), hidden)
+            _, (hidden, cell) = self.lstm(initial_input[i].view(1).to(self.device), hidden, cell)
         
         last_char = initial_input[-1]
 
         for i in range(generated_seq_length):
-            output, hidden = self.rnn(last_char.view(1).to(self.device), hidden)
+            output, (hidden, cell) = self.lstm(last_char.view(1).to(self.device), hidden, cell)
             output_dist = output.data.view(-1).div(temperature).exp()
             top_char = torch.multinomial(output_dist, 1)[0]
             generated_char = self.index2char[top_char.item()]
@@ -113,10 +113,10 @@ class Generator():
         
         return generated_seq 
 
-    def train(self, rnn, num_epchs=100, temperature=0.2, lr=0.01, print_every=100):
+    def train(self, lstm, num_epchs=100, temperature=0.2, lr=0.01, print_every=100):
 
-        self.rnn = rnn
-        optimizer = torch.optim.Adam(self.rnn.parameters(), lr=lr)
+        self.lstm = lstm
+        optimizer = torch.optim.Adam(self.lstm.parameters(), lr=lr)
         compute_loss = nn.CrossEntropyLoss(label_smoothing=0.8)
         writer = SummaryWriter(f'Results/name0')
 
@@ -125,20 +125,18 @@ class Generator():
 
         for epoch in range(1, num_epchs + 1):
             loss = 0
-            hidden = self.rnn.init_hidden(self.batch_size, self.device)
-            self.rnn.zero_grad()S
+            hidden, cell = self.lstm.init_hidden(self.batch_size, self.device)
+            self.lstm.zero_grad()
             x_input, target = self.get_random_batch()
-            hidden = self.rnn.init_hidden(self.batch_size, self.device)
-
+            
             for c in range(self.sequence_length):
-                x_input[:, c]
-                output, hidden = self.rnn(x_input[:, c], hidden)
+                output, (hidden, cell) = self.lstm(x_input[:, c], hidden, cell)
                 loss += compute_loss(output, target[:, c])
 
             loss.backward()
             optimizer.step()
             loss = loss.item() / self.sequence_length
-
+            
             self.iteration += 1
 
             if epoch % print_every==0:
@@ -161,7 +159,7 @@ if __name__ == '__main__':
     char2index = data_dict["char2index"]
     SEQUENCE_LENGTH = 25
     BATCH_SIZE = 1
-    NUM_EPOCHS = 1000
+    NUM_EPOCHS = 10000
     HIDDEN_SIZE = 100
     NUM_LAYERS = 2
     TEMPERATURE = 0.28
@@ -175,7 +173,7 @@ if __name__ == '__main__':
         batch_size=BATCH_SIZE
         )
     
-    rnn = RNN(
+    lstm = RNN(
         input_size=len(index2char), 
         hidden_size=HIDDEN_SIZE, 
         num_layers=NUM_LAYERS, 
@@ -183,7 +181,7 @@ if __name__ == '__main__':
     ).to(generator.device)
 
     generator.train(
-        rnn=rnn,
+        lstm=lstm,
         num_epchs=NUM_EPOCHS,
         print_every=100,
         lr=LEARNING_RATE,
