@@ -1,4 +1,5 @@
-from utils import  read_data
+from utils import read_data
+import pandas as pd
 import lstm
 import rnn
 
@@ -7,6 +8,8 @@ if __name__ == '__main__':
     text = data_dict["text"]
     index2char = data_dict["index2char"]
     char2index = data_dict["char2index"]
+
+    DIR = "Results"
     SEQUENCE_LENGTH = 25
     BATCH_SIZE = 1
     NUM_EPOCHS = 10000
@@ -31,32 +34,34 @@ if __name__ == '__main__':
     ).to(rnn_gen.device)
 
     rnn_gen.train(
-        rnn=lstm,
+        rnn=rnn,
         num_epchs=NUM_EPOCHS,
         print_every=100,
         lr=LEARNING_RATE,
         temperature=TEMPERATURE,
     )
     
-    lstm_gen = lstm.Generator(
-        input_string=text, 
-        index2char=index2char, 
-        char2index=char2index,
-        sequence_length=SEQUENCE_LENGTH,
-        batch_size=BATCH_SIZE
-        )
+    rnn_df = pd.DataFrame(rnn_gen.history)
+    rnn_df.to_csv(f'{DIR}/lstm.csv', index=False) # TODO: add model configs to filename
+    # lstm_gen = lstm.Generator(
+    #     input_string=text, 
+    #     index2char=index2char, 
+    #     char2index=char2index,
+    #     sequence_length=SEQUENCE_LENGTH,
+    #     batch_size=BATCH_SIZE
+    #     )
 
-    lstm = lstm.RNN(
-        input_size=len(index2char), 
-        hidden_size=HIDDEN_SIZE, 
-        num_layers=NUM_LAYERS, 
-        output_size=len(index2char),
-    ).to(lstm_gen.device)
+    # lstm = lstm.RNN(
+    #     input_size=len(index2char), 
+    #     hidden_size=HIDDEN_SIZE, 
+    #     num_layers=NUM_LAYERS, 
+    #     output_size=len(index2char),
+    # ).to(lstm_gen.device)
 
-    lstm_gen.train(
-        lstm=lstm,
-        num_epchs=NUM_EPOCHS,
-        print_every=100,
-        lr=LEARNING_RATE,
-        temperature=TEMPERATURE,
-    )
+    # lstm_gen.train(
+    #     lstm=lstm,
+    #     num_epchs=NUM_EPOCHS,
+    #     print_every=100,
+    #     lr=LEARNING_RATE,
+    #     temperature=TEMPERATURE,
+    # )

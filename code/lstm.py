@@ -69,14 +69,24 @@ class Generator():
 
     def char_tensor(self, string):
         """
-        Returns the tensor representing of a string
+        Returns the 1-D tensor representing of a string
         """
         tensor = torch.zeros(len(string)).long()
         for c in range(len(string)): 
-            tensor[c] = char2index[string[c]]
+            tensor[c] = self.char2index[string[c]]
         return tensor
 
     def get_random_batch(self):
+        """
+        a random batch of inputs (X) and targets (Y) from self.input_string
+        -------------------------------------------------------------------
+        Returns:
+        --------
+        text_input (tensor):
+            dim ~ (batch_size, sequence_length)
+        text_target (tensor):
+            dim ~ (batch_size, sequence_length)
+        """
         text_input = torch.zeros(self.batch_size, self.sequence_length)
         text_target = torch.zeros(self.batch_size, self.sequence_length)
         
@@ -91,7 +101,20 @@ class Generator():
         return text_input.long(), text_target.long()
 
     def generate(self, generated_seq_length=200, temperature=0.20):
+        """
+        Generates a synthesized text with the current RNN model  
+        -------------------------------------------------------
+        Params:
+            generated_seq_length (int):
+                The  lenght of the string tha we want to generate
+            temperature (float between 0 and 1):
+                Determines the risk of the synthesized text. For example, 
+                if temperature is high, the RNN may generate new words that 
+                haven't been seen before. If temperature is low, it takes 
+                less risk and picks the most likely next character in the sequence.
 
+        TODO: (Optional) Takes the last x_input and hidden to make an exact sequence prediction 
+        """
         initial_str = self.index2char[np.random.randint(len(self.index2char))]
         hidden, cell = self.lstm.init_hidden(batch_size=1, device=self.device)
         initial_input = self.char_tensor(initial_str)
@@ -114,11 +137,26 @@ class Generator():
         return generated_seq 
 
     def train(self, lstm, num_epchs=100, temperature=0.2, lr=0.01, print_every=100):
-
+        """
+        Trains the RNN model
+        --------------------
+        params: 
+            rnn (rnn object):
+                The neural network model to be trained
+            num_epochs (int):
+                The number of epochs to train the model with
+            temperature (float between 0 and 1):
+                Determines the risk of the synthesized text
+            lr (float between 0 and 1):
+                Learning rate aka. eta
+            print_every (int):
+                How often to print progress. For example if print_every=100, 
+                then loss and a synthesized text
+        """
         self.lstm = lstm
         optimizer = torch.optim.Adam(self.lstm.parameters(), lr=lr)
         compute_loss = nn.CrossEntropyLoss(label_smoothing=0.8)
-        writer = SummaryWriter(f'Results/name0')
+        # writer = SummaryWriter(f'Results/name0')
 
         print("Training starting...")
         toc = time.perf_counter()
@@ -150,40 +188,40 @@ class Generator():
                 self.history["loss"].append(loss)
                 self.history["iterations"].append(self.iteration)
 
-            writer.add_scalar("Training loss", loss, global_step=loss)       
+            # writer.add_scalar("Training loss", loss, global_step=loss)       
 
-if __name__ == '__main__':
-    data_dict = read_data("../data/The_Sun_Also_Rises.txt")
-    text = data_dict["text"]
-    index2char = data_dict["index2char"]
-    char2index = data_dict["char2index"]
-    SEQUENCE_LENGTH = 25
-    BATCH_SIZE = 1
-    NUM_EPOCHS = 10000
-    HIDDEN_SIZE = 100
-    NUM_LAYERS = 2
-    TEMPERATURE = 0.28
-    LEARNING_RATE = 0.01
+# if __name__ == '__main__':
+#     data_dict = read_data("../data/The_Sun_Also_Rises.txt")
+#     text = data_dict["text"]
+#     index2char = data_dict["index2char"]
+#     char2index = data_dict["char2index"]
+#     SEQUENCE_LENGTH = 25
+#     BATCH_SIZE = 1
+#     NUM_EPOCHS = 10000
+#     HIDDEN_SIZE = 100
+#     NUM_LAYERS = 2
+#     TEMPERATURE = 0.28
+#     LEARNING_RATE = 0.01
 
-    generator = Generator(
-        input_string=text, 
-        index2char=index2char, 
-        char2index=char2index,
-        sequence_length=SEQUENCE_LENGTH,
-        batch_size=BATCH_SIZE
-        )
+#     generator = Generator(
+#         input_string=text, 
+#         index2char=index2char, 
+#         char2index=char2index,
+#         sequence_length=SEQUENCE_LENGTH,
+#         batch_size=BATCH_SIZE
+#         )
     
-    lstm = RNN(
-        input_size=len(index2char), 
-        hidden_size=HIDDEN_SIZE, 
-        num_layers=NUM_LAYERS, 
-        output_size=len(index2char),
-    ).to(generator.device)
+#     lstm = RNN(
+#         input_size=len(index2char), 
+#         hidden_size=HIDDEN_SIZE, 
+#         num_layers=NUM_LAYERS, 
+#         output_size=len(index2char),
+#     ).to(generator.device)
 
-    generator.train(
-        lstm=lstm,
-        num_epchs=NUM_EPOCHS,
-        print_every=100,
-        lr=LEARNING_RATE,
-        temperature=TEMPERATURE,
-    )
+#     generator.train(
+#         lstm=lstm,
+#         num_epchs=NUM_EPOCHS,
+#         print_every=100,
+#         lr=LEARNING_RATE,
+#         temperature=TEMPERATURE,
+#     )
