@@ -83,7 +83,7 @@ class Generator():
 
         return text_input.long(), text_target.long()
 
-    def generate(self, generated_seq_length=200, temperature=0.35):
+    def generate(self, generated_seq_length=200, temperature=0.23):
         #TODO: Should try to randomnize initial_str? (optional)
         initial_str = self.index2char[np.random.randint(len(self.index2char))]
         hidden = self.rnn.init_hidden(batch_size=1, device=self.device)
@@ -113,7 +113,7 @@ class Generator():
         
         optimizer = torch.optim.Adam(self.rnn.parameters(), lr=lr)
         compute_loss = nn.CrossEntropyLoss(label_smoothing=.8)
-        # writer = SummaryWriter(f'Results/name0')
+        writer = SummaryWriter(f'Results/name0')
 
         print("Training starting...")
         loss = 0
@@ -123,17 +123,6 @@ class Generator():
             hidden = self.rnn.init_hidden(self.batch_size, self.device)
             self.rnn.zero_grad()
             x_input, target = self.get_random_batch()
-            # X_test = ""
-            # Y_test = ""
-            # for i in x_input[0]:
-            #     X_test += index2char[i.item()]
-            # for i in target[0]:
-            #     Y_test += index2char[i.item()]
-
-
-            # print(f'X: {X_test}')
-            # print(f'Y: {Y_test}\n')
-
             hidden = self.rnn.init_hidden(self.batch_size, self.device)
 
             for c in range(self.sequence_length):
@@ -152,7 +141,7 @@ class Generator():
                 print(self.generate())
                 print()
 
-            # writer.add_scalar("Training loss", loss, global_step=loss)
+            writer.add_scalar("Training loss", loss, global_step=loss)
 
             
 
@@ -162,8 +151,8 @@ if __name__ == '__main__':
     index2char = data_dict["index2char"]
     char2index = data_dict["char2index"]
     SEQUENCE_LENGTH = 25
-    BATCH_SIZE = 10
-    NUM_EPOCHS = 10000
+    BATCH_SIZE = 5
+    NUM_EPOCHS = 50000
 
     generator = Generator(
         input_string=text, 
@@ -174,8 +163,8 @@ if __name__ == '__main__':
         )
     
     generator.train(
-        hidden_size=256, 
-        num_layers=3,
+        hidden_size=512, 
+        num_layers=2,
         num_epchs=NUM_EPOCHS,
-        print_every=10
+        print_every=50
     )
