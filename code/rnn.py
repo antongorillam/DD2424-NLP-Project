@@ -83,7 +83,7 @@ class Generator():
 
         return text_input.long(), text_target.long()
 
-    def generate(self, generated_seq_length=200, temperature=0.25):
+    def generate(self, generated_seq_length=200, temperature=0.35):
         #TODO: Should try to randomnize initial_str? (optional)
         initial_str = self.index2char[np.random.randint(len(self.index2char))]
         hidden = self.rnn.init_hidden(batch_size=1, device=self.device)
