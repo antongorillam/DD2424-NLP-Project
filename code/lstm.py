@@ -203,13 +203,13 @@ class Generator():
 #     TEMPERATURE = 0.28
 #     LEARNING_RATE = 0.01
 
-#     generator = Generator(
-#         input_string=text, 
-#         index2char=index2char, 
-#         char2index=char2index,
-#         sequence_length=SEQUENCE_LENGTH,
-#         batch_size=BATCH_SIZE
-#         )
+    # generator = Generator(
+    #     input_string=text, 
+    #     index2char=index2char, 
+    #     char2index=char2index,
+    #     sequence_length=SEQUENCE_LENGTH,
+    #     batch_size=BATCH_SIZE
+    #     )
     
 #     lstm = RNN(
 #         input_size=len(index2char), 
