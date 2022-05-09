@@ -176,19 +176,24 @@ class Generator():
 
             loss.backward()
             optimizer.step()
-            loss = loss.item() / self.sequence_length
-
+            loss = loss.item() #/ self.sequence_length
+            loss /= self.sequence_length
+            
+            # print(f"before: {smooth_loss}")
+            smooth_loss = loss if smooth_loss==None else smooth_loss
+            smooth_loss = (0.999 * smooth_loss + 0.001 * loss) 
+            # print(f"after: {smooth_loss}\n")
             self.iteration += 1
 
             if epoch % print_every==0:
                 time_elapsed_sec = time.perf_counter() - toc
                 time_elapsed = time.strftime("%Hh:%Mm:%Ss", time.gmtime(time_elapsed_sec))
                 generated_seq = self.generate(temperature=temperature)
-                print(f"Epoch {epoch}/{num_epchs}, loss: {loss:.2f}, time elapsed: {time_elapsed}")
+                print(f"Epoch {epoch}/{num_epchs}, loss: {smooth_loss:.4f}, time elapsed: {time_elapsed}")
                 print(generated_seq)
                 print()
                 self.history["generated_seq"].append(generated_seq)
-                self.history["loss"].append(loss)
+                self.history["loss"].append(smooth_loss)
                 self.history["iterations"].append(self.iteration)
 
             # writer.add_scalar("Training loss", loss, global_step=loss)       

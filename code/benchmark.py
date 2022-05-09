@@ -13,12 +13,12 @@ if __name__ == '__main__':
     DIR = "../results"
     SEQUENCE_LENGTH = 25
     BATCH_SIZE = 1
-    NUM_EPOCHS = 10000
+    NUM_EPOCHS = 35000
     HIDDEN_SIZE = 100
     NUM_LAYERS = 2
     TEMPERATURE = 0.28
-    LEARNING_RATE = 0.01
-    LABEL_SMOOTHING = 0.8
+    LEARNING_RATE = 0.1
+    LABEL_SMOOTHING = 0
 
     # rnn_gen =  rnn.Generator(
     #     input_string=text, 
@@ -55,7 +55,7 @@ if __name__ == '__main__':
         batch_size=BATCH_SIZE
         )
 
-    lstm = lstm.RNN(
+    lstm_model = lstm.RNN(
         input_size=len(index2char), 
         hidden_size=HIDDEN_SIZE, 
         num_layers=NUM_LAYERS, 
@@ -63,7 +63,7 @@ if __name__ == '__main__':
     ).to(lstm_gen.device)
 
     lstm_gen.train(
-        lstm=lstm,
+        lstm=lstm_model,
         num_epchs=NUM_EPOCHS,
         print_every=100,
         lr=LEARNING_RATE,
@@ -74,9 +74,9 @@ if __name__ == '__main__':
     """
     Save LSTM model
     """
-    torch.save(lstm_gen.lstm.state_dict(), f"{DIR}/lstm.pth")
+    torch.save(lstm_gen.lstm.state_dict(), f"{DIR}/lstm_epoch{NUM_EPOCHS}_lr{LEARNING_RATE}_nlayer{NUM_LAYERS}.pth")
     lstm_df = pd.DataFrame(lstm_gen.history)
-    lstm_df.to_csv(f'{DIR}/lstm.csv', index=False) # TODO: add model configs to filename
+    lstm_df.to_csv(f'{DIR}/lstm_epoch{NUM_EPOCHS}_lr{LEARNING_RATE}_nlayer{NUM_LAYERS}.csv', index=False) 
 
     """
     To load model to cuda but it was saved on cpu (or vice versa) use:

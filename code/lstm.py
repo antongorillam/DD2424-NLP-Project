@@ -136,7 +136,7 @@ class Generator():
         
         return generated_seq 
 
-    def train(self, lstm, num_epchs=100, temperature=0.2, lr=0.01, print_every=100, label_smoothing=0.8):
+    def train(self, lstm, num_epchs=100, temperature=0.2, lr=0.01, print_every=100, label_smoothing=0.95):
         """
         Trains the RNN model
         --------------------
@@ -161,6 +161,8 @@ class Generator():
         print("Training starting...")
         toc = time.perf_counter()
 
+
+        smooth_loss = None 
         for epoch in range(1, num_epchs + 1):
             loss = 0
             hidden, cell = self.lstm.init_hidden(self.batch_size, self.device)
@@ -173,55 +175,62 @@ class Generator():
 
             loss.backward()
             optimizer.step()
-            loss = loss.item() / self.sequence_length
+            loss = loss.item() #/ self.sequence_length
+            loss /= self.sequence_length
             
+            # print(f"before: {smooth_loss}")
+            smooth_loss = loss if smooth_loss==None else smooth_loss
+            smooth_loss = (0.999 * smooth_loss + 0.001 * loss) 
+            # print(f"after: {smooth_loss}\n")
             self.iteration += 1
 
             if epoch % print_every==0:
                 time_elapsed_sec = time.perf_counter() - toc
                 time_elapsed = time.strftime("%Hh:%Mm:%Ss", time.gmtime(time_elapsed_sec))
                 generated_seq = self.generate(temperature=temperature)
-                print(f"Epoch {epoch}/{num_epchs}, loss: {loss:.2f}, time elapsed: {time_elapsed}")
+                print(f"Epoch {epoch}/{num_epchs}, loss: {smooth_loss:.4f}, time elapsed: {time_elapsed}")
                 print(generated_seq)
                 print()
                 self.history["generated_seq"].append(generated_seq)
-                self.history["loss"].append(loss)
+                self.history["loss"].append(smooth_loss)
                 self.history["iterations"].append(self.iteration)
 
             # writer.add_scalar("Training loss", loss, global_step=loss)       
 
-# if __name__ == '__main__':
-#     data_dict = read_data("../data/The_Sun_Also_Rises.txt")
-#     text = data_dict["text"]
-#     index2char = data_dict["index2char"]
-#     char2index = data_dict["char2index"]
-#     SEQUENCE_LENGTH = 25
-#     BATCH_SIZE = 1
-#     NUM_EPOCHS = 10000
-#     HIDDEN_SIZE = 100
-#     NUM_LAYERS = 2
-#     TEMPERATURE = 0.28
-#     LEARNING_RATE = 0.01
+if __name__ == '__main__':
+    data_dict = read_data("../data/The_Sun_Also_Rises.txt")
+    text = data_dict["text"]
+    index2char = data_dict["index2char"]
+    char2index = data_dict["char2index"]
+    SEQUENCE_LENGTH = 25
+    BATCH_SIZE = 1
+    NUM_EPOCHS = 10000
+    HIDDEN_SIZE = 100
+    NUM_LAYERS = 2
+    TEMPERATURE = 0.28
+    LEARNING_RATE = 0.1
+    LABEL_SMOOTHING = 0
 
-    # generator = Generator(
-    #     input_string=text, 
-    #     index2char=index2char, 
-    #     char2index=char2index,
-    #     sequence_length=SEQUENCE_LENGTH,
-    #     batch_size=BATCH_SIZE
-    #     )
+    generator = Generator(
+        input_string=text, 
+        index2char=index2char, 
+        char2index=char2index,
+        sequence_length=SEQUENCE_LENGTH,
+        batch_size=BATCH_SIZE
+        )
     
-#     lstm = RNN(
-#         input_size=len(index2char), 
-#         hidden_size=HIDDEN_SIZE, 
-#         num_layers=NUM_LAYERS, 
-#         output_size=len(index2char),
-#     ).to(generator.device)
+    lstm = RNN(
+        input_size=len(index2char), 
+        hidden_size=HIDDEN_SIZE, 
+        num_layers=NUM_LAYERS, 
+        output_size=len(index2char),
+    ).to(generator.device)
 
-#     generator.train(
-#         lstm=lstm,
-#         num_epchs=NUM_EPOCHS,
-#         print_every=100,
-#         lr=LEARNING_RATE,
-#         temperature=TEMPERATURE,
-#     )
+    generator.train(
+        lstm=lstm,
+        num_epchs=NUM_EPOCHS,
+        print_every=100,
+        lr=LEARNING_RATE,
+        temperature=TEMPERATURE,
+        label_smoothing=LABEL_SMOOTHING,
+    )
