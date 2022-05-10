@@ -1,6 +1,7 @@
 """
 Example code of how load an LSTM model 
 """
+from cgi import test
 from utils import read_data
 import torch
 import pandas as pd
@@ -8,8 +9,12 @@ import lstm
 import rnn
 
 if __name__ == '__main__':
-    data_dict = read_data("../data/The_Sun_Also_Rises.txt")
-    text = data_dict["text"]
+
+    train_txt = "../data/The_Sun_Also_Rises.txt"
+    test_txt = "../data/Old_Man_And_The_Sea.txt"
+    
+    data_dict = read_data(train_txt, test_txt)
+    text = data_dict["train_text"]
     index2char = data_dict["index2char"]
     char2index = data_dict["char2index"]
 
@@ -32,7 +37,7 @@ if __name__ == '__main__':
         output_size=len(index2char),
     )
 
-    lstm_model.load_state_dict(torch.load(f"{DIR}/lstm.pth", map_location=device))
+    lstm_model.load_state_dict(torch.load(f"{DIR}/lstm_epoch10000_lr0.01_nlayer2.pth", map_location=device))
 
     lstm_gen = lstm.Generator(
         input_string=text,
@@ -41,3 +46,13 @@ if __name__ == '__main__':
         sequence_length=SEQUENCE_LENGTH,
         batch_size=BATCH_SIZE
     )
+
+    lstm_gen.lstm = lstm_model 
+
+    lstm_gen.generate()
+    
+    """
+    Example of how to generate a text, George will have to 
+    - modify the function generate() i lstm.py so that it performs nucleaus sampling
+    - Also implement Beam Search there is time
+    """

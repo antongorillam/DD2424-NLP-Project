@@ -198,7 +198,8 @@ class Generator():
             # writer.add_scalar("Training loss", loss, global_step=loss)       
 
 if __name__ == '__main__':
-    data_dict = read_data("../data/The_Sun_Also_Rises.txt")
+    
+    data_dict = read_data("../data/The_Sun_Also_Rises.txt", "../data/Old_Man_and_the_sea.txt")
     text = data_dict["text"]
     index2char = data_dict["index2char"]
     char2index = data_dict["char2index"]
@@ -226,11 +227,11 @@ if __name__ == '__main__':
         output_size=len(index2char),
     ).to(generator.device)
 
-    generator.train(
-        lstm=lstm,
-        num_epchs=NUM_EPOCHS,
-        print_every=100,
-        lr=LEARNING_RATE,
-        temperature=TEMPERATURE,
-        label_smoothing=LABEL_SMOOTHING,
-    )
+    # generator.train(
+    #     lstm=lstm,
+    #     num_epchs=NUM_EPOCHS,
+    #     print_every=100,
+    #     lr=LEARNING_RATE,
+    #     temperature=TEMPERATURE,
+    #     label_smoothing=LABEL_SMOOTHING,
+    # )
