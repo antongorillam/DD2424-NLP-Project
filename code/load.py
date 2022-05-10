@@ -1,7 +1,6 @@
 """
 Example code of how load an LSTM model 
 """
-from cgi import test
 from utils import read_data
 import torch
 import pandas as pd
