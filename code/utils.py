@@ -21,8 +21,8 @@ def read_data(train_file_name, test_file_name):
             dict["index2char"] (dict):
                 dict mapping each index to characters
     """
-    train_text = open(train_file_name, mode='r').read()
-    test_txt = open(test_file_name, mode='r').read()
+    train_text = open(train_file_name, mode='r', encoding='utf8').read()
+    test_txt = open(test_file_name, mode='r', encoding='utf8').read()
     
     vocab = sorted(set(train_text)) # + test_txt))
     char2index = {char: index for index, char in enumerate(vocab)}

@@ -1,20 +1,22 @@
-from utils import read_data
-import torch
-import pandas as pd
-import lstm
-import rnn
 import time
+
+import pandas as pd
+import torch
 from jury import Jury
 
+import lstm
+import rnn
+from perplexity import getPerplexity
+from utils import read_data
 
 """
 Test of how to
 """
-if __name__ == '__main__':
+if __name__ == "__main__":
 
     DIR_TRAIN = "../data/The_Sun_Also_Rises.txt"
     DIR_TEST = "../data/Old_Man_And_The_Sea.txt"
-    
+
     data_dict = read_data(DIR_TRAIN, DIR_TEST)
     text = data_dict["train_text"]
     index2char = data_dict["index2char"]
@@ -30,38 +32,47 @@ if __name__ == '__main__':
     LEARNING_RATE = 0.01
     LABEL_SMOOTHING = 0.8
 
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")    
-    
-    lstm_model =  lstm.RNN(
-        input_size=len(index2char), 
-        hidden_size=HIDDEN_SIZE, 
-        num_layers=NUM_LAYERS, 
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+    lstm_model = lstm.RNN(
+        input_size=len(index2char),
+        hidden_size=HIDDEN_SIZE,
+        num_layers=NUM_LAYERS,
         output_size=len(index2char),
     )
 
-    lstm_model.load_state_dict(torch.load(f"{DIR}/lstm_epoch10000_lr0.01_nlayer2.pth", map_location=device))
+    lstm_model.load_state_dict(
+        torch.load(f"{DIR}/lstm_epoch10000_lr0.01_nlayer2.pth", map_location=device)
+    )
 
     lstm_gen = lstm.Generator(
         input_string=text,
-        index2char=index2char, 
+        index2char=index2char,
         char2index=char2index,
         sequence_length=SEQUENCE_LENGTH,
-        batch_size=BATCH_SIZE
+        batch_size=BATCH_SIZE,
     )
 
-    lstm_gen.lstm = lstm_model 
+    # print(lstm_gen)
 
-    lstm_gen.generate(generated_seq_length=100)
-    print(f"temp = 0.1 {lstm_gen.generate(generated_seq_length=100, temperature=.1)}\n")
-    print(f"temp = 0.2 {lstm_gen.generate(generated_seq_length=100, temperature=.2)}\n")
-    print(f"temp = 0.3 {lstm_gen.generate(generated_seq_length=100, temperature=.3)}\n")
-    print(f"temp = 0.4 {lstm_gen.generate(generated_seq_length=100, temperature=.4)}\n")
-    print(f"temp = 0.5 {lstm_gen.generate(generated_seq_length=100, temperature=.5)}\n")
-    print(f"temp = 0.6 {lstm_gen.generate(generated_seq_length=100, temperature=.6)}\n")
-    print(f"temp = 0.7 {lstm_gen.generate(generated_seq_length=100, temperature=.7)}\n")
+    lstm_gen.lstm = lstm_model
 
+    gen_1 = lstm_gen.generate(generated_seq_length=100, temperature=0.1)
+    gen_3 = lstm_gen.generate(generated_seq_length=100, temperature=0.3)
+    gen_9 = lstm_gen.generate(generated_seq_length=100, temperature=0.9)
+    # print(getPerplexity('../data/bigrams/old_man_model.txt',gen))
+    print(f"temp = 0.1 {gen_1}\n")
+    print(f"temp = 0.3 {gen_3}\n")
+    # print(f"temp = 0.3 {lstm_gen.generate(generated_seq_length=100, temperature=.3)}\n")
+    # print(f"temp = 0.4 {lstm_gen.generate(generated_seq_length=100, temperature=.4)}\n")
+    # print(f"temp = 0.5 {lstm_gen.generate(generated_seq_length=100, temperature=.5)}\n")
+    # print(f"temp = 0.6 {lstm_gen.generate(generated_seq_length=100, temperature=.6)}\n")
+    print(f"temp = 0.99 {gen_9}\n")
 
-    
+    print(getPerplexity("../data/bigrams/old_man_model.txt", gen_1))
+    print(getPerplexity("../data/bigrams/old_man_model.txt", gen_3))
+    print(getPerplexity("../data/bigrams/old_man_model.txt", gen_9))
+
     # toc = time.perf_counter()
     # scorer = Jury(metrics=['bleu','rouge','bertscore'])
     # predictions = [gen]
@@ -70,7 +81,7 @@ if __name__ == '__main__':
     # time_elapsed_sec = time.perf_counter() - toc
     # time_elapsed = time.strftime("%Hh:%Mm:%Ss", time.gmtime(time_elapsed_sec))
     # print(f'score: {score}')
-    # print(f'Time elapsed: {time_elapsed}') 
+    # print(f'Time elapsed: {time_elapsed}')
 
     """
     Example of how to generate a text, George will have to 
