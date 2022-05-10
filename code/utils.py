@@ -21,14 +21,14 @@ def read_data(train_file_name, test_file_name):
             dict["index2char"] (dict):
                 dict mapping each index to characters
     """
-    train_text = open(train_file_name, mode='r', encoding='utf8').read()
-    test_txt = open(test_file_name, mode='r', encoding='utf8').read()
+    train_text = open(train_file_name, mode='r').read()
+    test_text = open(test_file_name, mode='r').read()
     
-    vocab = sorted(set(train_text)) # + test_txt))
+    vocab = sorted(set(train_text + test_text)) # + test_text))
     char2index = {char: index for index, char in enumerate(vocab)}
     # index2char = np.array(vocab) needed?
     index2char = {index: char for index, char in enumerate(vocab)} 
-    return {"train_text": train_text, "test_txt": test_txt, "char2index": char2index, "index2char": index2char}
+    return {"train_text": train_text, "test_text": test_text, "char2index": char2index, "index2char": index2char}
 
 # if __name__ == '__main__':
 #     train_txt = "../data/The_Sun_Also_Rises.txt"

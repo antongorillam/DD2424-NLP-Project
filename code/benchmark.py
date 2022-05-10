@@ -1,3 +1,9 @@
+from utils import read_data
+import torch
+import pandas as pd
+import numpy as np
+import lstm
+import rnn
 import time
 
 import pandas as pd
@@ -10,7 +16,7 @@ from perplexity import getPerplexity
 from utils import read_data
 
 """
-Test of how to
+Deciding on what metrics to use
 """
 if __name__ == "__main__":
 
@@ -83,10 +89,4 @@ if __name__ == "__main__":
     # time_elapsed_sec = time.perf_counter() - toc
     # time_elapsed = time.strftime("%Hh:%Mm:%Ss", time.gmtime(time_elapsed_sec))
     # print(f'score: {score}')
-    # print(f'Time elapsed: {time_elapsed}')
-
-    """
-    Example of how to generate a text, George will have to 
-    - modify the function generate() in lstm.py so that it performs nucleaus sampling
-    - Also implement Beam Search there is time
-    """
+    # print(f'Time elapsed: {time_elapsed}') 
