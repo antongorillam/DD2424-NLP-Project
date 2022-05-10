@@ -1,6 +1,7 @@
 from utils import read_data
 import torch
 import pandas as pd
+import numpy as np
 import lstm
 import rnn
 import time
@@ -8,7 +9,7 @@ from jury import Jury
 
 
 """
-Test of how to
+Deciding on what metrics to use
 """
 if __name__ == '__main__':
 
@@ -50,16 +51,10 @@ if __name__ == '__main__':
     )
 
     lstm_gen.lstm = lstm_model 
-
+    TEMPERATURES = np.arange(0.1, 1, 0.1)   
     lstm_gen.generate(generated_seq_length=100)
-    print(f"temp = 0.1 {lstm_gen.generate(generated_seq_length=100, temperature=.1)}\n")
-    print(f"temp = 0.2 {lstm_gen.generate(generated_seq_length=100, temperature=.2)}\n")
-    print(f"temp = 0.3 {lstm_gen.generate(generated_seq_length=100, temperature=.3)}\n")
-    print(f"temp = 0.4 {lstm_gen.generate(generated_seq_length=100, temperature=.4)}\n")
-    print(f"temp = 0.5 {lstm_gen.generate(generated_seq_length=100, temperature=.5)}\n")
-    print(f"temp = 0.6 {lstm_gen.generate(generated_seq_length=100, temperature=.6)}\n")
-    print(f"temp = 0.7 {lstm_gen.generate(generated_seq_length=100, temperature=.7)}\n")
-
+    for temp in TEMPERATURES:
+        print(f"temp {temp:.1f}: {lstm_gen.generate(generated_seq_length=100, temperature=temp)}\n")
 
     
     # toc = time.perf_counter()
@@ -71,9 +66,3 @@ if __name__ == '__main__':
     # time_elapsed = time.strftime("%Hh:%Mm:%Ss", time.gmtime(time_elapsed_sec))
     # print(f'score: {score}')
     # print(f'Time elapsed: {time_elapsed}') 
-
-    """
-    Example of how to generate a text, George will have to 
-    - modify the function generate() in lstm.py so that it performs nucleaus sampling
-    - Also implement Beam Search there is time
-    """

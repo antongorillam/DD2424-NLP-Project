@@ -41,20 +41,23 @@ class  RNN(nn.Module):
         return hidden, cell
 
 class Generator():
-    def __init__(self, input_string, index2char, char2index, sequence_length=100, batch_size=100):
+    def __init__(self, input_string, test_string , index2char, char2index, sequence_length=100, batch_size=100):
         """
         Trains an RNN model that can generate a synthesize text seqence
         -----------------------------------
         params:
         -------
             input_string (str):
-                the whole input string (a full book in our case)
+                the string that represents the train set (Hemingway books)
+            test_string (str):
+                the string that represents the test set (Hemingway books)
             index2char (dict):
                 dictiornay containg index -> unique-characters
             char2index (dict):
                 dictiornay unique-characters -> containg index  
         """
         self.input_string = input_string
+        self.test_string = test_string 
         self.index2char = index2char
         self.char2index = char2index
         self.sequence_length = sequence_length 
@@ -197,41 +200,42 @@ class Generator():
 
             # writer.add_scalar("Training loss", loss, global_step=loss)       
 
-if __name__ == '__main__':
-    
-    data_dict = read_data("../data/The_Sun_Also_Rises.txt", "../data/Old_Man_and_the_sea.txt")
-    text = data_dict["text"]
-    index2char = data_dict["index2char"]
-    char2index = data_dict["char2index"]
-    SEQUENCE_LENGTH = 25
-    BATCH_SIZE = 1
-    NUM_EPOCHS = 10000
-    HIDDEN_SIZE = 100
-    NUM_LAYERS = 2
-    TEMPERATURE = 0.28
-    LEARNING_RATE = 0.1
-    LABEL_SMOOTHING = 0
+# if __name__ == '__main__':
+#     data_dict = read_data("../data/The_Sun_Also_Rises.txt", "../data/Old_Man_And_The_Sea.txt")
+#     train_text = data_dict["train_text"]
+#     test_text = data_dict["test_text"]
+#     index2char = data_dict["index2char"]
+#     char2index = data_dict["char2index"]
+#     SEQUENCE_LENGTH = 25
+#     BATCH_SIZE = 1
+#     NUM_EPOCHS = 10000
+#     HIDDEN_SIZE = 100
+#     NUM_LAYERS = 2
+#     TEMPERATURE = 0.28
+#     LEARNING_RATE = 0.1
+#     LABEL_SMOOTHING = 0
 
-    generator = Generator(
-        input_string=text, 
-        index2char=index2char, 
-        char2index=char2index,
-        sequence_length=SEQUENCE_LENGTH,
-        batch_size=BATCH_SIZE
-        )
+#     generator = Generator(
+#         input_string=train_text, 
+#         test_string=test_text,
+#         index2char=index2char, 
+#         char2index=char2index,
+#         sequence_length=SEQUENCE_LENGTH,
+#         batch_size=BATCH_SIZE
+#         )
     
-    lstm = RNN(
-        input_size=len(index2char), 
-        hidden_size=HIDDEN_SIZE, 
-        num_layers=NUM_LAYERS, 
-        output_size=len(index2char),
-    ).to(generator.device)
+#     lstm = RNN(
+#         input_size=len(index2char), 
+#         hidden_size=HIDDEN_SIZE, 
+#         num_layers=NUM_LAYERS, 
+#         output_size=len(index2char),
+#     ).to(generator.device)
 
-    # generator.train(
-    #     lstm=lstm,
-    #     num_epchs=NUM_EPOCHS,
-    #     print_every=100,
-    #     lr=LEARNING_RATE,
-    #     temperature=TEMPERATURE,
-    #     label_smoothing=LABEL_SMOOTHING,
-    # )
+#     generator.train(
+#         lstm=lstm,
+#         num_epchs=NUM_EPOCHS,
+#         print_every=100,
+#         lr=LEARNING_RATE,
+#         temperature=TEMPERATURE,
+#         label_smoothing=LABEL_SMOOTHING,
+#     )

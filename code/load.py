@@ -12,10 +12,12 @@ if __name__ == '__main__':
     train_txt = "../data/The_Sun_Also_Rises.txt"
     test_txt = "../data/Old_Man_And_The_Sea.txt"
     
-    data_dict = read_data(train_txt, test_txt)
-    text = data_dict["train_text"]
+    data_dict = read_data("../data/The_Sun_Also_Rises.txt", "../data/Old_Man_And_The_Sea.txt")
+    train_text = data_dict["train_text"]
+    test_text = data_dict["test_text"]
     index2char = data_dict["index2char"]
     char2index = data_dict["char2index"]
+
 
     DIR = "../results"
     SEQUENCE_LENGTH = 25
@@ -39,7 +41,8 @@ if __name__ == '__main__':
     lstm_model.load_state_dict(torch.load(f"{DIR}/lstm_epoch10000_lr0.01_nlayer2.pth", map_location=device))
 
     lstm_gen = lstm.Generator(
-        input_string=text,
+        input_string=train_text,
+        test_string=test_text,
         index2char=index2char, 
         char2index=char2index,
         sequence_length=SEQUENCE_LENGTH,
