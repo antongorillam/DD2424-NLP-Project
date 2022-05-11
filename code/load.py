@@ -8,11 +8,7 @@ import lstm
 import rnn
 
 if __name__ == '__main__':
-
-    train_txt = "../data/The_Sun_Also_Rises.txt"
-    test_txt = "../data/Old_Man_And_The_Sea.txt"
-    
-    data_dict = read_data("../data/The_Sun_Also_Rises.txt", "../data/Old_Man_And_The_Sea.txt")
+    data_dict = read_data()
     train_text = data_dict["train_text"]
     test_text = data_dict["test_text"]
     index2char = data_dict["index2char"]

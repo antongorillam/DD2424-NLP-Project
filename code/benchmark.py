@@ -19,11 +19,7 @@ from utils import read_data
 Deciding on what metrics to use
 """
 if __name__ == "__main__":
-
-    DIR_TRAIN = "../data/The_Sun_Also_Rises.txt"
-    DIR_TEST = "../data/Old_Man_And_The_Sea.txt"
-
-    data_dict = read_data(DIR_TRAIN, DIR_TEST)
+    data_dict = read_data()
     text = data_dict["train_text"]
     index2char = data_dict["index2char"]
     char2index = data_dict["char2index"]
@@ -31,11 +27,11 @@ if __name__ == "__main__":
     DIR = "../results"
     SEQUENCE_LENGTH = 25
     BATCH_SIZE = 1
-    NUM_EPOCHS = 10000
+    NUM_EPOCHS = 35000
     HIDDEN_SIZE = 100
     NUM_LAYERS = 2
     TEMPERATURE = 0.28
-    LEARNING_RATE = 0.01
+    LEARNING_RATE = 0.1
     LABEL_SMOOTHING = 0.8
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")

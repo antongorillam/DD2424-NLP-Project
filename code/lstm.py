@@ -139,7 +139,7 @@ class Generator():
         
         return generated_seq 
 
-    def train(self, lstm, num_epchs=100, temperature=0.2, lr=0.01, print_every=100, label_smoothing=0.95):
+    def train(self, lstm, num_epchs=100, temperature=0.2, lr=0.01, print_every=5000, label_smoothing=0.95):
         """
         Trains the RNN model
         --------------------
@@ -187,7 +187,7 @@ class Generator():
             # print(f"after: {smooth_loss}\n")
             self.iteration += 1
 
-            if epoch % print_every==0:
+            if epoch % print_every==0 or epoch==1:
                 time_elapsed_sec = time.perf_counter() - toc
                 time_elapsed = time.strftime("%Hh:%Mm:%Ss", time.gmtime(time_elapsed_sec))
                 generated_seq = self.generate(temperature=temperature)
@@ -201,7 +201,7 @@ class Generator():
             # writer.add_scalar("Training loss", loss, global_step=loss)       
 
 # if __name__ == '__main__':
-#     data_dict = read_data("../data/The_Sun_Also_Rises.txt", "../data/Old_Man_And_The_Sea.txt")
+#     data_dict = read_data()
 #     train_text = data_dict["train_text"]
 #     test_text = data_dict["test_text"]
 #     index2char = data_dict["index2char"]
