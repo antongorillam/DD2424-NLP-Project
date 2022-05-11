@@ -13,6 +13,7 @@ from jury import Jury
 import lstm
 import rnn
 from perplexity import getPerplexity
+from spellScore import getSpellPercentage
 from utils import read_data
 
 """
@@ -21,10 +22,11 @@ Deciding on what metrics to use
 if __name__ == "__main__":
     data_dict = read_data()
     text = data_dict["train_text"]
+    test_text = data_dict["test_text"]
     index2char = data_dict["index2char"]
     char2index = data_dict["char2index"]
 
-    DIR = "../results"
+    DIR = "../results/rnn_vs_lstm"
     SEQUENCE_LENGTH = 25
     BATCH_SIZE = 1
     NUM_EPOCHS = 35000
@@ -33,6 +35,7 @@ if __name__ == "__main__":
     TEMPERATURE = 0.28
     LEARNING_RATE = 0.1
     LABEL_SMOOTHING = 0.8
+    TEST_BIGRAMS = '../data/bigrams/testBigramsMerged.txt'
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -44,11 +47,12 @@ if __name__ == "__main__":
     )
 
     lstm_model.load_state_dict(
-        torch.load(f"{DIR}/lstm_epoch10000_lr0.01_nlayer2.pth", map_location=device)
+        torch.load(f"{DIR}/lstm_hidden100_epoch100000_lr0.01_nlayer2.pth", map_location=device)
     )
 
     lstm_gen = lstm.Generator(
         input_string=text,
+        test_string=test_text,
         index2char=index2char,
         char2index=char2index,
         sequence_length=SEQUENCE_LENGTH,
@@ -74,6 +78,10 @@ if __name__ == "__main__":
     print(getPerplexity(TEST_BIGRAMS, gen_1))
     print(getPerplexity(TEST_BIGRAMS, gen_3))
     print(getPerplexity(TEST_BIGRAMS, gen_9))
+
+    print(getSpellPercentage(gen_1))
+    print(getSpellPercentage(gen_3))
+    print(getSpellPercentage(gen_9))
 
     # toc = time.perf_counter()
     # scorer = Jury(metrics=['bleu','rouge','bertscore'])

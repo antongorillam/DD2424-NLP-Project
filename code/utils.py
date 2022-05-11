@@ -42,11 +42,11 @@ def read_data():
     
     train_text = ""
     for train in train_dir:
-        train_text += open(train, mode='r').read()
+        train_text += open(train, mode='r', encoding='utf-8').read()
     
     test_text = ""
     for test in test_dir:
-        test_text += open(test, mode='r').read()
+        test_text += open(test, mode='r', encoding='utf-8').read()
 
 
 
