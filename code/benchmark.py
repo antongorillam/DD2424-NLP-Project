@@ -71,9 +71,9 @@ if __name__ == "__main__":
     # print(f"temp = 0.6 {lstm_gen.generate(generated_seq_length=100, temperature=.6)}\n")
     print(f"temp = 0.99 {gen_9}\n")
 
-    print(getPerplexity("../data/bigrams/old_man_model.txt", gen_1))
-    print(getPerplexity("../data/bigrams/old_man_model.txt", gen_3))
-    print(getPerplexity("../data/bigrams/old_man_model.txt", gen_9))
+    print(getPerplexity(TEST_BIGRAMS, gen_1))
+    print(getPerplexity(TEST_BIGRAMS, gen_3))
+    print(getPerplexity(TEST_BIGRAMS, gen_9))
 
     # toc = time.perf_counter()
     # scorer = Jury(metrics=['bleu','rouge','bertscore'])
