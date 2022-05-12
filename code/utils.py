@@ -5,12 +5,6 @@ def read_data():
     """
     Reads a text file and returns  
     -----------------------------
-    Params:
-    -------
-        train_file_name (str) : 
-            The directory and filename of the train set textfile
-        test_file_name (str) : 
-            The directory and filename of the test set textfile
     Returns:
     --------
         dict with the following items:
@@ -102,11 +96,62 @@ def load_model(dir, hidden_size, num_layers):
     return lstm_gen
 
 
+
+def read_data_shakespeare():
+    """
+    Reads the Shakespeare text and returns a dictonary of it
+    This is to validate our dataset  
+    -------------------------------
+    Params:
+    -------
+        train_file_name (str) : 
+            The directory and filename of the train set textfile
+        test_file_name (str) : 
+            The directory and filename of the test set textfile
+    Returns:
+    --------
+        dict with the following items:
+            dict["text"] (str): 
+                full text in string format
+            dict["char2index"] (dict):
+                dict mappingis each characters to index
+            dict["index2char"] (dict):
+                dict mapping each index to characters
+    """
+    DIR = "../data/shakespeare/shakespeare.txt"
+        
+    text = open(DIR, mode='r', encoding='utf-8').read()
+    vocab = sorted(set(text)) 
+    char2index = {char: index for index, char in enumerate(vocab)}
+    index2char = {index: char for index, char in enumerate(vocab)} 
+    return {"text": text, "char2index": char2index, "index2char": index2char}
+
 if __name__ == '__main__':
 
+    import lstm
+    import pandas as pd
+    import seaborn as sns
+    data_dict = read_data_shakespeare()
+    train_text = data_dict["text"]
+    # test_text = data_dict["test_text"]
+    index2char = data_dict["index2char"]
+    char2index = data_dict["char2index"]
+
+    DIR = "../results/shakespeare"
+    SEQUENCE_LENGTH = 100
+    BATCH_SIZE = 1
+    NUM_EPOCHS = 50000
+    HIDDEN_SIZE = 100
+    NUM_LAYERS = 2
+    TEMPERATURE = 0.8
+    LEARNING_RATE = 0.01
+    LABEL_SMOOTHING = 0
+
+
     lstm_gen = load_model(
-        dir="../results/rnn_vs_lstm/lstm_hidden100_epoch100000_lr0.01_nlayer2.pth",
+        dir=f"{DIR}/lstm_hidden100_epoch50000_lr0.01_nlayer2.pth",
         hidden_size=100,
         num_layers=2,
-    )
-
+        )
+    lstm_gen.generate()
+    

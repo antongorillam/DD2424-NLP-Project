@@ -1,13 +1,14 @@
 import torch
 import torch.nn as nn
 import numpy as np
-import time
+import time 
 from utils import read_data
 from torch.utils.tensorboard import SummaryWriter
+import sys
 
 
-class RNN(nn.Module):
-    def __init__(self, input_size, hidden_size, num_layers, output_size):
+class  RNN(nn.Module):
+    def __init__(self, input_size, hidden_size, num_layers, output_size):    
         super(RNN, self).__init__()
         """
         Class for Reacurrent Neural Network
@@ -24,12 +25,12 @@ class RNN(nn.Module):
         """
         self.hidden_size = hidden_size
         self.num_layers = num_layers
-        self.embed = nn.Embedding(input_size, hidden_size)  # embed (nn.Embedding object): Quick lookup table
+        self.embed = nn.Embedding(input_size, hidden_size) # embed (nn.Embedding object): Quick lookup table 
         self.lstm = nn.LSTM(hidden_size, hidden_size, num_layers, batch_first=True)
-        self.fc = nn.Linear(hidden_size,
-                            output_size)  # fc: Applies linear transformation (y=xA.T+b) that maps hidden states to target space
-
+        self.fc = nn.Linear(hidden_size, output_size) # fc: Applies linear transformation (y=xA.T+b) that maps hidden states to target space 
+    
     def forward(self, x, hidden_prev, cell_prev):
+        
         out = self.embed(x)
         out, (hidden, cell) = self.lstm(out.unsqueeze(1), (hidden_prev, cell_prev))
         out = self.fc(out.reshape(out.shape[0], -1))
@@ -42,7 +43,7 @@ class RNN(nn.Module):
 
 
 class Generator():
-    def __init__(self, input_string, test_string, index2char, char2index, sequence_length=100, batch_size=100):
+    def __init__(self, input_string, test_string , index2char, char2index, sequence_length=100, batch_size=100):
         """
         Trains an RNN model that can generate a synthesize text seqence
         -----------------------------------
@@ -55,7 +56,7 @@ class Generator():
             index2char (dict):
                 dictiornay containg index -> unique-characters
             char2index (dict):
-                dictiornay unique-characters -> containg index  
+                dictiornay unique-characters -> containg index
         """
         self.input_string = input_string
         self.test_string = test_string
@@ -64,6 +65,7 @@ class Generator():
         self.sequence_length = sequence_length
         self.batch_size = batch_size
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        print("device", self.device)
         self.iteration = 0
         self.history = {
             "iterations": [],
@@ -75,7 +77,7 @@ class Generator():
         """
         Returns the 1-D tensor representing of a string
         """
-        tensor = torch.zeros(len(string)).long()
+        tensor = torch.zeros(len(string)).long().to(self.device)
         for c in range(len(string)):
             tensor[c] = self.char2index[string[c]]
         return tensor
@@ -91,8 +93,8 @@ class Generator():
         text_target (tensor):
             dim ~ (batch_size, sequence_length)
         """
-        text_input = torch.zeros(self.batch_size, self.sequence_length)
-        text_target = torch.zeros(self.batch_size, self.sequence_length)
+        text_input = torch.zeros(self.batch_size, self.sequence_length).to(self.device)
+        text_target = torch.zeros(self.batch_size, self.sequence_length).to(self.device)
 
         for i in range(self.batch_size):
             # Pick a random chunk of text
@@ -104,27 +106,33 @@ class Generator():
 
         return text_input.long(), text_target.long()
 
-    def generate(self, generated_seq_length=200, temperature=0.0, top_k=0, top_p=0.0, filter_value=-float('Inf')):
+    def generate(self, initial_str=None, generated_seq_length=200, temperature=0.0, top_k=0, top_p=0.0, filter_value=-float('Inf')):
         """
-        Generates a synthesized text with the current RNN model  
+        Generates a synthesized text with the current RNN model
         -------------------------------------------------------
         Params:
+            initial_str (str):
+                The inital string for the prediction.
+                If this parameter is set to "None", then a random character is used.
             generated_seq_length (int):
                 The  lenght of the string tha we want to generate
             temperature (float between 0 and 1):
-                Determines the risk of the synthesized text. For example, 
-                if temperature is high, the RNN may generate new words that 
-                haven't been seen before. If temperature is low, it takes 
+                Determines the risk of the synthesized text. For example,
+                if temperature is high, the RNN may generate new words that
+                haven't been seen before. If temperature is low, it takes
                 less risk and picks the most likely next character in the sequence.
 
-        TODO: (Optional) Takes the last x_input and hidden to make an exact sequence prediction 
+        TODO: (Optional) Takes the last x_input and hidden to make an exact sequence prediction
         """
-        initial_str = self.index2char[np.random.randint(len(self.index2char))]
+        if initial_str ==None:
+            initial_str = self.index2char[np.random.randint(len(self.index2char))]
+
         hidden, cell = self.lstm.init_hidden(batch_size=1, device=self.device)
         initial_input = self.char_tensor(initial_str)
-        generated_seq = initial_str  # TODO: Should try to generate seq dynamically if there is time
-
+        generated_seq = initial_str #TODO: Should try to generate seq dynamically if there is time
+        
         for i in range(len(initial_str) - 1):
+            
             _, (hidden, cell) = self.lstm(initial_input[i].view(1).to(self.device), hidden, cell)
 
         last_char = initial_input[-1]
@@ -157,8 +165,8 @@ class Generator():
             generated_char = self.index2char[top_char.item()]
             generated_seq += generated_char
             last_char = self.char_tensor(generated_char)
-
-        return generated_seq
+        
+        return generated_seq 
 
     def train(self, lstm, num_epchs=100, temperature=0.2, lr=0.01, print_every=5000, label_smoothing=0.95):
         """
@@ -202,8 +210,8 @@ class Generator():
             loss /= self.sequence_length
 
             # print(f"before: {smooth_loss}")
-            smooth_loss = loss if smooth_loss == None else smooth_loss
-            smooth_loss = (0.999 * smooth_loss + 0.001 * loss)
+            smooth_loss = loss if smooth_loss==None else smooth_loss
+            smooth_loss = (0.999 * smooth_loss + 0.001 * loss) 
             # print(f"after: {smooth_loss}\n")
             self.iteration += 1
 
@@ -243,7 +251,7 @@ class Generator():
 #         sequence_length=SEQUENCE_LENGTH,
 #         batch_size=BATCH_SIZE
 #         )
-
+    
 #     lstm = RNN(
 #         input_size=len(index2char), 
 #         hidden_size=HIDDEN_SIZE, 
