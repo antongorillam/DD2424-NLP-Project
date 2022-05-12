@@ -103,11 +103,14 @@ class Generator():
 
         return text_input.long(), text_target.long()
 
-    def generate(self, generated_seq_length=200, temperature=0.20):
+    def generate(self, initial_str=None, generated_seq_length=200, temperature=0.20):
         """
         Generates a synthesized text with the current RNN model  
         -------------------------------------------------------
         Params:
+            initial_str (str):
+                The inital string for the prediction. 
+                If this parameter is set to "None", then a random character is used.
             generated_seq_length (int):
                 The  lenght of the string tha we want to generate
             temperature (float between 0 and 1):
@@ -118,7 +121,9 @@ class Generator():
 
         TODO: (Optional) Takes the last x_input and hidden to make an exact sequence prediction 
         """
-        initial_str = self.index2char[np.random.randint(len(self.index2char))]
+        if initial_str==None:
+            initial_str = self.index2char[np.random.randint(len(self.index2char))]  
+             
         hidden, cell = self.lstm.init_hidden(batch_size=1, device=self.device)
         initial_input = self.char_tensor(initial_str)
         generated_seq = initial_str #TODO: Should try to generate seq dynamically if there is time
