@@ -8,10 +8,11 @@ import time
 
 import pandas as pd
 import torch
-from jury import Jury
 
-from perplexity import getPerplexity
-from spellScore import getSpellPercentage
+
+import lstm
+import rnn
+from metrics import getPerplexity, getSpellPercentage, getAdjustedBLEU
 from utils import read_data
 
 """
@@ -60,12 +61,14 @@ if __name__ == "__main__":
     print(getSpellPercentage(gen_3))
     print(getSpellPercentage(gen_9))
 
-    # toc = time.perf_counter()
-    # scorer = Jury(metrics=['bleu','rouge','bertscore'])
-    # predictions = [gen]
-    # references = [text]
+    # # toc = time.perf_counter()
+    # scorer = Jury(metrics=['bleu'])
+    # predictions = [gen_9]
+    # references = [test_text]
     # score = scorer.evaluate(predictions=predictions, references=references)
-    # time_elapsed_sec = time.perf_counter() - toc
-    # time_elapsed = time.strftime("%Hh:%Mm:%Ss", time.gmtime(time_elapsed_sec))
+    # # time_elapsed_sec = time.perf_counter() - toc
+    # # time_elapsed = time.strftime("%Hh:%Mm:%Ss", time.gmtime(time_elapsed_sec))
     # print(f'score: {score}')
+    adjBleu, _ = getAdjustedBLEU(gen_9, test_text)
+    print('bleu: ', adjBleu)
     # print(f'Time elapsed: {time_elapsed}') 
