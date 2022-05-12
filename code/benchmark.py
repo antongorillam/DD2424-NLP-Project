@@ -12,7 +12,7 @@ import torch
 
 import lstm
 import rnn
-from metrics import getPerplexity, getSpellPercentage, getAdjustedBLEU
+from metrics import getPerplexity, getSpellPercentage, getAdjustedBLEU, getMetrics
 from utils import read_data
 
 """
@@ -74,13 +74,13 @@ if __name__ == "__main__":
     # print(f"temp = 0.6 {lstm_gen.generate(generated_seq_length=100, temperature=.6)}\n")
     print(f"temp = 0.99 {gen_9}\n")
 
-    print(getPerplexity(TEST_BIGRAMS, gen_1))
-    print(getPerplexity(TEST_BIGRAMS, gen_3))
-    print(getPerplexity(TEST_BIGRAMS, gen_9))
+    # print(getPerplexity(TEST_BIGRAMS, gen_1))
+    # print(getPerplexity(TEST_BIGRAMS, gen_3))
+    # print(getPerplexity(TEST_BIGRAMS, gen_9))
 
-    print(getSpellPercentage(gen_1))
-    print(getSpellPercentage(gen_3))
-    print(getSpellPercentage(gen_9))
+    # print(getSpellPercentage(gen_1))
+    # print(getSpellPercentage(gen_3))
+    # print(getSpellPercentage(gen_9))
 
     # # toc = time.perf_counter()
     # scorer = Jury(metrics=['bleu'])
@@ -90,6 +90,7 @@ if __name__ == "__main__":
     # # time_elapsed_sec = time.perf_counter() - toc
     # # time_elapsed = time.strftime("%Hh:%Mm:%Ss", time.gmtime(time_elapsed_sec))
     # print(f'score: {score}')
-    adjBleu, _ = getAdjustedBLEU(gen_9, test_text)
-    print('bleu: ', adjBleu)
+    # adjBleu, _ = getAdjustedBLEU(gen_9, test_text)
+    # print('bleu: ', adjBleu)
+    print(getMetrics(gen_9, test_text, TEST_BIGRAMS))
     # print(f'Time elapsed: {time_elapsed}') 

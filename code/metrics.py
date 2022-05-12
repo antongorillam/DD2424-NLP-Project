@@ -2,6 +2,7 @@ from spellchecker import SpellChecker
 import re
 from perplexity import BigramTester
 import numpy as np
+from jury import Jury
 
 def getSpellPercentage(genString):
     spell = SpellChecker()
@@ -19,7 +20,9 @@ def getSpellPercentage(genString):
         #print('word : ', word,'in' if word in spell else 'not')
         if word in spell:
             correctcount += 1
-        # else:
+        else:
+            if re.match(word,'^(don\'t|can\'t|won\'t|wasn\'t|hasn\'t)$'):
+                correctcount += 1
         #     print('word : ', word)
     return correctcount / noWords
 
@@ -33,16 +36,27 @@ def getPerplexity(modelFile, generatedSequence, type="string"):
     return bigram_tester.logProb
 
 def getAdjustedBLEU(candidate, reference):
-    from jury import Jury
     
     scorer = Jury(metrics=['bleu'])
     prediction = [candidate]
     reference = [reference]
     score = scorer.evaluate(predictions=prediction, references=reference)
     nGramPrecisions = score['bleu']['precisions']
+    nGramPrecisionsDict = {i+1: nGramPrecisions[i] for i in range(len(nGramPrecisions))}
     precision = 1
     adjBLEU = {} 
     for i, prec in enumerate(nGramPrecisions):
         precision *= prec
-        adjBLEU[i+1] = np.power(precision,(1/(i+1)))
-    return adjBLEU, nGramPrecisions
+        adjBLEU[i+1] = 100 * np.power(precision,(1/(i+1)))
+    return adjBLEU, nGramPrecisionsDict
+
+def getMetrics(candidate, reference, testBigramsFile):
+    metrics = {}
+    metrics['spelling_percentage'] = getSpellPercentage(candidate)
+    metrics['perplexity'] = getPerplexity(testBigramsFile,candidate)
+    metrics['bleu'], metrics['ngram_precisions'] = getAdjustedBLEU(candidate, reference)
+    scorer = Jury(metrics=['bertscore','bartscore'])
+    score = scorer.evaluate(predictions=[candidate], references=[reference])
+    metrics['bertscore'] = score['bertscore']
+    metrics['bartscore'] = score['bartscore']
+    return metrics
