@@ -84,11 +84,11 @@ if __name__ == "__main__":
     print(getSpellPercentage(gen_9))
 
     # toc = time.perf_counter()
-    # scorer = Jury(metrics=['bleu','rouge','bertscore'])
-    # predictions = [gen]
-    # references = [text]
-    # score = scorer.evaluate(predictions=predictions, references=references)
+    scorer = Jury(metrics=['bleu'])
+    predictions = [gen_9]
+    references = [test_text]
+    score = scorer.evaluate(predictions=predictions, references=references)
     # time_elapsed_sec = time.perf_counter() - toc
     # time_elapsed = time.strftime("%Hh:%Mm:%Ss", time.gmtime(time_elapsed_sec))
-    # print(f'score: {score}')
+    print(f'score: {score}')
     # print(f'Time elapsed: {time_elapsed}') 
