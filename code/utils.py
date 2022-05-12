@@ -56,5 +56,57 @@ def read_data():
     index2char = {index: char for index, char in enumerate(vocab)} 
     return {"train_text": train_text, "test_text": test_text, "char2index": char2index, "index2char": index2char}
 
+def load_model(dir, hidden_size, num_layers):
+    """
+    Load a pre-trained LSTM model in a generator object
+    (do not work for vanilla RNN for some reason)
+    ---------------------------------------------
+    params:
+        dir (str):
+            directory of the model we want to load
+        hidden_size (int):
+            hidden size of the model to load 
+        num_layers (int):
+            number of layers of the model to load
+    """
+    import lstm
+
+    data_dict = read_data()
+    train_text = data_dict["train_text"]
+    test_text = data_dict["test_text"]
+    index2char = data_dict["index2char"]
+    char2index = data_dict["char2index"]
+
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")    
+    # create generator obejct
+    lstm_gen = lstm.Generator(
+        input_string=train_text,
+        test_string=test_text,
+        index2char=index2char, 
+        char2index=char2index,
+        sequence_length=None,
+        batch_size=None
+    )
+    # initiate empty lstm object
+    lstm_model =  lstm.RNN(
+        input_size=len(index2char), 
+        hidden_size=hidden_size, 
+        num_layers=num_layers, 
+        output_size=len(index2char),
+    )
+    # Load an existing lstm parameters to our empty lstm object 
+    lstm_model.load_state_dict(torch.load(f"{dir}", map_location=device))
+    # Put the lstm object in our generator function
+    lstm_gen.lstm = lstm_model 
+
+    return lstm_gen
+
+
 if __name__ == '__main__':
-    data = read_data()
+
+    lstm_gen = load_model(
+        dir="../results/rnn_vs_lstm/lstm_hidden100_epoch100000_lr0.01_nlayer2.pth",
+        hidden_size=100,
+        num_layers=2,
+    )
+
