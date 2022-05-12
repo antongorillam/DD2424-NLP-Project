@@ -21,12 +21,12 @@ if __name__ == '__main__':
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")    
 
     lstm_gen = load_model(
-        dir=f"{DIR}/lstm_hidden100_epoch100000_lr0.01_nlayer2.pth",
+        dir="../results/rnn_vs_lstm/lstm_hidden100_epoch100000_lr0.01_nlayer2.pth",
         hidden_size=100,
         num_layers=2,
         )
-    lstm_gen.generate()
-    
+    test = lstm_gen.generate(top_k=120)
+    print(test)
     """
     Example of how to generate a text, George will have to 
     - modify the function generate() i lstm.py so that it performs nucleaus sampling

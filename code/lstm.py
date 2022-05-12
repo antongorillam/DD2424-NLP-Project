@@ -103,7 +103,7 @@ class Generator():
 
         return text_input.long(), text_target.long()
 
-    def generate(self, generated_seq_length=200, temperature=0.20):
+    def generate(self, generated_seq_length=200, temperature=0.0, top_k=0, top_p=0.0, filter_value=-float('Inf')):
         """
         Generates a synthesized text with the current RNN model  
         -------------------------------------------------------
@@ -128,14 +128,26 @@ class Generator():
             _, (hidden, cell) = self.lstm(initial_input[i].view(1).to(self.device), hidden, cell)
         
         last_char = initial_input[-1]
+        if top_k >0:
+            for i in range(generated_seq_length):
+                output, (hidden, cell) = self.lstm(last_char.view(1).to(self.device), hidden, cell)
+                output_dist = output.data.view(-1)
+                indices_to_remove = output_dist < torch.topk(output_dist, top_k)[0][..., -1, None]
+                output_dist[indices_to_remove] = filter_value
+                probabilities = torch.softmax(output_dist, dim=-1)
+                top_char = torch.multinomial(probabilities, 1)[0]
+                generated_char = self.index2char[top_char.item()]
+                generated_seq += generated_char
+                last_char = self.char_tensor(generated_char)
 
-        for i in range(generated_seq_length):
-            output, (hidden, cell) = self.lstm(last_char.view(1).to(self.device), hidden, cell)
-            output_dist = output.data.view(-1).div(temperature).exp()
-            top_char = torch.multinomial(output_dist, 1)[0]
-            generated_char = self.index2char[top_char.item()]
-            generated_seq += generated_char
-            last_char = self.char_tensor(generated_char)
+        if temperature > 0:
+            for i in range(generated_seq_length):
+                output, (hidden, cell) = self.lstm(last_char.view(1).to(self.device), hidden, cell)
+                output_dist = output.data.view(-1).div(temperature).exp()
+                top_char = torch.multinomial(output_dist, 1)[0]
+                generated_char = self.index2char[top_char.item()]
+                generated_seq += generated_char
+                last_char = self.char_tensor(generated_char)
         
         return generated_seq 
 
