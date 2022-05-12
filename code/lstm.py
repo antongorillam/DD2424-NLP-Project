@@ -140,6 +140,27 @@ class Generator():
                 generated_seq += generated_char
                 last_char = self.char_tensor(generated_char)
 
+        if top_p >0.0:
+            for i in range(generated_seq_length):
+                output, (hidden, cell) = self.lstm(last_char.view(1).to(self.device), hidden, cell)
+                output_dist = output.data.view(-1)
+                sorted_output, sorted_indices = torch.sort(output_dist, descending=True)
+                cumulative_probs = torch.cumsum(torch.softmax(sorted_output, dim=-1), dim=-1)
+
+                # Remove tokens with cumulative probability above the threshold
+                sorted_indices_to_remove = cumulative_probs > top_p
+                # Shift the indices to the right to keep also the first token above the threshold
+                sorted_indices_to_remove[..., 1:] = sorted_indices_to_remove[..., :-1].clone()
+                sorted_indices_to_remove[..., 0] = 0
+                indices_to_remove = sorted_indices[sorted_indices_to_remove]
+                output_dist[indices_to_remove] = filter_value
+                probabilities = torch.softmax(output_dist, dim=-1)
+                top_char = torch.multinomial(probabilities, 1)[0]
+                generated_char = self.index2char[top_char.item()]
+                generated_seq += generated_char
+                last_char = self.char_tensor(generated_char)
+
+
         if temperature > 0:
             for i in range(generated_seq_length):
                 output, (hidden, cell) = self.lstm(last_char.view(1).to(self.device), hidden, cell)

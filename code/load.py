@@ -25,7 +25,7 @@ if __name__ == '__main__':
         hidden_size=100,
         num_layers=2,
         )
-    test = lstm_gen.generate(top_k=120)
+    test = lstm_gen.generate(top_p=0.95, generated_seq_length=200)
     print(test)
     """
     Example of how to generate a text, George will have to 
