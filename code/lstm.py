@@ -64,7 +64,6 @@ class Generator():
         self.sequence_length = sequence_length
         self.batch_size = batch_size
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        print("device", self.device)
         self.iteration = 0
         self.history = {
             "iterations":[],
@@ -120,6 +119,7 @@ class Generator():
 
         TODO: (Optional) Takes the last x_input and hidden to make an exact sequence prediction
         """
+        np.random.seed(42)
         initial_str = self.index2char[np.random.randint(len(self.index2char))]
         hidden, cell = self.lstm.init_hidden(batch_size=1, device=self.device)
         initial_input = self.char_tensor(initial_str)
@@ -194,7 +194,6 @@ class Generator():
                 time_elapsed = time.strftime("%Hh:%Mm:%Ss", time.gmtime(time_elapsed_sec))
                 generated_seq = self.generate(temperature=temperature)
                 print(f"Epoch {epoch}/{num_epchs}, loss: {smooth_loss:.4f}, time elapsed: {time_elapsed}")
-                print(type(generated_seq))
                 print(generated_seq.encode(sys.stdout.encoding, errors='replace'))
                 print()
                 self.history["generated_seq"].append(generated_seq)
