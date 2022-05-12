@@ -124,97 +124,14 @@ class BigramTester(object):
             self.logProb = 1 / Prob
         else:
             self.logProb *= 1 / Prob
-        # print('iterative logprob: ',self.logProb)
-
+        
         self.test_words_processed += 1
         self.last_index = self.index.get(word)
 
         if self.test_words_processed == len(self.tokens):
             # print('logprob before',self.logProb)
             self.logProb = np.power(self.logProb, (1 / len(self.tokens)))
-            # print('this is the returned value: ',self.logProb)
-        # if self.test_words_processed == len(self.tokens):
-        #     print('success')
-        #     self.logProb = logProb / -len(self.tokens)
-        #     print('logbrob: ',self.logProb)
-        # ----------------------------------------------------------------------
-
-        # if self.test_words_processed > 0:
-        #     #print("word: ", word)
-        #     #print("k: ", self.last_index, self.index[word])
-        #     self.logProb += math.log(
-        #         self.lambda1
-        #         * (
-        #             math.exp(self.bigram_prob[(self.last_index, self.index[word])])
-        #             if (self.last_index, self.index[word]) in self.bigram_prob
-        #             else 0
-        #         )
-        #         + self.lambda2
-        #         * (
-        #             self.unigram_count[word] / self.total_words
-        #             if word in self.index
-        #             else 0
-        #         )
-        #         + self.lambda3
-        #     )
-        # self.test_words_processed += 1
-        # self.last_index += 1
-
-        # if self.test_words_processed == len(self.tokens):
-        #     print('success')
-        #     self.logProb = self.logProb / -len(self.tokens)
-
-        # ----------------------------------------------------------------------------------
-
-        # bigramLogProb = 0
-        # unigramLogProb = 0
-
-        # # if token is known, update the unigram probability
-        # if word in self.index:
-        #     # print(self.index)
-        #     unigramLogProb = self.lambda2 * (
-        #         self.unigram_count[word] / self.total_words
-        #     )
-
-        #     # if the bigram exists, update the bigram probability
-        #     if (self.last_index, self.index[word]) in self.bigram_prob:
-        #         bigramLogProb = self.lambda1 * math.exp(
-        #             self.bigram_prob[(self.last_index, self.index[word])]
-        #         )
-
-        # totalLogProb = bigramLogProb + unigramLogProb + self.lambda3
-
-        # # cannot calculate bigram logprob when at first word
-        # if self.test_words_processed == 0:
-        #     self.logProb = 0
-        # else:
-        #     self.logProb += math.log(totalLogProb)
-        #     # self.logProb += (-1 / len(self.tokens)) * math.log(self.lambda1 * math.exp(
-        #     #         self.bigram_prob[(self.last_index, self.index[word])]
-        #     #     if(self.last_index, self.index[word]) in self.bigram_prob and word in self.index else 0 + self.lambda2 * (
-        #     #         self.unigram_count[word] / self.total_words
-        #     #     ) if word in self.index else 0 + self.lambda3))
-        # self.test_words_processed += 1
-        # self.last_index += 1
-
-        # -----------------------------------------------------------------------------------------
-
-        # if self.test_words_processed == len(self.tokens):
-        #     self.logProb = self.logProb / -len(self.tokens)
-
-        # wordIdx = self.index[word]
-        # unigramLogProb = math.log(self.unigram_count[word] / self.total_words )
-        # if self.test_words_processed > 0:
-        #     bigramLogProb = self.bigram_prob
-        # else:
-        #     self.logProb +=
-
-        # self.test_words_processed += 1
-        # YOUR CODE HERE
-        # pass
-
-        # ------------------------------------------------------------------------------------------
-
+        
     def process_test_file(self, test_filename):
         """
         <p>Reads and processes the test file one word at a time. </p>
