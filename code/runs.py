@@ -104,7 +104,7 @@ class Run:
         rnn_fig = sns.lineplot(data=rnn_df, x="iterations", y="loss")
         rnn_fig.get_figure().savefig(f'{hyper_params.DIR}/rnn_hidden{hyper_params.HIDDEN_SIZE}_epoch{hyper_params.NUM_EPOCHS}_lr{hyper_params.LEARNING_RATE}_nlayer{hyper_params.NUM_LAYERS}.png')
 
-if __name__=='__main__':
-    h = hyperParameters.Hyper_params(hidden_size=100, num_epochs=20000)
-    run = Run()
-    run.run_lstm(hyper_params=h, save=False, print_every=1)  
+# if __name__=='__main__':
+#     h = hyperParameters.Hyper_params(hidden_size=100, num_epochs=20000)
+#     run = Run()
+#     run.run_lstm(hyper_params=h, save=False, print_every=1)  
