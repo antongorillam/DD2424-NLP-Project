@@ -8,7 +8,7 @@ import sys
 
 
 class  RNN(nn.Module):
-    def __init__(self, input_size, hidden_size, num_layers, output_size):    
+    def __init__(self, input_size, hidden_size, num_layers, output_size, embedding_dim=100):    
         super(RNN, self).__init__()
         """
         Class for Reacurrent Neural Network
@@ -25,12 +25,13 @@ class  RNN(nn.Module):
         """
         self.hidden_size = hidden_size
         self.num_layers = num_layers
-        self.embed = nn.Embedding(input_size, hidden_size) # embed (nn.Embedding object): Quick lookup table 
-        self.lstm = nn.LSTM(hidden_size, hidden_size, num_layers, batch_first=True)
+        self.embedding_dim = embedding_dim 
+        self.embed = nn.Embedding(input_size, embedding_dim) # embed (nn.Embedding object): Quick lookup table 
+        self.lstm = nn.LSTM(embedding_dim, hidden_size, num_layers, batch_first=True)
         self.fc = nn.Linear(hidden_size, output_size) # fc: Applies linear transformation (y=xA.T+b) that maps hidden states to target space 
     
     def forward(self, x, hidden_prev, cell_prev):
-        
+
         out = self.embed(x)
         out, (hidden, cell) = self.lstm(out.unsqueeze(1), (hidden_prev, cell_prev))
         out = self.fc(out.reshape(out.shape[0], -1))

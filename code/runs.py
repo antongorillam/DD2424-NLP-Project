@@ -51,14 +51,14 @@ class Run:
             """
             Save LSTM model
             """
-            torch.save(lstm_gen.lstm.state_dict(), f"{DIR}/lstm_hidden{HIDDEN_SIZE}_epoch{NUM_EPOCHS}_lr{LEARNING_RATE}_nlayer{NUM_LAYERS}.pth")
+            torch.save(lstm_gen.lstm.state_dict(), f"{hyper_params.DIR}/lstm_hidden{hyper_params.HIDDEN_SIZE}_epoch{hyper_params.NUM_EPOCHS}_lr{hyper_params.LEARNING_RATE}_nlayer{hyper_params.NUM_LAYERS}.pth")
             lstm_df = pd.DataFrame(lstm_gen.history)
-            lstm_df.to_csv(f'{DIR}/lstm_hidden{HIDDEN_SIZE}_epoch{NUM_EPOCHS}_lr{LEARNING_RATE}_nlayer{NUM_LAYERS}.csv', index=False)
+            lstm_df.to_csv(f'{hyper_params.DIR}/lstm_hidden{hyper_params.HIDDEN_SIZE}_epoch{hyper_params.NUM_EPOCHS}_lr{hyper_params.LEARNING_RATE}_nlayer{hyper_params.NUM_LAYERS}.csv', index=False)
 
             sns.set_style("whitegrid")
-            title_string = f"LSTM: Loss vs iterations\nHidden Layers:{HIDDEN_SIZE}, lr:{LEARNING_RATE}"
+            title_string = f"LSTM: Loss vs iterations\nHidden Layers:{hyper_params.HIDDEN_SIZE}, lr:{hyper_params.LEARNING_RATE}"
             lstm_fig = sns.lineplot(data=lstm_df, x="iterations", y="loss")
-            lstm_fig.get_figure().savefig(f'{DIR}/lstm_hidden{HIDDEN_SIZE}_epoch{NUM_EPOCHS}_lr{LEARNING_RATE}_nlayer{NUM_LAYERS}.png')
+            lstm_fig.get_figure().savefig(f'{hyper_params.DIR}/lstm_hidden{hyper_params.HIDDEN_SIZE}_epoch{hyper_params.NUM_EPOCHS}_lr{hyper_params.LEARNING_RATE}_nlayer{hyper_params.NUM_LAYERS}.png')
             """
             To load model to cuda but it was saved on cpu (or vice versa) use:
             device = torch.device("cuda")
@@ -95,11 +95,16 @@ class Run:
         """
         Save RNN model
         """
-        torch.save(rnn_model.rnn.state_dict(), f"{DIR}/rnn_hidden{HIDDEN_SIZE}_epoch{NUM_EPOCHS}_lr{LEARNING_RATE}_nlayer{NUM_LAYERS}.pth")
+        torch.save(rnn_model.rnn.state_dict(), f"{hyper_params.DIR}/rnn_hidden{hyper_params.HIDDEN_SIZE}_epoch{hyper_params.NUM_EPOCHS}_lr{hyper_params.LEARNING_RATE}_nlayer{hyper_params.NUM_LAYERS}.pth")
         rnn_df = pd.DataFrame(rnn_gen.history)
-        rnn_df.to_csv(f"{DIR}/rnn_hidden{HIDDEN_SIZE}_epoch{NUM_EPOCHS}_lr{LEARNING_RATE}_nlayer{NUM_LAYERS}.csv", index=False)
+        rnn_df.to_csv(f"{hyper_params.DIR}/rnn_hidden{hyper_params.HIDDEN_SIZE}_epoch{hyper_params.NUM_EPOCHS}_lr{hyper_params.LEARNING_RATE}_nlayer{hyper_params.NUM_LAYERS}.csv", index=False)
 
         sns.set_style("whitegrid")
-        title_string = f"RNN: Loss vs iterations\nHidden Layers:{HIDDEN_SIZE}, lr:{LEARNING_RATE}"
+        title_string = f"RNN: Loss vs iterations\nHidden Layers:{hyper_params.HIDDEN_SIZE}, lr:{hyper_params.LEARNING_RATE}"
         rnn_fig = sns.lineplot(data=rnn_df, x="iterations", y="loss")
-        rnn_fig.get_figure().savefig(f'{DIR}/rnn_hidden{HIDDEN_SIZE}_epoch{NUM_EPOCHS}_lr{LEARNING_RATE}_nlayer{NUM_LAYERS}.png')
+        rnn_fig.get_figure().savefig(f'{hyper_params.DIR}/rnn_hidden{hyper_params.HIDDEN_SIZE}_epoch{hyper_params.NUM_EPOCHS}_lr{hyper_params.LEARNING_RATE}_nlayer{hyper_params.NUM_LAYERS}.png')
+
+if __name__=='__main__':
+    h = hyperParameters.Hyper_params(hidden_size=100, num_epochs=20000)
+    run = Run()
+    run.run_lstm(hyper_params=h, save=False, print_every=1)  
