@@ -1,4 +1,4 @@
-from utils import read_data
+from utils import read_data_shakespeare
 import torch
 import pandas as pd
 import lstm
@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 class Run:
 
     def __init__(self):
-        self.data_dict = read_data()
+        self.data_dict = read_data_shakespeare()
         self.train_text = self.data_dict["train_text"]
         self.test_text = self.data_dict["test_text"]
         self.index2char = self.data_dict["index2char"]

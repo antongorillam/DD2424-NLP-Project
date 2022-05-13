@@ -88,9 +88,9 @@ def load_model(dir, hidden_size, num_layers):
         num_layers=num_layers, 
         output_size=len(index2char),
     )
-    # Load an existing lstm parameters to our empty lstm object 
+    # load an existing lstm parameters to our empty lstm object 
     lstm_model.load_state_dict(torch.load(f"{dir}", map_location=device))
-    # Put the lstm object in our generator function
+    # put the lstm object in our generator function
     lstm_gen.lstm = lstm_model 
 
     return lstm_gen
@@ -99,58 +99,90 @@ def load_model(dir, hidden_size, num_layers):
 def read_data_shakespeare():
     """
     Reads the Shakespeare text and returns a dictonary of it
-    This is to validate our dataset  
-    -------------------------------
-    Params:
-    -------
-        train_file_name (str) : 
-            The directory and filename of the train set textfile
-        test_file_name (str) : 
-            The directory and filename of the test set textfile
+    ---------------------------------------------------------
+
     Returns:
     --------
         dict with the following items:
-            dict["text"] (str): 
+            dict["train_set"] (str): 
+                full text in string format
+            dict["test_set"] (str): 
                 full text in string format
             dict["char2index"] (dict):
                 dict mappingis each characters to index
             dict["index2char"] (dict):
                 dict mapping each index to characters
     """
-    DIR = "../data/shakespeare/shakespeare.txt"
-        
-    text = open(DIR, mode='r', encoding='utf-8').read()
-    vocab = sorted(set(text)) 
+    DIR = "../data/shakespeare"
+    train_text = open(f"{DIR}/train_shakespeare.txt", mode='r', encoding='utf-8').read()
+    test_text = open(f"{DIR}/train_shakespeare.txt", mode='r', encoding='utf-8').read()  
+
+    vocab = sorted(set(train_text + test_text)) 
     char2index = {char: index for index, char in enumerate(vocab)}
     index2char = {index: char for index, char in enumerate(vocab)} 
-    return {"text": text, "char2index": char2index, "index2char": index2char}
+  
+    return {"train_text": train_text, "test_text": test_text, "char2index": char2index, "index2char": index2char}
+
+def split_shakespeare(test_split=.3):
+    """
+    Reads the Shakespeare text and splits the data int train- and test set in a coherent way
+
+    Writes train set to train_shakespeare.txt
+    Writes test set to test_shakespeare.txt
+    ----------------------------------------------------------------------------------------
+    Params:
+    -------
+        test_split (float) : 
+            Size (in percentage) of test set 
+    """
+    import re
+
+    DIR = "../data/shakespeare"
+    text = open(f"{DIR}/shakespeare.txt", mode='r', encoding='utf-8').read()
+    
+    text_array = np.array(re.split(r"\n\n", text))
+    test_split = int (len(text_array) * test_split)
+    
+    test_idx = np.random.choice(np.arange(len(text_array)), test_split, replace=False)
+    train_idx = np.array([i for i in range(len(text_array)) if i not in test_idx])
+    
+    test_idx.sort()
+    train_idx.sort()
+
+    test_set = '\n\n'.join(text_array[test_idx])
+    train_set = '\n\n'.join(text_array[train_idx])
+    
+    with open(f"{DIR}/train_shakespeare.txt", 'w') as f:
+        f.write(train_set)
+        
+    with open(f"{DIR}/test_shakespeare.txt", 'w') as f:
+        f.write(test_set)
 
 if __name__ == '__main__':
 
-    import lstm
     import pandas as pd
     import seaborn as sns
     data_dict = read_data_shakespeare()
-    train_text = data_dict["text"]
-    # test_text = data_dict["test_text"]
+    train_text = data_dict["train_set"]
+    test_text = data_dict["test_set"]
     index2char = data_dict["index2char"]
     char2index = data_dict["char2index"]
 
-    DIR = "../results/shakespeare"
-    SEQUENCE_LENGTH = 100
-    BATCH_SIZE = 1
-    NUM_EPOCHS = 50000
-    HIDDEN_SIZE = 100
-    NUM_LAYERS = 2
-    TEMPERATURE = 0.8
-    LEARNING_RATE = 0.01
-    LABEL_SMOOTHING = 0
+    # DIR = "../results/shakespeare"
+    # SEQUENCE_LENGTH = 100
+    # BATCH_SIZE = 1
+    # NUM_EPOCHS = 50000
+    # HIDDEN_SIZE = 100
+    # NUM_LAYERS = 2
+    # TEMPERATURE = 0.8
+    # LEARNING_RATE = 0.01
+    # LABEL_SMOOTHING = 0
 
 
-    lstm_gen = load_model(
-        dir=f"{DIR}/lstm_hidden100_epoch50000_lr0.01_nlayer2.pth",
-        hidden_size=100,
-        num_layers=2,
-        )
-    lstm_gen.generate()
+    # lstm_gen = load_model(
+    #     dir=f"{DIR}/lstm_hidden100_epoch50000_lr0.01_nlayer2.pth",
+    #     hidden_size=100,
+    #     num_layers=2,
+    #     )
+    # lstm_gen.generate()
     
