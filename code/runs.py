@@ -38,7 +38,7 @@ class Run:
         lstm_gen.train(
             lstm=lstm_model,
             num_epchs=hyper_params.NUM_EPOCHS,
-            print_every=500,
+            print_every=print_every,
             lr=hyper_params.LEARNING_RATE,
             temperature=hyper_params.TEMPERATURE,
             label_smoothing=hyper_params.LABEL_SMOOTHING,
