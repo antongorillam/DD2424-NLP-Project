@@ -96,7 +96,6 @@ def load_model(dir, hidden_size, num_layers):
     return lstm_gen
 
 
-
 def read_data_shakespeare():
     """
     Reads the Shakespeare text and returns a dictonary of it

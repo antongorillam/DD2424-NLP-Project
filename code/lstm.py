@@ -171,7 +171,6 @@ class Generator():
         print("Training starting...")
         toc = time.perf_counter()
 
-
         smooth_loss = None
         for epoch in range(1, num_epchs + 1):
             loss = 0
