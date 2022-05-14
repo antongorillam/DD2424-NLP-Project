@@ -57,7 +57,7 @@ class Run:
 
             sns.set_style("whitegrid")
             title_string = f"LSTM: Loss vs iterations\nHidden Layers:{hyper_params.HIDDEN_SIZE}, lr:{hyper_params.LEARNING_RATE}"
-            lstm_fig = sns.lineplot(data=lstm_df, x="iterations", y="loss")
+            lstm_fig = sns.lineplot(data=lstm_df, x="iterations", y="loss").set_title(title_string)
             lstm_fig.get_figure().savefig(f'{hyper_params.DIR}/lstm_hidden{hyper_params.HIDDEN_SIZE}_epoch{hyper_params.NUM_EPOCHS}_lr{hyper_params.LEARNING_RATE}_nlayer{hyper_params.NUM_LAYERS}.png')
             """
             To load model to cuda but it was saved on cpu (or vice versa) use:
@@ -101,10 +101,10 @@ class Run:
 
         sns.set_style("whitegrid")
         title_string = f"RNN: Loss vs iterations\nHidden Layers:{hyper_params.HIDDEN_SIZE}, lr:{hyper_params.LEARNING_RATE}"
-        rnn_fig = sns.lineplot(data=rnn_df, x="iterations", y="loss")
+        rnn_fig = sns.lineplot(data=rnn_df, x="iterations", y="loss").set_title(title_string)
         rnn_fig.get_figure().savefig(f'{hyper_params.DIR}/rnn_hidden{hyper_params.HIDDEN_SIZE}_epoch{hyper_params.NUM_EPOCHS}_lr{hyper_params.LEARNING_RATE}_nlayer{hyper_params.NUM_LAYERS}.png')
 
 # if __name__=='__main__':
-#     h = hyperParameters.Hyper_params(hidden_size=100, num_epochs=20000)
+#     h = hyperParameters.Hyper_params(hidden_size=500, num_epochs=10000, learning_rate=0.005)
 #     run = Run()
-#     run.run_lstm(hyper_params=h, save=False, print_every=1)  
+#     run.run_lstm(hyper_params=h, save=True, print_every=100)  
