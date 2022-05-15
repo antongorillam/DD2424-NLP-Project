@@ -32,7 +32,6 @@ jobs:
           ls -la
 
       - name: Run Tests
-      
         run: python -m pytest
 
       - name: Upload artifact for deployment jobs
