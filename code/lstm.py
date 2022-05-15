@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 import numpy as np
-import time 
+import time
 from utils import read_data
 from torch.utils.tensorboard import SummaryWriter
 import sys
@@ -129,13 +129,12 @@ class Generator():
 
         if initial_str ==None:
             initial_str = self.index2char[np.random.randint(len(self.index2char))]        
-
         hidden, cell = self.lstm.init_hidden(batch_size=1, device=self.device)
         initial_input = self.char_tensor(initial_str)
         generated_seq = initial_str #TODO: Should try to generate seq dynamically if there is time
-        
+
         for i in range(len(initial_str) - 1):
-            
+
             _, (hidden, cell) = self.lstm(initial_input[i].view(1).to(self.device), hidden, cell)
 
         last_char = initial_input[-1]
@@ -168,14 +167,14 @@ class Generator():
             generated_char = self.index2char[top_char.item()]
             generated_seq += generated_char
             last_char = self.char_tensor(generated_char)
-        
-        return generated_seq 
+
+        return generated_seq
 
     def train(self, lstm, num_epchs=100, temperature=0.2, lr=0.01, print_every=5000, label_smoothing=0.95):
         """
         Trains the RNN model
         --------------------
-        params: 
+        params:
             rnn (rnn object):
                 The neural network model to be trained
             num_epochs (int):
@@ -185,7 +184,7 @@ class Generator():
             lr (float between 0 and 1):
                 Learning rate aka. eta
             print_every (int):
-                How often to print progress. For example if print_every=100, 
+                How often to print progress. For example if print_every=100,
                 then loss and a synthesized text
         """
         self.lstm = lstm
@@ -214,7 +213,7 @@ class Generator():
 
             # print(f"before: {smooth_loss}")
             smooth_loss = loss if smooth_loss==None else smooth_loss
-            smooth_loss = (0.999 * smooth_loss + 0.001 * loss) 
+            smooth_loss = (0.999 * smooth_loss + 0.001 * loss)
             # print(f"after: {smooth_loss}\n")
             self.iteration += 1
 
@@ -232,7 +231,7 @@ class Generator():
                 self.history["loss"].append(smooth_loss)
                 self.history["iterations"].append(self.iteration)
 
-            # writer.add_scalar("Training loss", loss, global_step=loss)       
+            # writer.add_scalar("Training loss", loss, global_step=loss)
 
 # if __name__ == '__main__':
 #     data_dict = read_data()
@@ -250,18 +249,18 @@ class Generator():
 #     LABEL_SMOOTHING = 0
 
 #     generator = Generator(
-#         input_string=train_text, 
+#         input_string=train_text,
 #         test_string=test_text,
-#         index2char=index2char, 
+#         index2char=index2char,
 #         char2index=char2index,
 #         sequence_length=SEQUENCE_LENGTH,
 #         batch_size=BATCH_SIZE
 #         )
-    
+
 #     lstm = RNN(
-#         input_size=len(index2char), 
-#         hidden_size=HIDDEN_SIZE, 
-#         num_layers=NUM_LAYERS, 
+#         input_size=len(index2char),
+#         hidden_size=HIDDEN_SIZE,
+#         num_layers=NUM_LAYERS,
 #         output_size=len(index2char),
 #     ).to(generator.device)
 
