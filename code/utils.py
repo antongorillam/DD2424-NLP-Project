@@ -65,7 +65,7 @@ def load_model(dir, hidden_size, num_layers):
     """
     import lstm
 
-    data_dict = read_data()
+    data_dict = read_data_shakespeare()
     train_text = data_dict["train_text"]
     test_text = data_dict["test_text"]
     index2char = data_dict["index2char"]
@@ -86,7 +86,7 @@ def load_model(dir, hidden_size, num_layers):
         input_size=len(index2char), 
         hidden_size=hidden_size, 
         num_layers=num_layers, 
-        output_size=len(index2char),
+        output_size=len(index2char)
     )
     # load an existing lstm parameters to our empty lstm object 
     lstm_model.load_state_dict(torch.load(f"{dir}", map_location=device))
@@ -135,7 +135,7 @@ def split_shakespeare(test_split=.3):
         test_split (float) : 
             Size (in percentage) of test set 
     """
-    import re
+    import re # import regex
 
     DIR = "../data/shakespeare"
     text = open(f"{DIR}/shakespeare.txt", mode='r', encoding='utf-8').read()
@@ -158,15 +158,15 @@ def split_shakespeare(test_split=.3):
     with open(f"{DIR}/test_shakespeare.txt", 'w') as f:
         f.write(test_set)
 
-if __name__ == '__main__':
+# if __name__ == '__main__':
 
-    import pandas as pd
-    import seaborn as sns
-    data_dict = read_data_shakespeare()
-    train_text = data_dict["train_set"]
-    test_text = data_dict["test_set"]
-    index2char = data_dict["index2char"]
-    char2index = data_dict["char2index"]
+#     import pandas as pd
+#     import seaborn as sns
+#     data_dict = read_data_shakespeare()
+#     train_text = data_dict["train_set"]
+#     test_text = data_dict["test_set"]
+#     index2char = data_dict["index2char"]
+#     char2index = data_dict["char2index"]
 
     # DIR = "../results/shakespeare"
     # SEQUENCE_LENGTH = 100

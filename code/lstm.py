@@ -106,7 +106,7 @@ class Generator():
 
         return text_input.long(), text_target.long()
 
-    def generate(self, initial_str=None, generated_seq_length=200, temperature=0.0, top_k=0, top_p=0.0, filter_value=-float('Inf')):
+    def generate(self, initial_str=None, random_state=None, generated_seq_length=200, temperature=0.0, top_k=0, top_p=0.0, filter_value=-float('Inf')):
         """
         Generates a synthesized text with the current RNN model
         -------------------------------------------------------
@@ -124,7 +124,9 @@ class Generator():
 
         TODO: (Optional) Takes the last x_input and hidden to make an exact sequence prediction
         """
-        np.random.seed(42)
+        if random_state!=None:
+            np.random.seed(random_state)
+
         if initial_str ==None:
             initial_str = self.index2char[np.random.randint(len(self.index2char))]        
 
@@ -222,7 +224,9 @@ class Generator():
                 generated_seq = self.generate(temperature=temperature)
                 
                 print(f"Epoch {epoch}/{num_epchs}, loss: {smooth_loss:.4f}, time elapsed: {time_elapsed}")
-                print(generated_seq.encode(sys.stdout.encoding, errors='replace'))
+                print('{:.1%} finished...'.format(epoch/num_epchs))
+                print(generated_seq)
+                # print(generated_seq.encode(sys.stdout.encoding, errors='replace'))
                 print()
                 self.history["generated_seq"].append(generated_seq)
                 self.history["loss"].append(smooth_loss)
