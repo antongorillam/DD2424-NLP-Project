@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE = "https://dd2482-22.azurewebsites.net/"
+const BASE = "http://127.0.0.1:8081/"
 
 export function getSynthesizedText(num_words, initial_word){
   return new Promise((resolve, reject) => {
