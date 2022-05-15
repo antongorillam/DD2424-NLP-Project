@@ -8,7 +8,7 @@ import pandas as pd
 class loadModel:
 
     def __init__(self, modelDir="../results/rnn_vs_lstm/lstm_hidden100_epoch100000_lr0.01_nlayer2", h_size=100, n_layer=2):
-        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        device = torch.device("cuda" if not torch.cuda.is_available() else "cpu")
         self.dir = modelDir + ".csv"
         self.lstm_gen = load_model(
             dir=modelDir+".pth",
