@@ -41,7 +41,6 @@ class  RNN(nn.Module):
         cell = torch.zeros(self.num_layers, batch_size, self.hidden_size).to(device)
         return hidden, cell
 
-
 class Generator():
     def __init__(self, input_string, test_string , index2char, char2index, sequence_length=100, batch_size=100):
         """
