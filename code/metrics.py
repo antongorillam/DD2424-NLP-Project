@@ -1,30 +1,37 @@
-from spellchecker import SpellChecker
 import re
-from perplexity import BigramTester
+
 import numpy as np
 from jury import Jury
+from spellchecker import SpellChecker
+
+from perplexity import BigramTester
+
 
 def getSpellPercentage(genString):
     spell = SpellChecker()
-    #genString = re.sub(r"[^a-zA-Z\s]", "", genString)
+    # genString = re.sub(r"[^a-zA-Z\s]", "", genString)
     genString = re.sub(r"(?<=[A-Za-z])[”\.\,]", "", genString)
     genString = re.sub(r"(?=[A-Za-z])”", "", genString)
     genString = re.sub(r"\s{1}&\s{1}|(?<!\s)\?\s{1}", " ", genString)
-    #print('regexed string: ', genString)
+    # print('regexed string: ', genString)
     genString = genString.lower().split()
     noWords = len(genString)
     correctcount = 0
-    
+
     for word in genString:
-        #print('word : ', word)
-        #print('word : ', word,'in' if word in spell else 'not')
+        # print('word : ', word)
+        # print('word : ', word,'in' if word in spell else 'not')
         if word in spell:
             correctcount += 1
         else:
-            if re.match(word,'^(don\'t|can\'t|won\'t|wasn\'t|hasn\'t)$'):
+            if re.match(
+                word,
+                "^(don't|can't|won't|wasn't|hasn't|you're|you've|you'll|you'd|she's|it's|that'll|don't|should've|aren't|couldn't|didn't|doesn't|hadn't|hasn't|haven't|isn't|mightn't|mustn't|needn't|shan't|shouldn't|wasn't|weren't|won't|wouldn't)$",
+            ):
                 correctcount += 1
         #     print('word : ', word)
     return correctcount / noWords
+
 
 def getPerplexity(modelFile, generatedSequence, type="string"):
     bigram_tester = BigramTester()
@@ -35,28 +42,32 @@ def getPerplexity(modelFile, generatedSequence, type="string"):
         bigram_tester.process_test_string(generatedSequence)
     return bigram_tester.logProb
 
+
 def getAdjustedBLEU(candidate, reference):
-    
-    scorer = Jury(metrics=['bleu'])
+
+    scorer = Jury(metrics=["bleu"])
     prediction = [candidate]
     reference = [reference]
     score = scorer.evaluate(predictions=prediction, references=reference)
-    nGramPrecisions = score['bleu']['precisions']
-    nGramPrecisionsDict = {i+1: nGramPrecisions[i] for i in range(len(nGramPrecisions))}
+    nGramPrecisions = score["bleu"]["precisions"]
+    nGramPrecisionsDict = {
+        i + 1: nGramPrecisions[i] for i in range(len(nGramPrecisions))
+    }
     precision = 1
-    adjBLEU = {} 
+    adjBLEU = {}
     for i, prec in enumerate(nGramPrecisions):
         precision *= prec
-        adjBLEU[i+1] = 100 * np.power(precision,(1/(i+1)))
+        adjBLEU[i + 1] = 100 * np.power(precision, (1 / (i + 1)))
     return adjBLEU, nGramPrecisionsDict
+
 
 def getMetrics(candidate, reference, testBigramsFile):
     metrics = {}
-    metrics['spelling_percentage'] = getSpellPercentage(candidate)
-    metrics['perplexity'] = getPerplexity(testBigramsFile,candidate)
-    metrics['bleu'], metrics['ngram_precisions'] = getAdjustedBLEU(candidate, reference)
-    scorer = Jury(metrics=['bertscore','bartscore'])
+    metrics["spelling_percentage"] = getSpellPercentage(candidate)
+    metrics["perplexity"] = getPerplexity(testBigramsFile, candidate)
+    metrics["bleu"], metrics["ngram_precisions"] = getAdjustedBLEU(candidate, reference)
+    scorer = Jury(metrics=["bertscore", "bartscore"])
     score = scorer.evaluate(predictions=[candidate], references=[reference])
-    metrics['bertscore'] = score['bertscore']
-    metrics['bartscore'] = score['bartscore']
+    metrics["bertscore"] = score["bertscore"]
+    metrics["bartscore"] = score["bartscore"]
     return metrics
