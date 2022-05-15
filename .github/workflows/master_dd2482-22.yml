@@ -28,7 +28,7 @@ jobs:
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
       - name: Run Tests
-      - uses: actions/checkout@v2
+        uses: actions/checkout@v2
         run: python -m pytest
 
       - name: Upload artifact for deployment jobs
