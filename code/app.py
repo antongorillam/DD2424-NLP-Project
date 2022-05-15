@@ -4,7 +4,7 @@ import load
 
 app = Flask(__name__)
 api = Api(app)
-
+var cors = require('cors')
 
 class Synthesize(Resource):
     def get(self):
@@ -19,4 +19,4 @@ class Synthesize(Resource):
 api.add_resource(Synthesize, "/Synthesize")
 
 if __name__ == '__main__':
-    app.run()
+    app.run(cors())
