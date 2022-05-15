@@ -27,6 +27,10 @@ jobs:
 
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
+      - name: Open Web Client Directory
+        run: |
+          ls -la
+
       - name: Run Tests
         uses: actions/checkout@v2
         run: python -m pytest
