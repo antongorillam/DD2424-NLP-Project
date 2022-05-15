@@ -8,7 +8,7 @@ import sys
 
 
 class  RNN(nn.Module):
-    def __init__(self, input_size, hidden_size, num_layers, output_size, embedding_dim=100):    
+    def __init__(self, input_size, hidden_size, num_layers, output_size):
         super(RNN, self).__init__()
         """
         Class for Reacurrent Neural Network
@@ -25,11 +25,10 @@ class  RNN(nn.Module):
         """
         self.hidden_size = hidden_size
         self.num_layers = num_layers
-        self.embedding_dim = embedding_dim 
-        self.embed = nn.Embedding(input_size, embedding_dim) # embed (nn.Embedding object): Quick lookup table 
-        self.lstm = nn.LSTM(embedding_dim, hidden_size, num_layers, batch_first=True)
-        self.fc = nn.Linear(hidden_size, output_size) # fc: Applies linear transformation (y=xA.T+b) that maps hidden states to target space 
-    
+        self.embed = nn.Embedding(input_size, hidden_size) # embed (nn.Embedding object): Quick lookup table
+        self.lstm = nn.LSTM(hidden_size, hidden_size, num_layers, batch_first=True)
+        self.fc = nn.Linear(hidden_size, output_size) # fc: Applies linear transformation (y=xA.T+b) that maps hidden states to target space
+
     def forward(self, x, hidden_prev, cell_prev):
 
         out = self.embed(x)
@@ -65,7 +64,8 @@ class Generator():
         self.char2index = char2index
         self.sequence_length = sequence_length
         self.batch_size = batch_size
-        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        self.device = torch.device("cuda" if not torch.cuda.is_available() else "cpu")
+        print("device", self.device)
         self.iteration = 0
         self.history = {
             "iterations": [],
@@ -106,7 +106,7 @@ class Generator():
 
         return text_input.long(), text_target.long()
 
-    def generate(self, initial_str=None, random_state=None, generated_seq_length=200, temperature=0.0, top_k=0, top_p=0.0, filter_value=-float('Inf')):
+    def generate(self, initial_str=None, generated_seq_length=200, temperature=0.0, top_k=0, top_p=0.0, filter_value=-float('Inf')):
         """
         Generates a synthesized text with the current RNN model
         -------------------------------------------------------
@@ -124,11 +124,9 @@ class Generator():
 
         TODO: (Optional) Takes the last x_input and hidden to make an exact sequence prediction
         """
-        if random_state!=None:
-            np.random.seed(random_state)
-
         if initial_str ==None:
-            initial_str = self.index2char[np.random.randint(len(self.index2char))]        
+            initial_str = self.index2char[np.random.randint(len(self.index2char))]
+        print(self.device)
         hidden, cell = self.lstm.init_hidden(batch_size=1, device=self.device)
         initial_input = self.char_tensor(initial_str)
         generated_seq = initial_str #TODO: Should try to generate seq dynamically if there is time
@@ -221,11 +219,8 @@ class Generator():
                 time_elapsed_sec = time.perf_counter() - toc
                 time_elapsed = time.strftime("%Hh:%Mm:%Ss", time.gmtime(time_elapsed_sec))
                 generated_seq = self.generate(temperature=temperature)
-                
                 print(f"Epoch {epoch}/{num_epchs}, loss: {smooth_loss:.4f}, time elapsed: {time_elapsed}")
-                print('{:.1%} finished...'.format(epoch/num_epchs))
                 print(generated_seq)
-                # print(generated_seq.encode(sys.stdout.encoding, errors='replace'))
                 print()
                 self.history["generated_seq"].append(generated_seq)
                 self.history["loss"].append(smooth_loss)
