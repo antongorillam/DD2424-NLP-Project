@@ -13,3 +13,4 @@ Werkzeug==1.0.1
 pytest==7.1.2
 torch
 tensorboard
+pandas
