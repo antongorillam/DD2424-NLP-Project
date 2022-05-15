@@ -8,13 +8,14 @@ var cors = require('cors')
 
 class Synthesize(Resource):
     def get(self):
-        print("Loading")
         model = load.loadModel()
-        print("synthesize")
         response = jsonify(message=model.synthesize(initial_input="l", seq_length=100))
         response.headers.add("Access-Control-Allow-Origin", "*")
-        print("went here")
         return response
+
+@app.route('/')
+def hello_world():
+    return "wassup"
 
 api.add_resource(Synthesize, "/Synthesize")
 
