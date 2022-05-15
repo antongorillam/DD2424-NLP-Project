@@ -32,9 +32,11 @@ jobs:
           ls -la
 
       - name: Open Web Client Directory
+        working-directory: code/
         run:  ls -la
 
       - name: Run Tests
+        working-directory: code/
         run: |
           python -m pytest
 
