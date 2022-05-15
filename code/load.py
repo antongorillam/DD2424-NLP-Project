@@ -14,7 +14,7 @@ class loadModel:
             hidden_size=h_size,
             num_layers=n_layer,
         )
-    
+
     def synthesize(self, initial_input="l", seq_length=500):
         print(self.lstm_gen.generate(temperature=0.9, top_p=.95, top_k=120, generated_seq_length=seq_length, initial_str=initial_input))
         return self.lstm_gen.generate(temperature=0.9, top_p=.95, top_k=120, generated_seq_length=seq_length, initial_str=initial_input)
