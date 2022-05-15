@@ -19,4 +19,4 @@ class Synthesize(Resource):
 api.add_resource(Synthesize, "/Synthesize")
 
 if __name__ == '__main__':
-    app.run(port=8081, debug=False)
+    app.run()
