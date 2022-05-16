@@ -1,10 +1,11 @@
 from flask import Flask, jsonify
 from flask_restful import Api, Resource
+from flask_cors import CORS
 import load
 
 app = Flask(__name__)
 api = Api(app)
-var cors = require('cors')
+CORS(app)
 
 class Synthesize(Resource):
     def get(self):
@@ -20,4 +21,4 @@ def hello_world():
 api.add_resource(Synthesize, "/Synthesize")
 
 if __name__ == '__main__':
-    app.run(cors())
+    app.run()
