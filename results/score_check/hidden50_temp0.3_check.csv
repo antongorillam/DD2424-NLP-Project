@@ -1,0 +1,10 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+0.3,50,"IO:
+And the more with the come the speak the shall and and be mean of my comes and a lear,
+The mark and have be not the worth of and with the hast heart.
+
+CORIOLANUS:
+I was you have the more and be and with in the haster.
+
+SAPULO:
+I worth of the she world shall world the perpours of the seet and be and and have with not of the shall and the good the sent of my to man the conting with heart, and hav",0.9452294730339857,inf,94.09028615036772,75.49032282265465,34.19436218684202,6.278150250916104,0.9409028615036772,0.6063653594488787,0.07171239464743875,0.00454780361757106,-6.261145210266113,0.7663337826728821,0.759992516040802,0.7728135824203491,0.7663337826728821

@@ -1,0 +1,10 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+0.3,250,"Well, and the will heart to the mind to the office to the since the depution the black of the morning of the man such the death,
+And that the will be good to me in the mother to be the comes with the say, and gone.
+
+CAMILLO:
+I say the come of the death.
+
+ANTONIO:
+Why, the disposed in the morning and the will not the with you to discapt come of the prison,
+And the with the mother to sentle the worse",0.9691935778142675,593.6013071905154,97.63065797548556,80.61077468401331,44.98325177144933,4.873711527067112,0.9763065797548556,0.666994022602036,0.1436485818147416,0.0049382716049382715,-6.2733465194702145,0.7710424661636353,0.7740540385246277,0.7681299328804017,0.7710424661636353

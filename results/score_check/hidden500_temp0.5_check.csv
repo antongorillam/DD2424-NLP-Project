@@ -1,0 +1,16 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+0.5,500,"OLAM:
+The will we most with think to contract of the sort of the commonwealthing have lies to the fair that was to the tongue
+in the glory, you to the provost?
+
+DUKE OF YORK:
+
+This there is to the live serves to him.
+
+COMINIUS:
+Ay, so sweet for her some more alone.
+This with with the live the tigner far of grace,
+And too for the restraintius in my mother sons of him another.
+
+DUKE OF AUMERLE:
+And t",0.8954062889835247,1060.8781078166664,92.76146353231162,72.79614233082702,36.65805224947843,9.473038383965472,0.9276146353231163,0.5713969661559837,0.09409056125653915,0.007408160192713039,-6.187912273406982,0.7970587968826294,0.8010129451751709,0.7931510925292968,0.7970587968826294

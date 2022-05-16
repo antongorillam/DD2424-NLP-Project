@@ -1,0 +1,10 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+0.3,500,"O:
+
+LADY GREY:
+The some to the world to the world on the word himself.
+
+Provost:
+I shows the father to the death of the fast to the words of the better to the souls a more to the breath to the world
+The was to the words and to that shall that hath son in the fast so to have with the come to the provost in hath souls of the provost and that hath not to the said to untituder
+To the souls of the world",0.9438389935070289,366.87459334648474,96.97488490005682,83.88326519982976,49.10142500989693,13.250916986882856,0.9697488490005682,0.7261503799595219,0.1736663754882732,0.012300819061801936,-6.202395343780518,0.7904394626617431,0.7932948350906373,0.7876617312431335,0.7904394626617431

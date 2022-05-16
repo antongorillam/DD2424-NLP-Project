@@ -44,8 +44,6 @@ class Benchmark:
         import time
         from statistics import mean  # Screw numpys
 
-        print(model_dir)
-        print(hidden_size)
         TEST_BIGRAMS = "../data/bigrams/testBigramsShakespeare.txt"
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         lstm_gen = load_model(
@@ -163,19 +161,10 @@ class Benchmark:
         dic["bertscore_recall"] = mean(dic["bertscore_recall"])
         dic["bertscore_f1"] = mean(dic["bertscore_f1"])
 
-        del lstm_gen, generated_text
-        return dic
-        # with open(f"{save_dir}/hidden_{hidden_size}_temperature_{temperature}.txt", "w") as f:
-        #     f.write(
-        #         f"Configuration, hidden size: {hidden_size}, temperature:{temperature}, sequence length: {generated_seq_length}\n"
-        #     )
-        #     f.write(f"generated_text:\n{generated_text}\n")
-        #     f.write(f"spelling_percentage: {spelling_percentage}\n")
-        #     f.write(f"perplexity: {perplexity}\n")
-        #     f.write(f"bleu: {bleu}\n")
-        #     f.write(f"bartscore: {bartscore}\n")
-        #     f.write(f"ngram_precisions: {ngram_precisions}\n")
-        #     f.write(f"bertscore: {bertscore}\n")
+        temp_df = pd.DataFrame([dic])
+        temp_df.to_csv(
+            f"{SAVE_DIR}/hidden{hidden_size}_temp{temperature}_check.csv", index=False
+        )
 
 
 if __name__ == "__main__":
@@ -223,7 +212,7 @@ if __name__ == "__main__":
 
     # df_check.to_csv(f"{SAVE_DIR}/metric_check.csv", index=False)
 
-    BEST_TEMPERATURE = 0.7
+    BEST_TEMPERATURE = 0.3
     HIDDEN_SIZES = [25, 50, 250, 500]
     MODEL_DIRS = [
         "../results/hidden_vs_loss/learning_rate_0_005/lstm_hidden25_epoch10000_lr0.005_nlayer2.pth",
@@ -232,39 +221,17 @@ if __name__ == "__main__":
         "../results/hidden_vs_loss/learning_rate_0_005/lstm_hidden500_epoch10000_lr0.005_nlayer2.pth",
     ]
 
-    df_hidden = pd.DataFrame(
-        columns=[
-            "temperature",
-            "hidden_size",
-            "generated_text",
-            "spelling_percentage",
-            "perplexity",
-            "bleu1",
-            "bleu2",
-            "bleu3",
-            "bleu4",
-            "ngram_precisions_1",
-            "ngram_precisions_2",
-            "ngram_precisions_3",
-            "ngram_precisions_4",
-            "bartscore",
-            "bertscore",
-            "bertscore_precision",
-            "bertscore_recall",
-            "bertscore_f1",
-        ]
-    )
+    for model, hidden in zip(MODEL_DIRS, HIDDEN_SIZES):
+        temp_dic = benchmark.run_benchmark(
+            model_dir=model,
+            hidden_size=hidden,
+            temperature=BEST_TEMPERATURE,
+            initial_str=None,
+            generated_seq_length=400,
+            save_dir="../results/score_check",
+            iters=5,
+        )
+    # temp_df = pd.DataFrame([temp_dic])
+    # df_hidden = pd.concat([df_hidden, temp_df], ignore_index=True)
 
-    temp_dic = benchmark.run_benchmark(
-        model_dir=MODEL_DIRS[0],
-        hidden_size=HIDDEN_SIZES[0],
-        temperature=BEST_TEMPERATURE,
-        initial_str=None,
-        generated_seq_length=400,
-        save_dir="../results/score_check",
-        iters=5,
-    )
-    temp_df = pd.DataFrame([temp_dic])
-    df_hidden = pd.concat([df_hidden, temp_df], ignore_index=True)
-
-    df_hidden.to_csv(f"{SAVE_DIR}/hidden{HIDDEN_SIZES[0]}_check.csv", index=False)
+    # df_hidden.to_csv(f"{SAVE_DIR}/hidden{HIDDEN_SIZES[0]}_check.csv", index=False)

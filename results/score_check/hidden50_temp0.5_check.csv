@@ -1,0 +1,11 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+0.5,50,"CAPULIO:
+Well, and shall worth not she betters, the hast your can the pasterted hand not concrest the man
+The man the should head and the ack and be an hand accurs for do with be hath.
+
+AUTOLYCUS:
+I have not of my she will be stay to be and in the commen's and my be with a course borm.
+
+LEONTES:
+I come the haint were of my mant to my excurse;
+And the can breat him shall an hand entreans of my princ",0.8799799863907457,inf,87.36849371297973,65.34885791598832,29.35531774440647,2.904166975483141,0.8736849371297972,0.4904509929981099,0.061907175387927664,0.0025,-6.236508178710937,0.7823512434959412,0.7820308804512024,0.7827324628829956,0.7823512434959412
