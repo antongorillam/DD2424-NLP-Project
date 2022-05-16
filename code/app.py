@@ -1,23 +1,24 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_restful import Api, Resource
 import load
 
 app = Flask(__name__)
 api = Api(app)
-var cors = require('cors')
 
 class Synthesize(Resource):
     def get(self):
+        num_words = request.args.get("num_words")
+        initial_in = request.args.get("initial_word")
         model = load.loadModel()
-        response = jsonify(message=model.synthesize(initial_input="l", seq_length=100))
+        response = jsonify(message=model.synthesize(initial_input=initial_in, seq_length=int(num_words)))
         response.headers.add("Access-Control-Allow-Origin", "*")
         return response
 
 @app.route('/')
-def hello_world():
-    return "wassup"
+def parse_request():
+    return "Hello World"
 
 api.add_resource(Synthesize, "/Synthesize")
 
 if __name__ == '__main__':
-    app.run(cors())
+    app.run(port="8081")
