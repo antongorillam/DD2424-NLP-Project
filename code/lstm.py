@@ -1,13 +1,19 @@
 import torch
+import operator
 import torch.nn as nn
 import numpy as np
-import time 
+import time
+from queue import PriorityQueue
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
 from utils import read_data
 from torch.utils.tensorboard import SummaryWriter
 import sys
 
+EOS_token = 1
 
-class  RNN(nn.Module):
+
+class RNN(nn.Module):
     def __init__(self, input_size, hidden_size, num_layers, output_size, embedding_dim=100):    
         super(RNN, self).__init__()
         """
@@ -42,6 +48,26 @@ class  RNN(nn.Module):
         cell = torch.zeros(self.num_layers, batch_size, self.hidden_size).to(device)
         return hidden, cell
 
+class BeamSearchNode(object):
+    def __init__(self, hiddenstate, previousNode, wordId, logProb, length):
+        '''
+        :param hiddenstate:
+        :param previousNode:
+        :param wordId:
+        :param logProb:
+        :param length:
+        '''
+        self.h = hiddenstate
+        self.prevNode = previousNode
+        self.wordid = wordId
+        self.logp = logProb
+        self.leng = length
+
+    def eval(self, alpha=1.0):
+        reward = 0
+        # Add here a function for shaping a reward
+
+        return self.logp / float(self.leng - 1 + 1e-6) + alpha * reward
 
 class Generator():
     def __init__(self, input_string, test_string , index2char, char2index, sequence_length=100, batch_size=100):
@@ -106,7 +132,15 @@ class Generator():
 
         return text_input.long(), text_target.long()
 
-    def generate(self, initial_str=None, random_state=None, generated_seq_length=200, temperature=0.0, top_k=0, top_p=0.0, filter_value=-float('Inf')):
+    def generate(self, initial_str=None,
+                 random_state=None,
+                 generated_seq_length=200,
+                 temperature=0.0,
+                 top_k=0,
+                 top_p=0.0,
+                 filter_value=-float('Inf'),
+                 beam_search=False,
+                 beam_width=0):
         """
         Generates a synthesized text with the current RNN model
         -------------------------------------------------------
@@ -135,40 +169,97 @@ class Generator():
         generated_seq = initial_str #TODO: Should try to generate seq dynamically if there is time
         
         for i in range(len(initial_str) - 1):
-            
             _, (hidden, cell) = self.lstm(initial_input[i].view(1).to(self.device), hidden, cell)
 
         last_char = initial_input[-1]
+        if not beam_search:
+            for i in range(generated_seq_length):
+                output, (hidden, cell) = self.lstm(last_char.view(1).to(self.device), hidden, cell)
+                output_dist = output.data.view(-1)
 
-        for i in range(generated_seq_length):
-            output, (hidden, cell) = self.lstm(last_char.view(1).to(self.device), hidden, cell)
-            output_dist = output.data.view(-1)
+                if temperature > 0.0:
+                    output_dist = output_dist / temperature
 
-            if temperature > 0.0:
-                output_dist = output_dist / temperature
+                if top_k > 0:
+                    indices_to_remove = output_dist < torch.topk(output_dist, top_k)[0][..., -1, None]
+                    output_dist[indices_to_remove] = filter_value
 
-            if top_k > 0:
-                indices_to_remove = output_dist < torch.topk(output_dist, top_k)[0][..., -1, None]
-                output_dist[indices_to_remove] = filter_value
+                if top_p > 0.0:
+                    sorted_output, sorted_indices = torch.sort(output_dist, descending=True)
+                    cumulative_probs = torch.cumsum(torch.softmax(sorted_output, dim=-1), dim=-1)
 
-            if top_p > 0.0:
-                sorted_output, sorted_indices = torch.sort(output_dist, descending=True)
-                cumulative_probs = torch.cumsum(torch.softmax(sorted_output, dim=-1), dim=-1)
+                    # Remove tokens with cumulative probability above the threshold
+                    sorted_indices_to_remove = cumulative_probs > top_p
+                    # Shift the indices to the right to keep also the first token above the threshold
+                    sorted_indices_to_remove[..., 1:] = sorted_indices_to_remove[..., :-1].clone()
+                    sorted_indices_to_remove[..., 0] = 0
+                    indices_to_remove = sorted_indices[sorted_indices_to_remove]
+                    output_dist[indices_to_remove] = filter_value
 
-                # Remove tokens with cumulative probability above the threshold
-                sorted_indices_to_remove = cumulative_probs > top_p
-                # Shift the indices to the right to keep also the first token above the threshold
-                sorted_indices_to_remove[..., 1:] = sorted_indices_to_remove[..., :-1].clone()
-                sorted_indices_to_remove[..., 0] = 0
-                indices_to_remove = sorted_indices[sorted_indices_to_remove]
-                output_dist[indices_to_remove] = filter_value
+                probabilities = torch.softmax(output_dist, dim=-1)
+                top_char = torch.multinomial(probabilities, 1)[0]
+                generated_char = self.index2char[top_char.item()]
+                generated_seq += generated_char
+                last_char = self.char_tensor(generated_char)
 
-            probabilities = torch.softmax(output_dist, dim=-1)
-            top_char = torch.multinomial(probabilities, 1)[0]
-            generated_char = self.index2char[top_char.item()]
-            generated_seq += generated_char
-            last_char = self.char_tensor(generated_char)
-        
+        else:
+            for i in range(generated_seq_length):
+                output, (hidden, cell) = self.lstm(last_char.view(1).to(self.device), hidden, cell)
+                endnodes = []
+                node = BeamSearchNode(hidden, None, last_char, 0, 1)
+                nodes = PriorityQueue()
+                nodes.put((-node.eval(), node))
+                qsize = 1
+
+                while True:
+                    # give up when decoding takes too long
+                    if qsize > 2000: break
+
+                    score, n = nodes.get()
+                    last_char = n.wordid
+                    hidden = n.h
+
+                    if n.wordid.item() == EOS_token and n.prevNode != None:
+                        endnodes.append((score, n))
+                        # if we reached maximum # of sentences required
+                        if len(endnodes) >= 1:
+                            break
+                        else:
+                            continue
+
+                    output, (hidden, cell) = self.lstm(last_char.view(1).to(self.device), hidden, cell)
+                    log_prob, indexes = torch.topk(output, beam_width)
+                    nextnodes = []
+
+                    for new_k in range(beam_width):
+                        decoded_t = indexes[0][new_k].view(-1)
+                        log_p = log_prob[0][new_k].item()
+
+                        node = BeamSearchNode(hidden, n, decoded_t, n.logp + log_p, n.leng + 1)
+                        score = -node.eval()
+                        nextnodes.append((score, node))
+
+                    for i in range(len(nextnodes)):
+                        score, nn = nextnodes[i]
+                        nodes.put((score, nn))
+                        # increase qsize
+                    qsize += len(nextnodes) - 1
+                    if len(endnodes) == 0:
+                        endnodes = [nodes.get() for _ in range(1)]
+
+                    utterances = []
+                    for score, n in sorted(endnodes, key=operator.itemgetter(0)):
+                        utterance = []
+                        utterance.append(n.wordid)
+                        # back trace
+                        while n.prevNode != None:
+                            n = n.prevNode
+                            utterance.append(n.wordid)
+
+                        utterance = utterance[::-1]
+                        utterances.append(utterance)
+                    generated_seq +=utterance
+
         return generated_seq 
 
     def train(self, lstm, num_epchs=100, temperature=0.2, lr=0.01, print_every=5000, label_smoothing=0.95):
