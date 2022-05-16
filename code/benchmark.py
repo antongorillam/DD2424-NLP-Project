@@ -23,7 +23,16 @@ class Benchmark:
         self.index2char = self.data_dict["index2char"]
         self.char2index = self.data_dict["char2index"]
 
-    def run_benchmark(self, model_dir, hidden_size, temperature, save_dir, initial_str="ROMEO", generated_seq_length=200, iters=1):
+    def run_benchmark(
+        self,
+        model_dir,
+        hidden_size,
+        temperature,
+        save_dir,
+        initial_str="ROMEO",
+        generated_seq_length=200,
+        iters=1,
+    ):
         """
         Performs benchmarking
         --------------------
@@ -32,8 +41,11 @@ class Benchmark:
         model_dir (string) :
             Directory and model name we want to perform benchmarking with
         """
-        from statistics import mean # Screw numpys
+        import time
+        from statistics import mean  # Screw numpys
 
+        print(model_dir)
+        print(hidden_size)
         TEST_BIGRAMS = "../data/bigrams/testBigramsShakespeare.txt"
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         lstm_gen = load_model(
@@ -61,16 +73,50 @@ class Benchmark:
             "bertscore_precision": [],
             "bertscore_recall": [],
             "bertscore_f1": [],
-            }
-
+        }
+        tic = time.perf_counter()
+        print("Starting Benchmarking...")
         for i in range(iters):
+            if initial_str == None:
+                captial_letters = [
+                    "A",
+                    "B",
+                    "C",
+                    "D",
+                    "E",
+                    "F",
+                    "G",
+                    "H",
+                    "I",
+                    "J",
+                    "K",
+                    "L",
+                    "M",
+                    "N",
+                    "O",
+                    "P",
+                    "Q",
+                    "R",
+                    "S",
+                    "T",
+                    "U",
+                    "V",
+                    "W",
+                    "X",
+                    "Y",
+                    "Z",
+                ]
+                temp_inital_str = np.random.choice(captial_letters)
+            else:
+                temp_inital_str = initial_str
+
             generated_text = lstm_gen.generate(
-                initial_str=initial_str,
+                initial_str=temp_inital_str,
                 generated_seq_length=generated_seq_length,
                 temperature=temperature,
             )
-            metrics = getMetrics(generated_text, self.test_text, TEST_BIGRAMS)
 
+            metrics = getMetrics(generated_text, self.test_text, TEST_BIGRAMS)
 
             spelling_percentage = metrics["spelling_percentage"]
             perplexity = metrics["perplexity"]
@@ -96,6 +142,10 @@ class Benchmark:
             dic["bertscore_recall"].append(bertscore["recall"][0])
             dic["bertscore_f1"].append(bertscore["f1"][0])
 
+            print(
+                f"On iteration {i+1}/{iters}, time elapsed: {time.perf_counter()-tic}"
+            )
+
         # Take the mean of the metrics is several runs were made
         dic["spelling_percentage"] = mean(dic["spelling_percentage"])
         dic["perplexity"] = mean(dic["perplexity"])
@@ -113,7 +163,7 @@ class Benchmark:
         dic["bertscore_recall"] = mean(dic["bertscore_recall"])
         dic["bertscore_f1"] = mean(dic["bertscore_f1"])
 
-
+        del lstm_gen, generated_text
         return dic
         # with open(f"{save_dir}/hidden_{hidden_size}_temperature_{temperature}.txt", "w") as f:
         #     f.write(
@@ -131,13 +181,58 @@ class Benchmark:
 if __name__ == "__main__":
 
     SAVE_DIR = "../results/score_check"
-    MODEL_DIR = "../results/hidden_vs_loss/learning_rate_0_005/lstm_hidden500_epoch10000_lr0.005_nlayer2.pth"
+    # MODEL_DIR = "../results/hidden_vs_loss/learning_rate_0_005/lstm_hidden500_epoch10000_lr0.005_nlayer2.pth"
     TEST_BIGRAMS = "../data/bigrams/testBigramsShakespeare.txt"
     benchmark = Benchmark()
-    
 
     TEMPERATURES = [0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3, 1.5, 1.7, 1.9]
-    df_check = pd.DataFrame(
+    # df_check = pd.DataFrame(
+    #     columns=[
+    #         "temperature",
+    #         "hidden_size",
+    #         "generated_text",
+    #         "spelling_percentage",
+    #         "perplexity",
+    #         "bleu1",
+    #         "bleu2",
+    #         "bleu3",
+    #         "bleu4",
+    #         "ngram_precisions_1",
+    #         "ngram_precisions_2",
+    #         "ngram_precisions_3",
+    #         "ngram_precisions_4",
+    #         "bartscore",
+    #         "bertscore",
+    #         "bertscore_precision",
+    #         "bertscore_recall",
+    #         "bertscore_f1",
+    #     ]
+    # )
+    # for temp in TEMPERATURES:
+    #     temp_dic = benchmark.run_benchmark(
+    #         model_dir=MODEL_DIR,
+    #         hidden_size=500,
+    #         temperature=temp,
+    #         initial_str="MON",
+    #         generated_seq_length=400,
+    #         save_dir="../results/score_check",
+    #         iters=1,
+    #     )
+    #     temp_df = pd.DataFrame([temp_dic])
+    #     df_check = pd.concat([df_check, temp_df], ignore_index=True)
+
+    # df_check.to_csv(f"{SAVE_DIR}/metric_check.csv", index=False)
+
+    BEST_TEMPERATURE = 0.7
+    HIDDEN_SIZES = [25, 50, 250, 500]
+    MODEL_DIRS = [
+        "../results/hidden_vs_loss/learning_rate_0_005/lstm_hidden25_epoch10000_lr0.005_nlayer2.pth",
+        "../results/hidden_vs_loss/learning_rate_0_005/lstm_hidden50_epoch10000_lr0.005_nlayer2.pth",
+        "../results/hidden_vs_loss/learning_rate_0_005/lstm_hidden250_epoch10000_lr0.005_nlayer2.pth",
+        "../results/hidden_vs_loss/learning_rate_0_005/lstm_hidden500_epoch10000_lr0.005_nlayer2.pth",
+    ]
+
+    df_hidden = pd.DataFrame(
         columns=[
             "temperature",
             "hidden_size",
@@ -157,65 +252,19 @@ if __name__ == "__main__":
             "bertscore_precision",
             "bertscore_recall",
             "bertscore_f1",
-            ]
-        )
-    for temp in TEMPERATURES:
-        temp_dic = benchmark.run_benchmark(
-            model_dir=MODEL_DIR,
-            hidden_size=500,
-            temperature=temp,
-            initial_str="MON",
-            generated_seq_length=400,
-            save_dir="../results/score_check",
-        )
-        temp_df = pd.DataFrame([temp_dic])
-        df_check = pd.concat([df_check, temp_df], ignore_index=True)
+        ]
+    )
 
-    df_check.to_csv(f"{SAVE_DIR}/metric_check.csv", index=False)    
-    
-    # BEST_TEMPERATURE = 0.7
-    # HIDDEN_SIZES = [25, 50, 250, 500]
-    # MODEL_DIRS = [
-    #     "../results/hidden_vs_loss/learning_rate_0_005/lstm_hidden25_epoch10000_lr0.005_nlayer2.pth",
-    #     "../results/hidden_vs_loss/learning_rate_0_005/lstm_hidden50_epoch10000_lr0.005_nlayer2.pth",
-    #     "../results/hidden_vs_loss/learning_rate_0_005/lstm_hidden250_epoch10000_lr0.005_nlayer2.pth",
-    #     "../results/hidden_vs_loss/learning_rate_0_005/lstm_hidden500_epoch10000_lr0.005_nlayer2.pth",        
-    #     ]
+    temp_dic = benchmark.run_benchmark(
+        model_dir=MODEL_DIRS[0],
+        hidden_size=HIDDEN_SIZES[0],
+        temperature=BEST_TEMPERATURE,
+        initial_str=None,
+        generated_seq_length=400,
+        save_dir="../results/score_check",
+        iters=5,
+    )
+    temp_df = pd.DataFrame([temp_dic])
+    df_hidden = pd.concat([df_hidden, temp_df], ignore_index=True)
 
-    # df_hidden = pd.DataFrame(
-    #         columns=[
-    #             "temperature",
-    #             "hidden_size",
-    #             "generated_text",
-    #             "spelling_percentage",
-    #             "perplexity",
-    #             "bleu1",
-    #             "bleu2",
-    #             "bleu3",
-    #             "bleu4",
-    #             "ngram_precisions_1",
-    #             "ngram_precisions_2",
-    #             "ngram_precisions_3",
-    #             "ngram_precisions_4",
-    #             "bartscore",
-    #             "bertscore",
-    #             "bertscore_precision",
-    #             "bertscore_recall",
-    #             "bertscore_f1",
-    #             ]
-    #         )
-    # for model, hidden in zip(MODEL_DIRS, HIDDEN_SIZES):
-
-    #     temp_dic = benchmark.run_benchmark(
-    #         model_dir=MODEL_DIR,
-    #         hidden_size=500,
-    #         temperature=temp,
-    #         initial_str="MON",
-    #         generated_seq_length=400,
-    #         save_dir="../results/score_check",
-    #     )
-    #     temp_df = pd.DataFrame([temp_dic])
-    #     df_hidden = pd.concat([df_hidden, temp_df], ignore_index=True)
-
-    # df_hidden.to_csv(f"{SAVE_DIR}/metric_check.csv", index=False)    
-    
+    df_hidden.to_csv(f"{SAVE_DIR}/hidden{HIDDEN_SIZES[0]}_check.csv", index=False)
