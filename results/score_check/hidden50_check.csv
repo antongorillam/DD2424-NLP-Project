@@ -1,0 +1,19 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+0.7,50,"Jed bat and marrous many
+He done and ploodige as word.
+
+SABER:
+What my what she world some with of yew conne's for heavented mean;
+This an awh art desel.
+
+CORTOLYDAS:
+
+NIANANO:
+I chall more you that shall not to my betmers, clorth,
+And with more a driecdotion lord of not and have and brockingues my will be
+I marked.
+
+DERS:
+Now of a deseese it is butch
+And your in the gatizent that to this ermed,
+An",0.8108373277318257,inf,78.35274287500029,53.19644400456386,20.87348313454616,4.984697188677001,0.7835274287500029,0.36413134826027427,0.03444506716607159,0.004973741118319432,-6.227637100219726,0.782358705997467,0.7825525045394898,0.7822010397911072,0.782358705997467
