@@ -10,7 +10,6 @@ from utils import read_data
 from torch.utils.tensorboard import SummaryWriter
 import sys
 
-EOS_token = 1
 
 
 class RNN(nn.Module):
@@ -158,6 +157,9 @@ class Generator():
 
         TODO: (Optional) Takes the last x_input and hidden to make an exact sequence prediction
         """
+        EOS_token = 1
+        decoded_batch = []
+
         if random_state!=None:
             np.random.seed(random_state)
 
@@ -257,8 +259,9 @@ class Generator():
                             utterance.append(n.wordid)
 
                         utterance = utterance[::-1]
-                        utterances.append(utterance)
-                    generated_seq +=utterance
+                        utterances.append(utterance[0].view(-1))
+
+                    decoded_batch.append(utterances)
 
         return generated_seq 
 
