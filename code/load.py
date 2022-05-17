@@ -26,7 +26,7 @@ if __name__ == '__main__':
         num_layers=2,
         )
     #test = lstm_gen.generate(temperature=0.9, top_p=.95, top_k=120, generated_seq_length=500)
-    test = lstm_gen.generate(beam_search=True, top_k=1, beam_width= 5,generated_seq_length=200)
+    test = lstm_gen.generate(gen_type=2, top_k=1, beam_width= 5,generated_seq_length=200)
 
     print(test)
     """

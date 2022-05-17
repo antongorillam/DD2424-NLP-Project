@@ -138,7 +138,7 @@ class Generator():
                  top_k=0,
                  top_p=0.0,
                  filter_value=-float('Inf'),
-                 beam_search=False,
+                 gen_type = 0,
                  beam_width=0):
         """
         Generates a synthesized text with the current RNN model
@@ -174,7 +174,7 @@ class Generator():
             _, (hidden, cell) = self.lstm(initial_input[i].view(1).to(self.device), hidden, cell)
 
         last_char = initial_input[-1]
-        if not beam_search:
+        if gen_type == 0:
             for i in range(generated_seq_length):
                 output, (hidden, cell) = self.lstm(last_char.view(1).to(self.device), hidden, cell)
                 output_dist = output.data.view(-1)
@@ -204,7 +204,7 @@ class Generator():
                 generated_seq += generated_char
                 last_char = self.char_tensor(generated_char)
 
-        else:
+        if gen_type == 1:
             for i in range(generated_seq_length):
                 output, (hidden, cell) = self.lstm(last_char.view(1).to(self.device), hidden, cell)
                 endnodes = []
@@ -262,6 +262,18 @@ class Generator():
                         utterances.append(utterance[0].view(-1))
 
                     decoded_batch.append(utterances)
+            generated_seq = "".join([self.index2char[i[0][0].item()] for i in decoded_batch])
+        else:
+            decoded_batch = torch.zeros((generated_seq_length))
+            for t in range(generated_seq_length):
+                output, (hidden, cell) = self.lstm(last_char.view(1).to(self.device), hidden, cell)
+
+                topv, topi = output.data.topk(1)  # get candidates
+                topi = topi.view(-1)
+                decoded_batch[t] = topi
+
+                last_char = topi.detach().view(-1, 1)
+
             generated_seq = "".join([self.index2char[i[0][0].item()] for i in decoded_batch])
         return generated_seq
 
