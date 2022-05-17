@@ -1,0 +1,30 @@
+,temperature,hidden_size,generated_text,spelling_percentage,perplexity,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+0,0.3,25,"XD:
+And sear her my hall my the his the dear mire streest her see the with the dear her that me the from the prear the her there the shall an the her the a her have her sear me the death and with with we pray the the sear the bince the mat it the dist the seath the count the bith and the pright and the the rest the her the sear the man an her the love the live the pread and the man with the not the",0.9148019994244252,inf,88.85233987979984,61.75905862821608,22.19721042035615,2.458404795286956,0.8885233987979984,0.4299514722799447,0.0313250665407243,0.0022988505747126,-6.487298202514649,0.7537560820579529,0.7466671705245972,0.7610112071037293,0.7537560820579529
+1,0.3,50,"IO:
+And the more with the come the speak the shall and and be mean of my comes and a lear,
+The mark and have be not the worth of and with the hast heart.
+
+CORIOLANUS:
+I was you have the more and be and with in the haster.
+
+SAPULO:
+I worth of the she world shall world the perpours of the seet and be and and have with not of the shall and the good the sent of my to man the conting with heart, and hav",0.9452294730339856,inf,94.09028615036772,75.49032282265465,34.19436218684202,6.278150250916104,0.9409028615036772,0.6063653594488787,0.0717123946474387,0.004547803617571,-6.261145210266113,0.7663337826728821,0.759992516040802,0.7728135824203491,0.7663337826728821
+2,0.3,250,"Well, and the will heart to the mind to the office to the since the depution the black of the morning of the man such the death,
+And that the will be good to me in the mother to be the comes with the say, and gone.
+
+CAMILLO:
+I say the come of the death.
+
+ANTONIO:
+Why, the disposed in the morning and the will not the with you to discapt come of the prison,
+And the with the mother to sentle the worse",0.9691935778142676,593.6013071905154,97.63065797548556,80.61077468401331,44.98325177144933,4.873711527067112,0.9763065797548556,0.666994022602036,0.1436485818147416,0.0049382716049382,-6.273346519470215,0.7710424661636353,0.7740540385246277,0.7681299328804017,0.7710424661636353
+3,0.3,500,"O:
+
+LADY GREY:
+The some to the world to the world on the word himself.
+
+Provost:
+I shows the father to the death of the fast to the words of the better to the souls a more to the breath to the world
+The was to the words and to that shall that hath son in the fast so to have with the come to the provost in hath souls of the provost and that hath not to the said to untituder
+To the souls of the world",0.9438389935070288,366.8745933464848,96.97488490005682,83.88326519982976,49.10142500989693,13.250916986882856,0.9697488490005682,0.7261503799595219,0.1736663754882732,0.0123008190618019,-6.202395343780518,0.7904394626617431,0.7932948350906373,0.7876617312431335,0.7904394626617431

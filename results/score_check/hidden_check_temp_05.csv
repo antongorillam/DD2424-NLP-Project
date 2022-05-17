@@ -1,0 +1,40 @@
+,temperature,hidden_size,generated_text,spelling_percentage,perplexity,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+0,0.5,25,"WING RICHARD:
+The chark an halt sunt and there wimt streesh.
+
+KING RICHARD II:
+And the priest there his prow to this trush in an have her by and hear do but your there the there efford,
+The pratent the then the an the say. Here with and wish a heer a man her there stat to say belouth and my his this the ser to prown the chat thy a an an more a presider the have so couns the not a mair hear there of",0.8720260110169806,inf,82.34580511941832,54.34733398800541,18.5976059334729,3.8913968635219,0.8234580511941831,0.3595121674191441,0.0229257545714915,0.0047619047619047,-6.310689163208008,0.7667162895202637,0.7609785795211792,0.7725463032722473,0.7667162895202637
+1,0.5,50,"CAPULIO:
+Well, and shall worth not she betters, the hast your can the pasterted hand not concrest the man
+The man the should head and the ack and be an hand accurs for do with be hath.
+
+AUTOLYCUS:
+I have not of my she will be stay to be and in the commen's and my be with a course borm.
+
+LEONTES:
+I come the haint were of my mant to my excurse;
+And the can breat him shall an hand entreans of my princ",0.8799799863907457,inf,87.36849371297973,65.34885791598832,29.35531774440647,2.904166975483141,0.8736849371297972,0.4904509929981099,0.0619071753879276,0.0025,-6.236508178710937,0.7823512434959412,0.7820308804512024,0.7827324628829956,0.7823512434959412
+2,0.5,250,"Zals,
+All the orince with you good see thou art thou dispitor with the better to his thou of this arms to the savest to shall the sir,
+The blackes to do it come to the toold
+Being than the thought it is the sister say, thou part the in the company.
+
+PROSPERO:
+What shall rest all of the love to the love to better with his mow that the sun:
+Well the blies to give to my love warrant of your every to t",0.9267842501147138,858.8133622740743,94.41067367385826,77.36280067663735,40.98522514214369,3.4859178731972293,0.9441067367385826,0.6341563574157242,0.118529147633362,0.0023809523809523,-6.2683507919311525,0.78337322473526,0.7918231606483459,0.7751523017883301,0.78337322473526
+3,0.5,500,"OLAM:
+The will we most with think to contract of the sort of the commonwealthing have lies to the fair that was to the tongue
+in the glory, you to the provost?
+
+DUKE OF YORK:
+
+This there is to the live serves to him.
+
+COMINIUS:
+Ay, so sweet for her some more alone.
+This with with the live the tigner far of grace,
+And too for the restraintius in my mother sons of him another.
+
+DUKE OF AUMERLE:
+And t",0.8954062889835247,1060.8781078166664,92.76146353231162,72.79614233082702,36.65805224947843,9.473038383965472,0.9276146353231164,0.5713969661559837,0.0940905612565391,0.007408160192713,-6.187912273406982,0.7970587968826294,0.8010129451751709,0.7931510925292968,0.7970587968826294

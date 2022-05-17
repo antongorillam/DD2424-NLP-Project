@@ -1,7 +1,0 @@
-temperature,hidden_size,generated_text,spelling_percentage,perplexity,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
-0.5,25,"WING RICHARD:
-The chark an halt sunt and there wimt streesh.
-
-KING RICHARD II:
-And the priest there his prow to this trush in an have her by and hear do but your there the there efford,
-The pratent the then the an the say. Here with and wish a heer a man her there stat to say belouth and my his this the ser to prown the chat thy a an an more a presider the have so couns the not a mair hear there of",0.8720260110169806,inf,82.34580511941832,54.34733398800541,18.5976059334729,3.8913968635218996,0.8234580511941831,0.35951216741914416,0.022925754571491517,0.0047619047619047615,-6.310689163208008,0.7667162895202637,0.7609785795211792,0.7725463032722473,0.7667162895202637

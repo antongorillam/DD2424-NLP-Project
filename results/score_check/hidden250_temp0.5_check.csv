@@ -1,9 +1,0 @@
-temperature,hidden_size,generated_text,spelling_percentage,perplexity,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
-0.5,250,"Zals,
-All the orince with you good see thou art thou dispitor with the better to his thou of this arms to the savest to shall the sir,
-The blackes to do it come to the toold
-Being than the thought it is the sister say, thou part the in the company.
-
-PROSPERO:
-What shall rest all of the love to the love to better with his mow that the sun:
-Well the blies to give to my love warrant of your every to t",0.9267842501147138,858.8133622740743,94.41067367385826,77.36280067663735,40.98522514214369,3.4859178731972293,0.9441067367385826,0.6341563574157242,0.11852914763336203,0.0023809523809523807,-6.2683507919311525,0.78337322473526,0.7918231606483459,0.7751523017883301,0.78337322473526
