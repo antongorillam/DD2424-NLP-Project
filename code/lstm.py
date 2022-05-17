@@ -221,7 +221,7 @@ class Generator():
                     last_char = n.wordid
                     hidden = n.h
 
-                    if n.wordid.item() == EOS_token and n.prevNode != None:
+                    if n.prevNode != None:
                         endnodes.append((score, n))
                         # if we reached maximum # of sentences required
                         if len(endnodes) >= 1:
@@ -262,8 +262,8 @@ class Generator():
                         utterances.append(utterance[0].view(-1))
 
                     decoded_batch.append(utterances)
-
-        return generated_seq 
+            generated_seq = "".join([self.index2char[i[0][0].item()] for i in decoded_batch])
+        return generated_seq
 
     def train(self, lstm, num_epchs=100, temperature=0.2, lr=0.01, print_every=5000, label_smoothing=0.95):
         """
