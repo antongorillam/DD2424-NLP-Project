@@ -263,18 +263,6 @@ class Generator():
 
                     decoded_batch.append(utterances)
             generated_seq = "".join([self.index2char[i[0][0].item()] for i in decoded_batch])
-        else:
-            decoded_batch = torch.zeros((generated_seq_length))
-            for t in range(generated_seq_length):
-                output, (hidden, cell) = self.lstm(last_char.view(1).to(self.device), hidden, cell)
-
-                topv, topi = output.data.topk(1)  # get candidates
-                topi = topi.view(-1)
-                decoded_batch[t] = topi
-
-                last_char = topi.detach().view(-1, 1)
-
-            generated_seq = "".join([self.index2char[i[0][0].item()] for i in decoded_batch])
         return generated_seq
 
     def train(self, lstm, num_epchs=100, temperature=0.2, lr=0.01, print_every=5000, label_smoothing=0.95):
