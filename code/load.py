@@ -21,11 +21,13 @@ if __name__ == '__main__':
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")    
 
     lstm_gen = load_model(
-        dir="../results/rnn_vs_lstm/lstm_hidden100_epoch100000_lr0.01_nlayer2.pth",
-        hidden_size=100,
+        dir="../results/hidden_vs_loss/learning_rate_0_005/lstm_hidden500_epoch10000_lr0.005_nlayer2.pth",
+        hidden_size=500,
         num_layers=2,
         )
-    test = lstm_gen.generate(temperature=0.9, top_p=.95, top_k=120, generated_seq_length=500)
+    #test = lstm_gen.generate(temperature=0.9, top_p=.95, top_k=120, generated_seq_length=500)
+    test = lstm_gen.generate(gen_type=2, top_k=1, beam_width= 5,generated_seq_length=200)
+
     print(test)
     """
     Example of how to generate a text, George will have to 
