@@ -47,7 +47,7 @@ class BigramTester(object):
         self.last_index = -1
 
         # The fraction of the probability mass given to unknown words.
-        self.lambda3 = 0.000001
+        self.lambda3 = 0.000001 #0.0001
 
         # The fraction of the probability mass given to unigram probabilities.
         self.lambda2 = 0.01 - self.lambda3
@@ -104,33 +104,73 @@ class BigramTester(object):
 
     def compute_entropy_cumulatively(self, word):
 
-        Prob = 0
+        logProb = 0
 
         if word in self.index:
 
             if (self.last_index, self.index[word]) in self.bigram_prob:
-                Prob += (
+                logProb += math.log(
                     self.lambda1
                     * (math.exp(self.bigram_prob[(self.last_index, self.index[word])]))
                     + self.lambda2 * (self.unigram_count[word] / self.total_words)
                     + self.lambda3
                 )
             else:
-                Prob += self.lambda2 * (self.unigram_count[word] / self.total_words if word in self.index else 0 ) + self.lambda3
+                logProb += math.log(
+                    self.lambda2
+                    * (
+                        self.unigram_count[word] / self.total_words
+                        if word in self.index
+                        else 0
+                    )
+                    + self.lambda3
+                )
         else:
-            Prob += self.lambda3
+            logProb += math.log(self.lambda3)
 
-        if self.test_words_processed == 0:
-            self.logProb = 1 / Prob
-        else:
-            self.logProb *= 1 / Prob
-        
+        self.logProb = (self.logProb * self.test_words_processed - logProb) / (
+            self.test_words_processed + 1
+        )
+
         self.test_words_processed += 1
         self.last_index = self.index.get(word)
 
         if self.test_words_processed == len(self.tokens):
-            # print('logprob before',self.logProb)
-            self.logProb = np.power(self.logProb, (1 / len(self.tokens)))
+            self.logProb = 2.0**self.logProb
+            #print('perplexity: ', self.logProb)
+        
+        # Prob = 0
+
+        # if word in self.index:
+
+        #     if (self.last_index, self.index[word]) in self.bigram_prob:
+        #         Prob += (
+        #             self.lambda1
+        #             * (math.exp(self.bigram_prob[(self.last_index, self.index[word])]))
+        #             + self.lambda2 * (self.unigram_count[word] / self.total_words)
+        #             + self.lambda3
+        #         )
+        #     else:
+        #         Prob += self.lambda2 * (self.unigram_count[word] / self.total_words if word in self.index else 0 ) + self.lambda3
+        # else:
+        #     Prob += self.lambda3
+
+        # if self.test_words_processed == 0:
+        #     self.logProb = 1 / Prob
+        # else:
+            
+        #     self.logProb *=    1 / Prob
+        #     print('iterative perplexity: ', self.logProb, 'iterative prob: ', Prob)
+
+
+        # self.test_words_processed += 1
+        # self.last_index = self.index.get(word)
+
+        # if self.test_words_processed == len(self.tokens):
+        #     # print('logprob before',self.logProb)
+        #     self.logProb = np.power(self.logProb, (1 / len(self.tokens)))
+        #     print('final perplexity: ', self.logProb)
+        # # print('iterative perplexity: ', np.power(self.logProb, (1 / self.test_words_processed)))
         
     def process_test_file(self, test_filename):
         """

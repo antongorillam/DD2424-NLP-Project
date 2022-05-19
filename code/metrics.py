@@ -1,5 +1,5 @@
 import re
-
+import nltk
 import numpy as np
 from jury import Jury
 from spellchecker import SpellChecker
@@ -71,3 +71,5 @@ def getMetrics(candidate, reference, testBigramsFile):
     metrics["bertscore"] = score["bertscore"]
     metrics["bartscore"] = score["bartscore"]
     return metrics
+
+def getTypeTokenRatio(candidate)

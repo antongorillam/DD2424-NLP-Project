@@ -75,7 +75,7 @@ class Benchmark:
         tic = time.perf_counter()
         print("Starting Benchmarking...")
         for i in range(iters):
-            if initial_str == None:
+            if initial_str == "":
                 captial_letters = [
                     "A",
                     "B",
@@ -113,7 +113,7 @@ class Benchmark:
                 generated_seq_length=generated_seq_length,
                 temperature=temperature,
             )
-
+            print(generated_text)
             metrics = getMetrics(generated_text, self.test_text, TEST_BIGRAMS)
 
             spelling_percentage = metrics["spelling_percentage"]
@@ -166,6 +166,51 @@ class Benchmark:
             f"{SAVE_DIR}/hidden{hidden_size}_temp{temperature}_check.csv", index=False
         )
 
+    def run_benchmark_string(self, name, benchmark_str):
+        """
+        Performs benchmarking on speicif string
+        ---------------------------------------
+        params:
+        ------
+        benchmark_str (string) :
+            String to benchmark
+        """
+        TEST_BIGRAMS = "../data/bigrams/testBigramsShakespeare.txt"
+
+        tic = time.perf_counter()
+        print("Starting String-Benchmarking...")
+
+        dic = {}
+
+        print(benchmark_str)
+        metrics = getMetrics(benchmark_str, self.test_text, TEST_BIGRAMS)
+        spelling_percentage = metrics["spelling_percentage"]
+        perplexity = metrics["perplexity"]
+        bleu = metrics["bleu"]
+        ngram_precisions = metrics["ngram_precisions"]
+        bartscore = metrics["bartscore"]
+        bertscore = metrics["bertscore"]
+        dic["generated_text"] = benchmark_str
+        dic["spelling_percentage"] = spelling_percentage
+        dic["perplexity"] = perplexity
+        dic["bleu1"] = bleu[1]
+        dic["bleu2"] = bleu[2]
+        dic["bleu3"] = bleu[3]
+        dic["bleu4"] = bleu[4]
+        dic["ngram_precisions_1"] = ngram_precisions[1]
+        dic["ngram_precisions_2"] = ngram_precisions[2]
+        dic["ngram_precisions_3"] = ngram_precisions[3]
+        dic["ngram_precisions_4"] = ngram_precisions[4]
+        dic["bartscore"] = bartscore["score"]
+        dic["bertscore"] = bertscore["score"]
+        dic["bertscore_precision"] = bertscore["precision"][0]
+        dic["bertscore_recall"] = bertscore["recall"][0]
+        dic["bertscore_f1"] = bertscore["f1"][0]
+
+        temp_df = pd.DataFrame([dic])
+        return temp_df
+        # temp_df.to_csv(f"{SAVE_DIR}/{name}_benchmark.csv", index=False)
+
 
 if __name__ == "__main__":
 
@@ -212,26 +257,38 @@ if __name__ == "__main__":
 
     # df_check.to_csv(f"{SAVE_DIR}/metric_check.csv", index=False)
 
-    BEST_TEMPERATURE = 0.3
-    HIDDEN_SIZES = [25, 50, 250, 500]
-    MODEL_DIRS = [
-        "../results/hidden_vs_loss/learning_rate_0_005/lstm_hidden25_epoch10000_lr0.005_nlayer2.pth",
-        "../results/hidden_vs_loss/learning_rate_0_005/lstm_hidden50_epoch10000_lr0.005_nlayer2.pth",
-        "../results/hidden_vs_loss/learning_rate_0_005/lstm_hidden250_epoch10000_lr0.005_nlayer2.pth",
-        "../results/hidden_vs_loss/learning_rate_0_005/lstm_hidden500_epoch10000_lr0.005_nlayer2.pth",
-    ]
+    # BEST_TEMPERATURE = 0.9
+    # HIDDEN_SIZES = [25, 50, 250, 500]
+    # MODEL_DIRS = [
+    #     "../results/hidden_vs_loss/learning_rate_0_005/lstm_hidden25_epoch10000_lr0.005_nlayer2.pth",
+    #     "../results/hidden_vs_loss/learning_rate_0_005/lstm_hidden50_epoch10000_lr0.005_nlayer2.pth",
+    #     "../results/hidden_vs_loss/learning_rate_0_005/lstm_hidden250_epoch10000_lr0.005_nlayer2.pth",
+    #     "../results/hidden_vs_loss/learning_rate_0_005/lstm_hidden500_epoch10000_lr0.005_nlayer2.pth",
+    # ]
 
-    for model, hidden in zip(MODEL_DIRS, HIDDEN_SIZES):
-        temp_dic = benchmark.run_benchmark(
-            model_dir=model,
-            hidden_size=hidden,
-            temperature=BEST_TEMPERATURE,
-            initial_str=None,
-            generated_seq_length=400,
-            save_dir="../results/score_check",
-            iters=5,
-        )
-    # temp_df = pd.DataFrame([temp_dic])
+    # for model, hidden in zip(MODEL_DIRS, HIDDEN_SIZES):
+    #     temp_dic = benchmark.run_benchmark(
+    #         model_dir=model,
+    #         hidden_size=hidden,
+    #         temperature=BEST_TEMPERATURE,
+    #         initial_str=None,
+    #         generated_seq_length=400,
+    #         save_dir="../results/score_check",
+    #         iters=1,
+    #     )
+    # # temp_df = pd.DataFrame([temp_dic])
+
+    original_str = "MENENIUS:\nSir, I shall tell you. With a kind of smile,\nWhich ne'er came from the lungs, but even thus--\nFor, look you, I may make the belly smile\nAs well as speak--it tauntingly replied\nTo the discontented members, the mutinous parts\nThat envied his receipt; even so most fitly\nAs you malign our senators for that\nThey are not such as you.\n"
+    original_df = benchmark.run_benchmark_string(name="orignal_str", benchmark_str=original_str)
+
+    repition_str = "Second Servant:\nThe lords to the father to the provost of the word to the souls of the souls of the so to the live to the liest to the world to the some to the souls to the some to the world to the some to the provost of the world to the words,\nAnd that the souls to the world to the provost to the provost to the world to the some to the souls of the "
+    repition_df = benchmark.run_benchmark_string(name="repition_str", benchmark_str=repition_str)
+
+    random_str = "Fiseraou:\nMy now! depost there head give voult's bacfontly\nTo good, a greefordicorte;--\nYou neo, live--\nSerancuher naice you gone goal in Frother,\nHethy brother breaty a tropphoss, aloneus pot's wiffoods:\never by.\n"
+    random_df = benchmark.run_benchmark_string(name="random_str", benchmark_str=random_str)
+    
+    df_text = pd.concat([original_df, repition_df, random_df] , ignore_index=True)
+    df_text.to_csv(f"{SAVE_DIR}/str_check.csv", index=False)
     # df_hidden = pd.concat([df_hidden, temp_df], ignore_index=True)
 
     # df_hidden.to_csv(f"{SAVE_DIR}/hidden{HIDDEN_SIZES[0]}_check.csv", index=False)
