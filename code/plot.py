@@ -95,7 +95,7 @@ def plot_metrics(this_temp):
     plt.xlabel("Hidden Size")
     bar_plot.get_figure().savefig(f'{SAVE_DIR}/bar_bert_types_temp_{this_temp}.png')
     
-def plot_string():
+def plot_string(save=True):
     import matplotlib.pyplot as plt
     import pandas as pd
 
@@ -126,29 +126,32 @@ def plot_string():
     bar_plot = sns.barplot(x=labels, y=strings['spelling_percentage'], palette="crest").set_title(title_string)
     plt.ylabel("Spelling Percentage")
     plt.xlabel(xlabel)
-    bar_plot.get_figure().savefig(f'{SAVE_DIR}/bar_plot_spelling_percentage.png')
-    plt.show()
+    if save:
+        bar_plot.get_figure().savefig(f'{SAVE_DIR}/bar_spelling_percentage.png')
 
     plt.figure()
     title_string = f"Perplexity score (the lower the better)"
-    bar_plot = sns.barplot(x=labels, y=strings["spelling_percentage"], palette="crest").set_title(title_string)
+    bar_plot = sns.barplot(x=labels, y=strings["perplexity"], palette="crest").set_title(title_string)
     plt.ylabel("Perplexity Score") 
     plt.xlabel(xlabel)
-    bar_plot.get_figure().savefig(f'{SAVE_DIR}/bar_plot_perplexity.png')
+    if save:
+        bar_plot.get_figure().savefig(f'{SAVE_DIR}/bar_plot_perplexity.png')
 
     plt.figure()
     title_string = f"TTR score (the higher the better)"
-    bar_plot = sns.barplot(x=labels, y=strings["spelling_percentage"],palette="crest").set_title(title_string)
+    bar_plot = sns.barplot(x=labels, y=strings["TTR"],palette="crest").set_title(title_string)
     plt.ylabel("TTR Score")
     plt.xlabel(xlabel)
-    bar_plot.get_figure().savefig(f'{SAVE_DIR}/bar_plot_TTR.png')
+    if save:
+        bar_plot.get_figure().savefig(f'{SAVE_DIR}/bar_plot_TTR.png')
 
     plt.figure()
     title_string = f"Bartscore (the higher the better)"
-    bar_plot = sns.barplot(x=labels, y=strings["spelling_percentage"], palette="crest").set_title(title_string)
+    bar_plot = sns.barplot(x=labels, y=strings["bartscore"], palette="crest").set_title(title_string)
     plt.ylabel("Bartscore")
     plt.xlabel(xlabel)
-    bar_plot.get_figure().savefig(f'{SAVE_DIR}/bar_bartscore.png')
+    if save:
+        bar_plot.get_figure().savefig(f'{SAVE_DIR}/bar_bartscore.png')
 
 
     l = ["bleu1" for i in range(3)]
@@ -172,7 +175,7 @@ def plot_string():
     bleu4 = bleu4.rename(columns={"bleu4":"bleu"})
 
     bleu_df = pd.concat([bleu1, bleu2, bleu3, bleu4])
-    print(bleu_df)
+    # print(bleu_df)
 
     plt.figure()
     title_string = f"BLEU Score (the higher the better)"
@@ -180,8 +183,8 @@ def plot_string():
     plt.ylabel("BLEU Score")
     plt.xlabel(xlabel)
     plt.legend(bbox_to_anchor=(0.93, 1), loc='upper left', borderaxespad=0)
-    plt.show()
-    bar_plot.get_figure().savefig(f'{SAVE_DIR}/bar_bleu.png')
+    if save:
+        bar_plot.get_figure().savefig(f'{SAVE_DIR}/bar_bleu.png')
 
     bertscore = strings[["label", "bertscore"]].copy() 
     bertscore["bertscore type"] = "bertscore"
@@ -207,8 +210,11 @@ def plot_string():
     plt.legend(bbox_to_anchor=(0.75, 0.3), loc='upper left', borderaxespad=0)
     plt.ylabel("Bert Score")
     plt.xlabel(xlabel)
-    plt.show()
-    bar_plot.get_figure().savefig(f'{SAVE_DIR}/bar_bert_types_temp.png')
+    if save:
+        bar_plot.get_figure().savefig(f'{SAVE_DIR}/bar_bert_types_temp.png')
+
+    if not save:
+        plt.show()
 
 def lineplot_metrics(metric="temperature"):
     import matplotlib.pyplot as plt
@@ -310,4 +316,4 @@ def lineplot_metrics(metric="temperature"):
     # lineplot.get_figure().savefig(f'{SAVE_DIR}/lineplot_bert_types_{this_temp}.png')
 
 if __name__ == '__main__':
-    lineplot_metrics()
+    plot_string(save=True)
