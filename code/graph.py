@@ -13,8 +13,6 @@ class Plot:
         plt.ylabel(y_label)
         plt.xlabel(x_label)
 
-
-
     def add_graphs(self, y, y_legend="", y_label="", x_label="", color="Blue"):
         plt.plot(y, label=y_legend, color=color)
         plt.xlabel(x_label)

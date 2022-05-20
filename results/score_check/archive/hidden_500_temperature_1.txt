@@ -1,0 +1,14 @@
+Configuration, hidden size: 500, temperature:1, sequence length: 200
+generated_text:
+MOND: Corse! first you
+Will be doth a cannot once ime
+And that imptand, and were we more, Pompame you thou say dead;
+But stoo to thy gruepery to prosons
+Grieft thing one: sloge accurite
+She is any liege 
+spelling_percentage: 0.717948717948718
+perplexity: 5690.383920865995
+bleu: {1: 74.35897435897436, 2: 50.436689513912455, 3: 19.01503551226563, 4: 0.0}
+bartscore: {'score': -6.4285149574279785, 'model_checkpoint': 'bartscore-large-cnn', 'model_weights': None, 'segment_scores': False}
+ngram_precisions: {1: 0.7435897435897436, 2: 0.34210526315789475, 3: 0.02702702702702703, 4: 0.0}
+bertscore: {'score': 0.7764182090759277, 'precision': [0.7822161912918091], 'recall': [0.7707055807113647], 'f1': [0.7764182090759277], 'hashcode': 'roberta-large_L17_no-idf_version=0.3.11(hug_trans=4.18.0)'}

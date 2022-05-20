@@ -1,0 +1,128 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,TTR,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+0.1,25,The sear the see the sear the lord the see the bear the see the see and the prear the prear the prear the seath the dear the sear and the her the her the the the see the see shall the dear the can the priest the her the prear the dear the her the dear the see the sear the priest the be the prear the can the dear the her the see the prear the see the the her the the dear the her the her the sear the,0.9239130434782608,379.5367764231002,0.1521739130434782,88.04347826086956,52.96962502554074,0.0,0.0,0.8804347826086957,0.3186813186813186,0.0,0.0,-6.701221466064453,0.7334345579147339,0.7333030104637146,0.7335662245750427,0.7334345579147339
+0.1,50,st and the she worth and be shall the sees and the see and be she world and the sees and the man the should be man and the such and the she world the sees and she world the come to the sees and shall the sees and be should she world the she world and she world the sees and be and she world and she world and she world the sees and be she world the sees and be man the sees and she world the she world,0.989010989010989,339.8861508681552,0.1648351648351648,96.7032967032967,68.75839387097933,25.16484337155304,0.0,0.967032967032967,0.4888888888888889,0.0337078651685393,0.0,-6.624444961547852,0.733511209487915,0.7283653020858765,0.7387303709983826,0.733511209487915
+0.1,250,"
+
+LADY ANNE:
+What with the world the with the come to the morning and the morning the with the since the with the with the since the mother to the services to the since the mother to the morning to the morning the will the services to the morning the send the with the comes to the morning the with the with the with the with the since the will be not false
+And the morning the since the mother to the",0.9878048780487804,72.15872863359506,0.2317073170731707,100.0,80.12336167697754,40.04110999810147,0.0,1.0,0.6419753086419753,0.1,0.0,-6.3531107902526855,0.7424477338790894,0.7202787399291992,0.7660247683525085,0.7424477338790894
+0.1,500,"'s to the provost to the provost of the provost of him to the souls of the sorrow.
+
+Second Servant:
+I would not the provost to the some to the provost of my son to the souls of the world to the provost to the some to the souls of the world to the sorrow.
+
+BUCKINGHAM:
+The souls of the souls of the souls of the words.
+
+DUKE OF AUMERLE:
+The souls to the sorrows and to the world to the souls to the som",0.9529411764705882,36.95812011384853,0.2823529411764706,98.82352941176472,87.44746321952063,54.9409647451236,0.0,0.9882352941176472,0.7738095238095238,0.216867469879518,0.0,-6.176179885864258,0.7819546461105347,0.7822032570838928,0.7817062139511108,0.7819546461105347
+0.3,25,Kre the not the the preath and the her the not sear my lord a there her the be the the see to may the the lord the make a the comes an her the seath there the beave the ding and lord and brow and the see the from the prind a mode the prinder the dear her the hear your the repelst the make have the pread hear the bear her the lord the be the can the pread and the be her the live my say the see the n,0.913978494623656,343.700318278163,0.3978494623655914,88.17204301075269,59.54871582047112,0.0,0.0,0.8817204301075269,0.4021739130434782,0.0,0.0,-6.622278690338135,0.7275448441505432,0.718694806098938,0.7366155982017517,0.7275448441505432
+0.3,50,"ment's will be shears be should hastery me the peace and shall be the such
+and heart of the man he sent the haster the man and of the seest the storn of the so mean the more and shall and of not,
+The sead in the man and hearth is not man of the man be with the such an are so and the come and be the world and and be come.
+
+CORIOLANUS:
+What me the brother striest we with the mart of the more lord the",0.9325842696629212,123.27053669742196,0.4555555555555555,93.33333333333331,77.31447529336043,32.3844346128269,0.0,0.9333333333333332,0.6404494382022472,0.0568181818181818,0.0,-6.3147807121276855,0.7714449763298035,0.772358775138855,0.7705334424972534,0.7714449763298035
+0.3,250,"ounger not be this well the second to the with met the death,
+I will be the with the will good and the will thou like the air, with you are the well the with the morning the firer the words,
+Which will the worst to the fight thank and the foul father to the morning with the since the come to the death,
+And well the with the send of the more the more not to the mother the death,
+And the offices to t",0.9651162790697676,76.50499950196362,0.4302325581395348,97.67441860465117,80.93164770685937,41.24772460343484,0.0,0.9767441860465116,0.6705882352941176,0.1071428571428571,0.0,-6.312201499938965,0.7547236680984497,0.7501115202903748,0.7593928575515747,0.7547236680984497
+0.3,500,"r never from the hight not to the provost?
+
+HASTINGS:
+I have to the world of the such any to the good so some to the ory more to thy somether and for the from the provost of the shall to the some to have to the death,
+And to the true the provost him of the so to thy lords and to the true to the provost to the like to the world.
+
+DUKE OF AUMERLE:
+I would will the prince to have to have the love of t",0.9444444444444444,57.523778223001074,0.4111111111111111,96.66666666666669,85.30623399290602,54.89122895214832,20.88081292798516,0.9666666666666668,0.7528089887640449,0.2272727272727272,0.0114942528735632,-6.254886150360107,0.7815756797790527,0.7772568464279175,0.7859427332878113,0.7815756797790527
+0.5,25,"s strees our from that like there, and there her this the pray, your a mace in an his me and ding of a sear and there have some hour her said in your prenemy brose hear your will of her the mane,
+Thre do comens somen to this my diss that strom a rill there her were and dow thee mat her, Gat my were shear the her the their her it see she do a says heart the grincest her enst there as her sill a have",0.9101123595505618,619.2554037622148,0.6292134831460674,80.89887640449437,54.23815376466824,15.009406316102838,0.0,0.8089887640449438,0.3636363636363636,0.0114942528735632,0.0,-6.530265808105469,0.7560253143310547,0.7552998065948486,0.7567522525787354,0.7560253143310547
+0.5,50,"US:
+Well, and should as her for the son, and my sees worth the
+That what the delent, and Henry, what come is and poising the lay the worth man.
+
+POMPEY:
+And hand make not and your more your will be comting in the manty the serve and the dear my man;
+And my shall for the was be the partalty not and and you and the restless
+To persing and mantunes with a more to be man-seel the such near your more no",0.8690476190476191,200.36665507881213,0.5647058823529412,90.58823529411764,66.49487670077282,31.735828657629344,0.0,0.9058823529411764,0.4880952380952381,0.072289156626506,0.0,-6.2466888427734375,0.7821616530418396,0.7811232805252075,0.7832027673721313,0.7821616530418396
+0.5,250,"o, I have to say, with make the morning mother,
+And bear to the come a more a bear more:
+And then a grace it part the well mean of the worn, thou good that such and the words:
+I will a with the love to be the high brafes it is the air,
+But shall be dead of my grief to her pity the fair thou such thou hast so and the man
+What by the with not party thanks
+To that he sir, and with him so daughters,
+By",0.967032967032967,92.81414333306068,0.6043956043956044,98.9010989010989,83.20502943378438,45.36248095194627,18.046871711046723,0.989010989010989,0.7,0.1348314606741573,0.0113636363636363,-6.381534576416016,0.7770703434944153,0.7832749485969543,0.770963191986084,0.7770703434944153
+0.5,500,"GBRLKE:
+What is in the horthrign to my grace, for the bear to your live.
+
+DUKE OF AUMERLE:
+I distroth to he be or thee shows and an ever as my lord of loves.
+
+COMINIUS:
+Sweet shall not thou say the father souls in your grators and that hath good to this brown,
+But her thought an is a so to her love a more have doth to your to my sweet death.
+
+Provost:
+Where is one too love.
+
+GLOUCESTER:
+And I would",0.9036144578313252,92.12606079541057,0.7108433734939759,95.18072289156626,73.86122432250254,40.68640600236891,17.033915936739316,0.9518072289156626,0.573170731707317,0.1234567901234567,0.0125,-6.211332321166992,0.7958601117134094,0.797157347202301,0.7945672273635864,0.7958601117134094
+0.7,25,"NP OULTESTENY:
+
+GRIUS:
+Ay, the have shall my reson a sent
+Bill thould all frow there ear greak will my an and thy mades you I dows we brours have a prother priet send me the spimt dims but of man me aman us ound to to sone ay prowns.
+
+KINGARD:
+And came hear so this come the my swere her it mur;
+And with this shand and ut they this it the the for a wear this to so to shall bencon.
+
+KING AUS:
+As all ",0.7816091954022989,687.0341997936465,0.7241379310344828,71.26436781609196,46.41663649250341,13.63461259306606,0.0,0.7126436781609196,0.3023255813953488,0.0117647058823529,0.0,-6.269008159637451,0.7735794186592102,0.7649223804473877,0.7824345231056213,0.7735794186592102
+0.7,50,"I umple, for us and heart she
+praty this namemany brice, no mon,
+And fear himss think cruckingue I bidy:
+I came as be thee the tell and stray.
+
+EDWARD:
+And bring and blood to buther of in like and haster till 'tis wrong-
+He shall by sen to much merves me soldiers,
+The kon the is to mine swell but and the shouse have as dost.
+
+LADY ANN:
+When and will name I do me that how to stood a more with Serves",0.8333333333333334,409.5124688839962,0.7857142857142857,82.14285714285714,54.48870463567981,0.0,0.0,0.8214285714285714,0.3614457831325301,0.0,0.0,-6.266402721405029,0.7782164216041565,0.776572585105896,0.7798671722412109,0.7782164216041565
+0.7,250,"RCY:
+Make by the body well the sworn of this with met
+favour a to his dost he warrant well this at
+Alas he the till you outher her mime as compole's
+Come all words when the ilst we with here in daughter,
+Besolds into the depant too blood.
+
+QUEEN MARGARDINA:
+In they sentle with thank which come, that your power.
+
+MENENIUS:
+Now, and Marcius in fair come.
+
+MENENIUS:
+Then you all thou to the enderson.
+",0.8421052631578947,294.1848656779697,0.7662337662337663,87.01298701298701,58.60651134102146,0.0,0.0,0.8701298701298701,0.3947368421052631,0.0,0.0,-6.108670711517334,0.7895496487617493,0.7922323942184448,0.7868850231170654,0.7895496487617493
+0.7,500,"G EDWARD IV:
+I have not will--
+
+Since:
+Come, who herching dear his hast light
+Not dract to their said is the some my head; setome too.
+
+LADY GREY:
+I provoucher in world for a peort:
+Which Lord in more upon.
+
+LUCIO:
+If our head my horse, in rofour's brove withim, sir; to the nain'd
+We be did daughter and drorthe of God's far his like it.
+
+RUTLAND:
+I, there's he say of unstrew againd to him, if I lif",0.7375,198.0803052478685,0.8095238095238095,84.52380952380952,57.97055457673832,25.40311746229608,0.0,0.8452380952380952,0.3975903614457831,0.048780487804878,0.0,-6.184171676635742,0.7930165529251099,0.7914759516716003,0.7945631742477417,0.7930165529251099

@@ -1,0 +1,9 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,TTR,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+1.1,50,"orreght, afir:
+Have my masted to; a his for Jueld chind wrictrom bloody stoec's set
+From; Fany wermeing. I was forth 'drint their have dentet man
+Thou no but his feme let Wase yew's prover's, entremihing. A; theup the Bruck
+Than what, fatlictest phame-froks We thousir, be is spotundixacofnos--buty hentuctwas! in been
+We likes! Gain comtidor,
+What was a manain's, if her, in;
+And sunlonour grea'd deb",0.5373134328358209,851.535371142047,0.8513513513513513,60.810810810810814,34.15017903142769,0.0,0.0,0.6081081081081081,0.1917808219178082,0.0,0.0,-6.316152095794678,0.7635480761528015,0.7619768977165222,0.7651256918907166,0.7635480761528015

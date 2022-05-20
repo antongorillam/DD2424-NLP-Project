@@ -1,0 +1,22 @@
+generated_text,spelling_percentage,perplexity,TTR,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+"MENENIUS:
+Sir, I shall tell you. With a kind of smile,
+Which ne'er came from the lungs, but even thus--
+For, look you, I may make the belly smile
+As well as speak--it tauntingly replied
+To the discontented members, the mutinous parts
+That envied his receipt; even so most fitly
+As you malign our senators for that
+They are not such as you.
+",0.9047619047619048,11.844072791673073,0.7846153846153846,96.92307692307692,74.85563027999554,48.71737900936644,24.71283178193922,0.9692307692307692,0.578125,0.20634920634920634,0.03225806451612903,-6.193358898162842,0.7973498106002808,0.8119404315948486,0.783274233341217,0.7973498106002808
+"Second Servant:
+The lords to the father to the provost of the word to the souls of the souls of the so to the live to the liest to the world to the some to the souls to the some to the world to the some to the provost of the world to the words,
+And that the souls to the world to the provost to the provost to the world to the some to the souls of the ",0.9873417721518988,40.92540826343243,0.22784810126582278,100.0,88.43366338964377,48.16287432900734,0.0,1.0,0.782051282051282,0.14285714285714285,0.0,-6.469701290130615,0.7652100920677185,0.7611567974090576,0.7693068385124207,0.7652100920677185
+"Fiseraou:
+My now! depost there head give voult's bacfontly
+To good, a greefordicorte;--
+You neo, live--
+Serancuher naice you gone goal in Frother,
+Hethy brother breaty a tropphoss, aloneus pot's wiffoods:
+ever by.
+",0.5454545454545454,1071.8217639376714,0.9142857142857143,60.0,18.786728732554483,0.0,0.0,0.6,0.058823529411764705,0.0,0.0,-6.309007167816162,0.765734076499939,0.7637912034988403,0.7676869034767151,0.765734076499939

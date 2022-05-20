@@ -1,0 +1,18 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,TTR,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+1.3,500,"? Amorice:
+Ret,
+York, do it lost wreat owean's 't. You's love time thou wilt,
+Apone daughter; ladier, back
+As men have sammity,
+Are mother afilmed,--ThrongKeth some trail:
+These Cum, trumot good vinuld,--itring water Gouded,
+If King order?
+
+GLOUCESTER:
+ABEllZCaDt:
+Ur revenge, Rut meet shyyhavy must, be.
+Wood death? angee blow.
+I do breath restlys overemil-must flong?
+Unswores proacion.'
+
+GROLINGBRO",0.6101694915254238,646.8703278663734,0.953125,62.5,31.4970394174356,0.0,0.0,0.625,0.15873015873015872,0.0,0.0,-6.215378284454346,0.7753645181655884,0.7716670036315918,0.7790976166725159,0.7753645181655884

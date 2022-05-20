@@ -1,0 +1,13 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,TTR,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+0.7,25,"NP OULTESTENY:
+
+GRIUS:
+Ay, the have shall my reson a sent
+Bill thould all frow there ear greak will my an and thy mades you I dows we brours have a prother priet send me the spimt dims but of man me aman us ound to to sone ay prowns.
+
+KINGARD:
+And came hear so this come the my swere her it mur;
+And with this shand and ut they this it the the for a wear this to so to shall bencon.
+
+KING AUS:
+As all ",0.7816091954022989,687.0341997936465,0.7241379310344828,71.26436781609196,46.41663649250341,13.63461259306606,0.0,0.7126436781609196,0.3023255813953488,0.011764705882352941,0.0,-6.269008159637451,0.7735794186592102,0.7649223804473877,0.7824345231056213,0.7735794186592102
