@@ -21,7 +21,13 @@ class output_data:
 class OptimizeHiddenLayerParams:
 
     def __init__(self):
+        #self.test()
         self.findParam()
+
+    def test(self):
+        h = hyperParameters.Hyper_params(hidden_size=500, num_epochs=100000)
+        run = runs.Run()
+        run.run_lstm(hyper_params=h, print_every=5000)
 
     def findParam(self):
         output =self.gridSearch(search_type="grid")
@@ -40,9 +46,9 @@ class OptimizeHiddenLayerParams:
                 print(f"time elapsed: {time_elapsed}")
                 hidden_size = (i+1)*100
                 output.add_hidden_layer(m=hidden_size)
-                num_epochs = 2000
+                num_epochs = 5000
                 run = runs.Run()
-                hyper_params = hyperParameters.Hyper_params(num_epochs=num_epochs, hidden_size=hidden_size)
+                hyper_params = hyperParameters.Hyper_params(num_epochs=num_epochs, hidden_size=hidden_size, learning_rate=0.005)
                 lstm = run.run_lstm(hyper_params=hyper_params, save=False, print_every=num_epochs, return_model=True)
                 output.add_loss(loss=lstm.history["loss"])
         return output

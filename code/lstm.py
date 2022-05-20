@@ -13,7 +13,7 @@ import sys
 
 
 class RNN(nn.Module):
-    def __init__(self, input_size, hidden_size, num_layers, output_size, embedding_dim=100):    
+    def __init__(self, input_size, hidden_size, num_layers, output_size, embedding_dim=100):
         super(RNN, self).__init__()
         """
         Class for Reacurrent Neural Network
@@ -30,11 +30,11 @@ class RNN(nn.Module):
         """
         self.hidden_size = hidden_size
         self.num_layers = num_layers
-        self.embedding_dim = embedding_dim 
-        self.embed = nn.Embedding(input_size, embedding_dim) # embed (nn.Embedding object): Quick lookup table 
+        self.embedding_dim = embedding_dim
+        self.embed = nn.Embedding(input_size, embedding_dim) # embed (nn.Embedding object): Quick lookup table
         self.lstm = nn.LSTM(embedding_dim, hidden_size, num_layers, batch_first=True)
-        self.fc = nn.Linear(hidden_size, output_size) # fc: Applies linear transformation (y=xA.T+b) that maps hidden states to target space 
-    
+        self.fc = nn.Linear(hidden_size, output_size) # fc: Applies linear transformation (y=xA.T+b) that maps hidden states to target space
+
     def forward(self, x, hidden_prev, cell_prev):
 
         out = self.embed(x)
@@ -131,7 +131,7 @@ class Generator():
 
         return text_input.long(), text_target.long()
 
-    def generate(self, 
+    def generate(self,
                 initial_str=None,
                 random_state=None,
                 generated_seq_length=200,
@@ -165,12 +165,12 @@ class Generator():
             np.random.seed(random_state)
 
         if initial_str ==None:
-            initial_str = self.index2char[np.random.randint(len(self.index2char))]        
+            initial_str = self.index2char[np.random.randint(len(self.index2char))]
 
         hidden, cell = self.lstm.init_hidden(batch_size=1, device=self.device)
         initial_input = self.char_tensor(initial_str)
         generated_seq = initial_str #TODO: Should try to generate seq dynamically if there is time
-        
+
         for i in range(len(initial_str) - 1):
             _, (hidden, cell) = self.lstm(initial_input[i].view(1).to(self.device), hidden, cell)
 
@@ -263,7 +263,7 @@ class Generator():
                         utterances.append(utterance[0].view(-1))
 
                     decoded_batch.append(utterances)
-             
+
             # print(f"{generated_seq}\n\n")
             generated_seq += "".join([self.index2char[i[0][0].item()] for i in decoded_batch])
             print(f"generated_seq: {len(generated_seq)}")
@@ -273,7 +273,7 @@ class Generator():
         """
         Trains the RNN model
         --------------------
-        params: 
+        params:
             rnn (rnn object):
                 The neural network model to be trained
             num_epochs (int):
@@ -283,7 +283,7 @@ class Generator():
             lr (float between 0 and 1):
                 Learning rate aka. eta
             print_every (int):
-                How often to print progress. For example if print_every=100, 
+                How often to print progress. For example if print_every=100,
                 then loss and a synthesized text
         """
         self.lstm = lstm
@@ -312,7 +312,7 @@ class Generator():
 
             # print(f"before: {smooth_loss}")
             smooth_loss = loss if smooth_loss==None else smooth_loss
-            smooth_loss = (0.999 * smooth_loss + 0.001 * loss) 
+            smooth_loss = (0.999 * smooth_loss + 0.001 * loss)
             # print(f"after: {smooth_loss}\n")
             self.iteration += 1
 
@@ -320,7 +320,7 @@ class Generator():
                 time_elapsed_sec = time.perf_counter() - toc
                 time_elapsed = time.strftime("%Hh:%Mm:%Ss", time.gmtime(time_elapsed_sec))
                 generated_seq = self.generate(temperature=temperature)
-                
+
                 print(f"Epoch {epoch}/{num_epchs}, loss: {smooth_loss:.4f}, time elapsed: {time_elapsed}")
                 print('{:.1%} finished...'.format(epoch/num_epchs))
                 print(generated_seq)
@@ -331,43 +331,3 @@ class Generator():
                 self.history["iterations"].append(self.iteration)
 
             # writer.add_scalar("Training loss", loss, global_step=loss)       
-
-# if __name__ == '__main__':
-#     data_dict = read_data()
-#     train_text = data_dict["train_text"]
-#     test_text = data_dict["test_text"]
-#     index2char = data_dict["index2char"]
-#     char2index = data_dict["char2index"]
-#     SEQUENCE_LENGTH = 25
-#     BATCH_SIZE = 1
-#     NUM_EPOCHS = 10000
-#     HIDDEN_SIZE = 100
-#     NUM_LAYERS = 2
-#     TEMPERATURE = 0.28
-#     LEARNING_RATE = 0.1
-#     LABEL_SMOOTHING = 0
-
-#     generator = Generator(
-#         input_string=train_text, 
-#         test_string=test_text,
-#         index2char=index2char, 
-#         char2index=char2index,
-#         sequence_length=SEQUENCE_LENGTH,
-#         batch_size=BATCH_SIZE
-#         )
-    
-#     lstm = RNN(
-#         input_size=len(index2char), 
-#         hidden_size=HIDDEN_SIZE, 
-#         num_layers=NUM_LAYERS, 
-#         output_size=len(index2char),
-#     ).to(generator.device)
-
-#     generator.train(
-#         lstm=lstm,
-#         num_epchs=NUM_EPOCHS,
-#         print_every=100,
-#         lr=LEARNING_RATE,
-#         temperature=TEMPERATURE,
-#         label_smoothing=LABEL_SMOOTHING,
-#     )

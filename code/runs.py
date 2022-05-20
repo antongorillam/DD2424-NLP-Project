@@ -11,8 +11,8 @@ import matplotlib.pyplot as plt
 
 class Run:
 
-    def __init__(self):
-        self.data_dict = read_data_shakespeare()
+    def __init__(self, training_file="/train_shakespeare.txt"):
+        self.data_dict = read_data_shakespeare(file=training_file)
         self.train_text = self.data_dict["train_text"]
         self.test_text = self.data_dict["test_text"]
         self.index2char = self.data_dict["index2char"]
@@ -108,7 +108,7 @@ class Run:
 # if __name__=='__main__':
 #     h = hyperParameters.Hyper_params(hidden_size=500, num_epochs=10000, learning_rate=0.005, dir="../results/anton_test/learning_rate_0005")
 #     run = Run()
-#     run.run_lstm(hyper_params=h, save=True, print_every=100)  
+#     run.run_lstm(hyper_params=h, save=True, print_every=100)
 
 # if __name__=='__main__':
 #     hidden25_temp01 = pd.read_csv("hidden25_temp0.1_check.csv")
