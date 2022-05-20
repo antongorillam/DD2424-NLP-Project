@@ -1,4 +1,5 @@
 import re
+
 import nltk
 import numpy as np
 from jury import Jury
@@ -61,6 +62,14 @@ def getAdjustedBLEU(candidate, reference):
     return adjBLEU, nGramPrecisionsDict
 
 
+def getTypeTokenRatio(candidate):
+    candidate = re.sub(r'[^\w]', ' ', candidate).lower()
+    tokens = nltk.word_tokenize(candidate)
+    #print('tokens: ', tokens)
+    types = len(set(tokens))
+    return types / len(tokens)    
+
+
 def getMetrics(candidate, reference, testBigramsFile):
     metrics = {}
     metrics["spelling_percentage"] = getSpellPercentage(candidate)
@@ -70,6 +79,7 @@ def getMetrics(candidate, reference, testBigramsFile):
     score = scorer.evaluate(predictions=[candidate], references=[reference])
     metrics["bertscore"] = score["bertscore"]
     metrics["bartscore"] = score["bartscore"]
+    metrics['TTR'] = getTypeTokenRatio(candidate)
     return metrics
 
-def getTypeTokenRatio(candidate)
+

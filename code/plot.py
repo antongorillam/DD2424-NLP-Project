@@ -22,6 +22,12 @@ def plot_metrics():
     plt.xlabel("Hidden Size")
     bar_plot.get_figure().savefig(f'{SAVE_DIR}/bar_plot_perplexity_temp_{temp_check.temperature[0]}.png')
 
+    plt.figure()
+    title_string = f"TTR score (the higher the better), temperature: {temp_check.temperature[0]}"
+    bar_plot = sns.barplot(x=temp_check.hidden_size, y=temp_check.TTR, palette=["r","b","g","orange"]).set_title(title_string)
+    plt.ylabel("TTR Score")
+    plt.xlabel("Hidden Size")
+    bar_plot.get_figure().savefig(f'{SAVE_DIR}/bar_plot_TTR_temp_{temp_check.temperature[0]}.png')
 
     plt.figure()
     title_string = f"Bartscore (the higher the better), temperature: {temp_check.temperature[0]}"

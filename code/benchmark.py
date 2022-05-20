@@ -6,7 +6,8 @@ import torch
 
 import lstm
 import rnn
-from metrics import getAdjustedBLEU, getMetrics, getPerplexity, getSpellPercentage
+from metrics import (getAdjustedBLEU, getMetrics, getPerplexity,
+                     getSpellPercentage)
 from utils import load_model, read_data, read_data_shakespeare
 
 
@@ -58,6 +59,7 @@ class Benchmark:
             "generated_text": None,
             "spelling_percentage": [],
             "perplexity": [],
+            "TTR": [],
             "bleu1": [],
             "bleu2": [],
             "bleu3": [],
@@ -122,10 +124,12 @@ class Benchmark:
             ngram_precisions = metrics["ngram_precisions"]
             bartscore = metrics["bartscore"]
             bertscore = metrics["bertscore"]
+            TTR = metrics["TTR"]
 
             dic["generated_text"] = generated_text
             dic["spelling_percentage"].append(spelling_percentage)
             dic["perplexity"].append(perplexity)
+            dic["TTR"].append(TTR)
             dic["bleu1"].append(bleu[1])
             dic["bleu2"].append(bleu[2])
             dic["bleu3"].append(bleu[3])
@@ -147,6 +151,7 @@ class Benchmark:
         # Take the mean of the metrics is several runs were made
         dic["spelling_percentage"] = mean(dic["spelling_percentage"])
         dic["perplexity"] = mean(dic["perplexity"])
+        dic["TTR"] = mean(dic["TTR"])
         dic["bleu1"] = mean(dic["bleu1"])
         dic["bleu2"] = mean(dic["bleu2"])
         dic["bleu3"] = mean(dic["bleu3"])
@@ -190,9 +195,11 @@ class Benchmark:
         ngram_precisions = metrics["ngram_precisions"]
         bartscore = metrics["bartscore"]
         bertscore = metrics["bertscore"]
+        TTR = metrics["TTR"]
         dic["generated_text"] = benchmark_str
         dic["spelling_percentage"] = spelling_percentage
         dic["perplexity"] = perplexity
+        dic["TTR"] = TTR
         dic["bleu1"] = bleu[1]
         dic["bleu2"] = bleu[2]
         dic["bleu3"] = bleu[3]
@@ -257,7 +264,7 @@ if __name__ == "__main__":
 
     # df_check.to_csv(f"{SAVE_DIR}/metric_check.csv", index=False)
 
-    # BEST_TEMPERATURE = 0.9
+    # TEMPERATUREs = [0.3, 0.5, 0.7, 0.9]
     # HIDDEN_SIZES = [25, 50, 250, 500]
     # MODEL_DIRS = [
     #     "../results/hidden_vs_loss/learning_rate_0_005/lstm_hidden25_epoch10000_lr0.005_nlayer2.pth",
@@ -265,17 +272,17 @@ if __name__ == "__main__":
     #     "../results/hidden_vs_loss/learning_rate_0_005/lstm_hidden250_epoch10000_lr0.005_nlayer2.pth",
     #     "../results/hidden_vs_loss/learning_rate_0_005/lstm_hidden500_epoch10000_lr0.005_nlayer2.pth",
     # ]
-
-    # for model, hidden in zip(MODEL_DIRS, HIDDEN_SIZES):
-    #     temp_dic = benchmark.run_benchmark(
-    #         model_dir=model,
-    #         hidden_size=hidden,
-    #         temperature=BEST_TEMPERATURE,
-    #         initial_str=None,
-    #         generated_seq_length=400,
-    #         save_dir="../results/score_check",
-    #         iters=1,
-    #     )
+    # for temp in TEMPERATURES:
+    #     for model, hidden in zip(MODEL_DIRS, HIDDEN_SIZES):
+    #         temp_dic = benchmark.run_benchmark(
+    #             model_dir=model,
+    #             hidden_size=hidden,
+    #             temperature=temp,
+    #             initial_str=None,
+    #             generated_seq_length=400,
+    #             save_dir="../results/score_check",
+    #             iters=1,
+    #         )
     # # temp_df = pd.DataFrame([temp_dic])
 
     original_str = "MENENIUS:\nSir, I shall tell you. With a kind of smile,\nWhich ne'er came from the lungs, but even thus--\nFor, look you, I may make the belly smile\nAs well as speak--it tauntingly replied\nTo the discontented members, the mutinous parts\nThat envied his receipt; even so most fitly\nAs you malign our senators for that\nThey are not such as you.\n"
@@ -286,9 +293,6 @@ if __name__ == "__main__":
 
     random_str = "Fiseraou:\nMy now! depost there head give voult's bacfontly\nTo good, a greefordicorte;--\nYou neo, live--\nSerancuher naice you gone goal in Frother,\nHethy brother breaty a tropphoss, aloneus pot's wiffoods:\never by.\n"
     random_df = benchmark.run_benchmark_string(name="random_str", benchmark_str=random_str)
-    
+
     df_text = pd.concat([original_df, repition_df, random_df] , ignore_index=True)
     df_text.to_csv(f"{SAVE_DIR}/str_check.csv", index=False)
-    # df_hidden = pd.concat([df_hidden, temp_df], ignore_index=True)
-
-    # df_hidden.to_csv(f"{SAVE_DIR}/hidden{HIDDEN_SIZES[0]}_check.csv", index=False)
