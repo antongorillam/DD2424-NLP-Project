@@ -11,8 +11,8 @@ import matplotlib.pyplot as plt
 
 class Run:
 
-    def __init__(self):
-        self.data_dict = read_data_shakespeare()
+    def __init__(self, training_file="/train_shakespeare.txt"):
+        self.data_dict = read_data_shakespeare(file=training_file)
         self.train_text = self.data_dict["train_text"]
         self.test_text = self.data_dict["test_text"]
         self.index2char = self.data_dict["index2char"]
@@ -108,19 +108,19 @@ class Run:
 # if __name__=='__main__':
 #     h = hyperParameters.Hyper_params(hidden_size=500, num_epochs=10000, learning_rate=0.005, dir="../results/anton_test/learning_rate_0005")
 #     run = Run()
-#     run.run_lstm(hyper_params=h, save=True, print_every=100)  
+#     run.run_lstm(hyper_params=h, save=True, print_every=100)
 
 # if __name__=='__main__':
-    
+
 #     hidden_25 = pd.read_csv("../results/anton_test/learning_rate_0005/lstm_hidden25_epoch10000_lr0.005_nlayer2.csv")
 #     hidden_50 = pd.read_csv("../results/anton_test/learning_rate_0005/lstm_hidden50_epoch10000_lr0.005_nlayer2.csv")
 #     hidden_250 = pd.read_csv("../results/anton_test/learning_rate_0005/lstm_hidden250_epoch10000_lr0.005_nlayer2.csv")
 #     hidden_500 = pd.read_csv("../results/anton_test/learning_rate_0005/lstm_hidden500_epoch10000_lr0.005_nlayer2.csv")
 
 #     hidden_25["Hidden Size"] = 25
-#     hidden_50["Hidden Size"] = 50        
-#     hidden_250["Hidden Size"] = 250      
-#     hidden_500["Hidden Size"] = 500      
+#     hidden_50["Hidden Size"] = 50
+#     hidden_250["Hidden Size"] = 250
+#     hidden_500["Hidden Size"] = 500
 
 #     df = pd.concat([hidden_25, hidden_50, hidden_250, hidden_500], ignore_index=True, axis=0)
 
@@ -172,19 +172,19 @@ class Run:
 #     plt.xlabel("Hidden Size")
 #     bar_plot.get_figure().savefig(f'{SAVE_DIR}/bar_bartscore_temp_{temp_check.temperature[0]}.png')
 
-#     bleu1 = temp_check[["temperature", "hidden_size", "bleu1"]] 
+#     bleu1 = temp_check[["temperature", "hidden_size", "bleu1"]]
 #     bleu1["bleu type"] = "bleu1"
 #     bleu1 = bleu1.rename(columns={"bleu1":"bleu"})
 
-#     bleu2 = temp_check[["temperature", "hidden_size", "bleu2"]] 
+#     bleu2 = temp_check[["temperature", "hidden_size", "bleu2"]]
 #     bleu2["bleu type"] = "bleu2"
 #     bleu2 = bleu2.rename(columns={"bleu2":"bleu"})
 
-#     bleu3 = temp_check[["temperature", "hidden_size", "bleu3"]] 
+#     bleu3 = temp_check[["temperature", "hidden_size", "bleu3"]]
 #     bleu3["bleu type"] = "bleu3"
 #     bleu3 = bleu3.rename(columns={"bleu3":"bleu"})
 
-#     bleu4 = temp_check[["temperature", "hidden_size", "bleu4"]] 
+#     bleu4 = temp_check[["temperature", "hidden_size", "bleu4"]]
 #     bleu4["bleu type"] = "bleu4"
 #     bleu4 = bleu4.rename(columns={"bleu4":"bleu"})
 
@@ -198,19 +198,19 @@ class Run:
 #     plt.legend(bbox_to_anchor=(0.93, 1), loc='upper left', borderaxespad=0)
 #     bar_plot.get_figure().savefig(f'{SAVE_DIR}/bar_bleu_temp_{temp_check.temperature[0]}.png')
 
-#     bertscore = temp_check[["temperature", "hidden_size", "bertscore"]] 
+#     bertscore = temp_check[["temperature", "hidden_size", "bertscore"]]
 #     bertscore["bertscore type"] = "bertscore"
 #     bertscore = bertscore.rename(columns={"bertscore":"bert"})
 
-#     bertscore_precision = temp_check[["temperature", "hidden_size", "bertscore_precision"]] 
+#     bertscore_precision = temp_check[["temperature", "hidden_size", "bertscore_precision"]]
 #     bertscore_precision["bertscore type"] = "bertscore_precision"
 #     bertscore_precision = bertscore_precision.rename(columns={"bertscore_precision":"bert"})
 
-#     bertscore_recall = temp_check[["temperature", "hidden_size", "bertscore_recall"]] 
+#     bertscore_recall = temp_check[["temperature", "hidden_size", "bertscore_recall"]]
 #     bertscore_recall["bertscore type"] = "bertscore_recall"
 #     bertscore_recall = bertscore_recall.rename(columns={"bertscore_recall":"bert"})
 
-#     bertscore_f1 = temp_check[["temperature", "hidden_size", "bertscore_f1"]] 
+#     bertscore_f1 = temp_check[["temperature", "hidden_size", "bertscore_f1"]]
 #     bertscore_f1["bertscore type"] = "bertscore_f1"
 #     bertscore_f1 = bertscore_f1.rename(columns={"bertscore_f1":"bert"})
 
@@ -223,5 +223,3 @@ class Run:
 #     plt.ylabel("Bert Score")
 #     plt.xlabel("Hidden Size")
 #     bar_plot.get_figure().savefig(f'{SAVE_DIR}/bar_bert_types_temp_{temp_check.temperature[0]}.png')
-    
-
