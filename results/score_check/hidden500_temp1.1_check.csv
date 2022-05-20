@@ -1,0 +1,17 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,TTR,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+1.1,500,".
+
+Second Citizen:
+Gorted I murder nive awhile, be it shood-harlf'ds theuch togar's.
+I will hersether digued spies infiot. I bey whiph leglf impart.
+
+BUCKINGHAM:
+Kers: my prisorr! Atis your life, than her now,
+And veny know.
+
+GLOUCESTER:
+Con chorfit,
+Though i'string as your of.
+Roa have Hat you yied, were tiff;
+i no wateling toath things end your husbain jate hath giod; he: an our we 't:
+Thourse he",0.6,558.0724177133445,0.9041095890410958,63.013698630136986,29.58361470057205,0.0,0.0,0.6301369863013698,0.1388888888888889,0.0,0.0,-6.059952735900879,0.7894744873046875,0.7857669591903687,0.7932171821594238,0.7894744873046875

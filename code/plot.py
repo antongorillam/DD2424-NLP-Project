@@ -95,11 +95,14 @@ def plot_metrics(this_temp):
     plt.xlabel("Hidden Size")
     bar_plot.get_figure().savefig(f'{SAVE_DIR}/bar_bert_types_temp_{this_temp}.png')
     
-def plot_mstring(this_temp):
+def plot_string(this_temp):
     import matplotlib.pyplot as plt
     import pandas as pd
 
-    temp_check = pd.read_csv("../results/score_check/metric_check.csv")
+    string_1 = pd.read_csv("../results/score_check/original_str_benchmark.csv")
+    string_1 = pd.read_csv("../results/score_check/metric_check.csv")
+    string_2 = pd.read_csv("../results/score_check/metric_check.csv")
+    string_3 = pd.read_csv("../results/score_check/metric_check.csv")
     temp_check = temp_check[temp_check["temperature"]==this_temp]
     SAVE_DIR = "../results/score_check/plots"
 

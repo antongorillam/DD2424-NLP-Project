@@ -1,0 +1,17 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,TTR,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+1.3,50,"oto'tragkt, Crurse 'tesel!
+Or inf cEdwhertyrve chis wartsh spayter, but ding nom.
+
+GSLennave,-And
+That a room: stanse,
+Depanth?
+
+DUKE:
+Wof of hergy all;
+Been with be men not prewon: arill'd two timh on; Broves hath time
+chelcueity, my,, unrew, they it hy che are bsone
+To well for issours'd. You, low of powite King ingriethedy: I now.
+
+CAMPenesivaet:
+Oncooks wick tim's servallt
+she was a donisIs, lo",0.5522388059701493,944.9926540892884,0.9583333333333334,54.166666666666664,27.62083992426852,10.291023595298306,0.0,0.5416666666666666,0.14084507042253522,0.014285714285714285,0.0,-6.101017951965332,0.7798163890838623,0.7719565629959106,0.7878379225730896,0.7798163890838623

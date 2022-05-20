@@ -1,0 +1,15 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,TTR,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+1.5,500,"$Botsible light,
+Frome dardstry grace in had;
+Whichm o stop munry?NIn:
+Weltyh nate allu:
+O, if rcapegy! I'mpaur flw!
+
+PROSPER:
+Sweath?--
+Foth, ri fe on, yoor moritu, if Warwick an ourgach?
+Give shes, grawn.
+Exk? Where 'Verswat!ward'st, sir,--'Yowest doive.
+And drawbores by smrest wit Edwan
+ mny moitherd frilton! us'-racench'd? Finishtuf shyfuls as's or him: provost!
+Withou, 't I, quivert can us and",0.43548387096774194,1036.4839697099208,0.9285714285714286,48.57142857142857,22.198054491067587,0.0,0.0,0.4857142857142857,0.10144927536231885,0.0,0.0,-6.206292152404785,0.7735921740531921,0.7655361294746399,0.7818197011947632,0.7735921740531921
