@@ -144,7 +144,7 @@ class Run:
 #     import pandas as pd
 #     import matplotlib.pyplot as plt
 
-#     temp_check = pd.read_csv("../results/score_check/hidden_check_temp_05.csv")
+#     temp_check = pd.read_csv("../results/score_check/hidden_check_temp_09.csv")
 #     SAVE_DIR = "../results/score_check/plots"
 #     sns.set_style("whitegrid")
 #     """
