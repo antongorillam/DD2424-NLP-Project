@@ -131,15 +131,17 @@ class Generator():
 
         return text_input.long(), text_target.long()
 
-    def generate(self, initial_str=None,
-                 random_state=None,
-                 generated_seq_length=200,
-                 temperature=0.0,
-                 top_k=0,
-                 top_p=0.0,
-                 filter_value=-float('Inf'),
-                 gen_type = 0,
-                 beam_width=0):
+    def generate(self, 
+                initial_str=None,
+                random_state=None,
+                generated_seq_length=200,
+                temperature=0.0,
+                top_k=0,
+                top_p=0.0,
+                filter_value=-float('Inf'),
+                gen_type = 0,
+                beam_width=0
+                ):
         """
         Generates a synthesized text with the current RNN model
         -------------------------------------------------------
@@ -157,7 +159,6 @@ class Generator():
 
         TODO: (Optional) Takes the last x_input and hidden to make an exact sequence prediction
         """
-        EOS_token = 1
         decoded_batch = []
 
         if random_state!=None:
@@ -262,7 +263,10 @@ class Generator():
                         utterances.append(utterance[0].view(-1))
 
                     decoded_batch.append(utterances)
-            generated_seq = "".join([self.index2char[i[0][0].item()] for i in decoded_batch])
+             
+            # print(f"{generated_seq}\n\n")
+            generated_seq += "".join([self.index2char[i[0][0].item()] for i in decoded_batch])
+            print(f"generated_seq: {len(generated_seq)}")
         return generated_seq
 
     def train(self, lstm, num_epchs=100, temperature=0.2, lr=0.01, print_every=5000, label_smoothing=0.95):
