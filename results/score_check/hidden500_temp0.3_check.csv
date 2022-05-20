@@ -1,0 +1,9 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,TTR,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+0.3,500,"r never from the hight not to the provost?
+
+HASTINGS:
+I have to the world of the such any to the good so some to the ory more to thy somether and for the from the provost of the shall to the some to have to the death,
+And to the true the provost him of the so to thy lords and to the true to the provost to the like to the world.
+
+DUKE OF AUMERLE:
+I would will the prince to have to have the love of t",0.9444444444444444,57.523778223001074,0.4111111111111111,96.66666666666667,85.30623399290602,54.89122895214832,20.880812927985154,0.9666666666666667,0.7528089887640449,0.22727272727272727,0.011494252873563218,-6.254886150360107,0.7815756797790527,0.7772568464279175,0.7859427332878113,0.7815756797790527

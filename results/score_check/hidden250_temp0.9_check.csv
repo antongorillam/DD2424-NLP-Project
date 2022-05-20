@@ -1,0 +1,16 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,TTR,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+0.9,250,"CPOLUMNTO:
+Now, that will be think you told Hemped comes, make Ponder:
+Whan it is mine thus your nuion on a dost with sige good
+Hepherd the nove anditor.
+
+DAOTAR:
+Which, you tith me; with make, may sent:
+I was a word than we a these secrat our may, flight?
+
+LADY ANNE:
+Do will your good suek: or the death.
+
+BUCKINGHAM:
+But to give in thy heartly from with his brand'd, dall so for,
+Or see upon how no",0.7721518987341772,236.5427788718664,0.85,81.25,53.66327268666195,24.53427521980805,0.0,0.8125,0.35443037974683544,0.05128205128205128,0.0,-6.266594886779785,0.7928688526153564,0.7899094223976135,0.7958506345748901,0.7928688526153564

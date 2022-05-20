@@ -1,0 +1,11 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,TTR,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+1.7,50,"&uisti't the at:
+Or,-unith'--Bilm, oor: heven rechnicicle; anlirwed; woucke,
+ipts, twos juqkoo, for tOlk, none truise?--
+--Iacoses'lings: a plyise afoceal law
+FroD that! Burincy o' hotioubtbauch hows exournw deard chril.U
+GuodE wortby voond,why'd bida, peeds,
+Theremnfp-pwicks, so:'-
+No Etidyer helweeminess in,
+Lrenl haze's freeG like is would's hesselk!
+D'dt brenbosestinn's math taiing Hadsma! Hace",0.24074074074074073,1692.440520884826,0.9545454545454546,34.84848484848485,10.355003970356904,0.0,0.0,0.3484848484848485,0.03076923076923077,0.0,0.0,-6.336251735687256,0.7559290528297424,0.7438061833381653,0.7684536576271057,0.7559290528297424

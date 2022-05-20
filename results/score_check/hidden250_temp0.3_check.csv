@@ -1,0 +1,6 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,TTR,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+0.3,250,"ounger not be this well the second to the with met the death,
+I will be the with the will good and the will thou like the air, with you are the well the with the morning the firer the words,
+Which will the worst to the fight thank and the foul father to the morning with the since the come to the death,
+And well the with the send of the more the more not to the mother the death,
+And the offices to t",0.9651162790697675,76.50499950196362,0.43023255813953487,97.67441860465115,80.93164770685937,41.24772460343484,0.0,0.9767441860465116,0.6705882352941176,0.10714285714285714,0.0,-6.312201499938965,0.7547236680984497,0.7501115202903748,0.7593928575515747,0.7547236680984497

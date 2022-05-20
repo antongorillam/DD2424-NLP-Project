@@ -1,0 +1,6 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,TTR,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+0.1,250,"
+
+LADY ANNE:
+What with the world the with the come to the morning and the morning the with the since the with the with the since the mother to the services to the since the mother to the morning to the morning the will the services to the morning the send the with the comes to the morning the with the with the with the with the since the will be not false
+And the morning the since the mother to the",0.9878048780487805,72.15872863359506,0.23170731707317074,100.0,80.12336167697754,40.04110999810147,0.0,1.0,0.6419753086419753,0.1,0.0,-6.3531107902526855,0.7424477338790894,0.7202787399291992,0.7660247683525085,0.7424477338790894

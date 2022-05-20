@@ -1,0 +1,11 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,TTR,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+1.1,250,"y.
+You morrangle dead.
+
+DUKE OF YORP:
+I will wonto I will, to un wore, that wey wiskind,
+Bost, she', not than to brea nrown, with least Jolans of Mast post:
+Fie 'BIo it with finger fortune, way, no moon whou world.
+Call whether as more me like, so look of in tyraped know it you quance
+and lieves of nooder'd your death, for most bolds, to I send,
+To have mead than that you matchie, and shap! which y",0.775,401.6299173931994,0.7901234567901234,74.07407407407408,45.13354669242201,19.777179848767158,0.0,0.7407407407407407,0.275,0.0379746835443038,0.0,-6.152233123779297,0.7782822847366333,0.7780991792678833,0.7784654498100281,0.7782822847366333
