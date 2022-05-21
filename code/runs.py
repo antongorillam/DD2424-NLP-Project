@@ -111,95 +111,95 @@ class Run:
 #     run.run_lstm(hyper_params=h, save=True, print_every=100)
 
 # if __name__=='__main__':
-#     hidden25_temp01 = pd.read_csv("hidden25_temp0.1_check.csv")
-#     hidden50_temp01 = pd.read_csv("hidden50_temp0.1_check.csv")
-#     hidden250_temp01 = pd.read_csv("hidden250_temp0.1_check.csv")
-#     hidden500_temp01 = pd.read_csv("hidden500_temp0.1_check.csv")
-
-#     hidden25_temp03 = pd.read_csv("hidden25_temp0.3_check.csv")
-#     hidden50_temp03 = pd.read_csv("hidden50_temp0.3_check.csv")
-#     hidden250_temp03 = pd.read_csv("hidden250_temp0.3_check.csv")
-#     hidden500_temp03 = pd.read_csv("hidden500_temp0.3_check.csv")
-
-#     hidden25_temp05 = pd.read_csv("hidden25_temp0.5_check.csv")
-#     hidden50_temp05 = pd.read_csv("hidden50_temp0.5_check.csv")
-#     hidden250_temp05 = pd.read_csv("hidden250_temp0.5_check.csv")
-#     hidden500_temp05 = pd.read_csv("hidden500_temp0.5_check.csv")
-
-#     hidden25_temp07 = pd.read_csv("hidden25_temp0.7_check.csv")
-#     hidden50_temp07 = pd.read_csv("hidden50_temp0.7_check.csv")
-#     hidden250_temp07 = pd.read_csv("hidden250_temp0.7_check.csv")
-#     hidden500_temp07 = pd.read_csv("hidden500_temp0.7_check.csv")
-
-#     hidden25_temp09 = pd.read_csv("hidden25_temp0.9_check.csv")
-#     hidden50_temp09 = pd.read_csv("hidden50_temp0.9_check.csv")
-#     hidden250_temp09 = pd.read_csv("hidden250_temp0.9_check.csv")
-#     hidden500_temp09 = pd.read_csv("hidden500_temp0.9_check.csv")
-
-#     hidden25_temp11 = pd.read_csv("hidden25_temp1.1_check.csv")
-#     hidden50_temp11 = pd.read_csv("hidden50_temp1.1_check.csv")
-#     hidden250_temp11 = pd.read_csv("hidden250_temp1.1_check.csv")
-#     hidden500_temp11 = pd.read_csv("hidden500_temp1.1_check.csv")
-
-#     hidden25_temp13 = pd.read_csv("hidden25_temp1.3_check.csv")
-#     hidden50_temp13 = pd.read_csv("hidden50_temp1.3_check.csv")
-#     hidden250_temp13 = pd.read_csv("hidden250_temp1.3_check.csv")
-#     hidden500_temp13 = pd.read_csv("hidden500_temp1.3_check.csv")
-
-#     hidden25_temp15 = pd.read_csv("hidden25_temp1.5_check.csv")
-#     hidden50_temp15 = pd.read_csv("hidden50_temp1.5_check.csv")
-#     hidden250_temp15 = pd.read_csv("hidden250_temp1.5_check.csv")
-#     hidden500_temp15 = pd.read_csv("hidden500_temp1.5_check.csv")
-
-#     hidden25_temp17 = pd.read_csv("hidden25_temp1.7_check.csv")
-#     hidden50_temp17 = pd.read_csv("hidden50_temp1.7_check.csv")
-#     hidden250_temp17 = pd.read_csv("hidden250_temp1.7_check.csv")
-#     hidden500_temp17 = pd.read_csv("hidden500_temp1.7_check.csv")
-
-#     hidden25_temp19 = pd.read_csv("hidden25_temp1.9_check.csv")
-#     hidden50_temp19 = pd.read_csv("hidden50_temp1.9_check.csv")
-#     hidden250_temp19 = pd.read_csv("hidden250_temp1.9_check.csv")
-#     hidden500_temp19 = pd.read_csv("hidden500_temp1.9_check.csv")
-
+#     hidden25_top_p01 = pd.read_csv("hidden25_temp0_topp0.1_topk0_check.csv")
+#     hidden50_top_p01 = pd.read_csv("hidden50_temp0_topp0.1_topk0_check.csv")
+#     hidden250_top_p01 = pd.read_csv("hidden250_temp0_topp0.1_topk0_check.csv")
+#     hidden500_top_p01 = pd.read_csv("hidden500_temp0_topp0.1_topk0_check.csv")
+    
+#     hidden25_top_p03 = pd.read_csv("hidden25_temp0_topp0.3_topk0_check.csv")
+#     hidden50_top_p03 = pd.read_csv("hidden50_temp0_topp0.3_topk0_check.csv")
+#     hidden250_top_p03 = pd.read_csv("hidden250_temp0_topp0.3_topk0_check.csv")
+#     hidden500_top_p03 = pd.read_csv("hidden500_temp0_topp0.3_topk0_check.csv")
+    
+#     hidden25_top_p05 = pd.read_csv("hidden25_temp0_topp0.5_topk0_check.csv")
+#     hidden50_top_p05 = pd.read_csv("hidden50_temp0_topp0.5_topk0_check.csv")
+#     hidden250_top_p05 = pd.read_csv("hidden250_temp0_topp0.5_topk0_check.csv")
+#     hidden500_top_p05 = pd.read_csv("hidden500_temp0_topp0.5_topk0_check.csv")
+    
+#     hidden25_top_p07 = pd.read_csv("hidden25_temp0_topp0.7_topk0_check.csv")
+#     hidden50_top_p07 = pd.read_csv("hidden50_temp0_topp0.7_topk0_check.csv")
+#     hidden250_top_p07 = pd.read_csv("hidden250_temp0_topp0.7_topk0_check.csv")
+#     hidden500_top_p07 = pd.read_csv("hidden500_temp0_topp0.7_topk0_check.csv")
+    
+#     hidden25_top_p09 = pd.read_csv("hidden25_temp0_topp0.9_topk0_check.csv")
+#     hidden50_top_p09 = pd.read_csv("hidden50_temp0_topp0.9_topk0_check.csv")
+#     hidden250_top_p09 = pd.read_csv("hidden250_temp0_topp0.9_topk0_check.csv")
+#     hidden500_top_p09 = pd.read_csv("hidden500_temp0_topp0.9_topk0_check.csv")
+    
+#     hidden25_top_p11 = pd.read_csv("hidden25_temp0_topp1.1_topk0_check.csv")
+#     hidden50_top_p11 = pd.read_csv("hidden50_temp0_topp1.1_topk0_check.csv")
+#     hidden250_top_p11 = pd.read_csv("hidden250_temp0_topp1.1_topk0_check.csv")
+#     hidden500_top_p11 = pd.read_csv("hidden500_temp0_topp1.1_topk0_check.csv")
+    
+#     hidden25_top_p13 = pd.read_csv("hidden25_temp0_topp1.3_topk0_check.csv")
+#     hidden50_top_p13 = pd.read_csv("hidden50_temp0_topp1.3_topk0_check.csv")
+#     hidden250_top_p13 = pd.read_csv("hidden250_temp0_topp1.3_topk0_check.csv")
+#     hidden500_top_p13 = pd.read_csv("hidden500_temp0_topp1.3_topk0_check.csv")
+    
+#     hidden25_top_p15 = pd.read_csv("hidden25_temp0_topp1.5_topk0_check.csv")
+#     hidden50_top_p15 = pd.read_csv("hidden50_temp0_topp1.5_topk0_check.csv")
+#     hidden250_top_p15 = pd.read_csv("hidden250_temp0_topp1.5_topk0_check.csv")
+#     hidden500_top_p15 = pd.read_csv("hidden500_temp0_topp1.5_topk0_check.csv")
+    
+#     hidden25_top_p17 = pd.read_csv("hidden25_temp0_topp1.7_topk0_check.csv")
+#     hidden50_top_p17 = pd.read_csv("hidden50_temp0_topp1.7_topk0_check.csv")
+#     hidden250_top_p17 = pd.read_csv("hidden250_temp0_topp1.7_topk0_check.csv")
+#     hidden500_top_p17 = pd.read_csv("hidden500_temp0_topp1.7_topk0_check.csv")
+    
+#     hidden25_top_p19 = pd.read_csv("hidden25_temp0_topp1.9_topk0_check.csv")
+#     hidden50_top_p19 = pd.read_csv("hidden50_temp0_topp1.9_topk0_check.csv")
+#     hidden250_top_p19 = pd.read_csv("hidden250_temp0_topp1.9_topk0_check.csv")
+#     hidden500_top_p19 = pd.read_csv("hidden500_temp0_topp1.9_topk0_check.csv")
+    
 #     df = pd.concat([
-#         hidden25_temp01,
-#         hidden50_temp01,
-#         hidden250_temp01,
-#         hidden500_temp01,
-#         hidden25_temp03,
-#         hidden50_temp03,
-#         hidden250_temp03,
-#         hidden500_temp03,
-#         hidden25_temp05,
-#         hidden50_temp05,
-#         hidden250_temp05,
-#         hidden500_temp05,
-#         hidden25_temp07,
-#         hidden50_temp07,
-#         hidden250_temp07,
-#         hidden500_temp07,
-#         hidden25_temp09,
-#         hidden50_temp09,
-#         hidden250_temp09,
-#         hidden500_temp09,
-#         hidden25_temp11,
-#         hidden50_temp11,
-#         hidden250_temp11,
-#         hidden500_temp11,
-#         hidden25_temp13,
-#         hidden50_temp13,
-#         hidden250_temp13,
-#         hidden500_temp13,
-#         hidden25_temp15,
-#         hidden50_temp15,
-#         hidden250_temp15,
-#         hidden500_temp15,
-#         hidden25_temp17,
-#         hidden50_temp17,
-#         hidden250_temp17,
-#         hidden500_temp17,
-#         hidden25_temp19,
-#         hidden50_temp19,
-#         hidden250_temp19,
-#         hidden500_temp19,
+#         hidden25_top_p01,
+#         hidden50_top_p01,
+#         hidden250_top_p01,
+#         hidden500_top_p01,
+#         hidden25_top_p03,
+#         hidden50_top_p03,
+#         hidden250_top_p03,
+#         hidden500_top_p03,
+#         hidden25_top_p05,
+#         hidden50_top_p05,
+#         hidden250_top_p05,
+#         hidden500_top_p05,
+#         hidden25_top_p07,
+#         hidden50_top_p07,
+#         hidden250_top_p07,
+#         hidden500_top_p07,
+#         hidden25_top_p09,
+#         hidden50_top_p09,
+#         hidden250_top_p09,
+#         hidden500_top_p09,
+#         hidden25_top_p11,
+#         hidden50_top_p11,
+#         hidden250_top_p11,
+#         hidden500_top_p11,
+#         hidden25_top_p13,
+#         hidden50_top_p13,
+#         hidden250_top_p13,
+#         hidden500_top_p13,
+#         hidden25_top_p15,
+#         hidden50_top_p15,
+#         hidden250_top_p15,
+#         hidden500_top_p15,
+#         hidden25_top_p17,
+#         hidden50_top_p17,
+#         hidden250_top_p17,
+#         hidden500_top_p17,
+#         hidden25_top_p19,
+#         hidden50_top_p19,
+#         hidden250_top_p19,
+#         hidden500_top_p19,
 #     ])

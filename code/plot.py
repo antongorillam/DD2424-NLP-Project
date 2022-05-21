@@ -216,13 +216,13 @@ def plot_string(save=True):
     if not save:
         plt.show()
 
-def lineplot_metrics(metric="temperature"):
+def lineplot_metrics(data_dir, save_dir, metric="temperature"):
     import matplotlib.pyplot as plt
     import pandas as pd
 
-    df = pd.read_csv("../results/score_check/metric_check.csv")
-    SAVE_DIR = f"../results/score_check/plots/{metric}_lineplot"
-
+    df = pd.read_csv(data_dir)
+    save_dir = f"../results/score_check/plots/{metric}_lineplot"
+    
     sns.set_style("whitegrid")
     """
     Get spelling percentage
@@ -232,28 +232,28 @@ def lineplot_metrics(metric="temperature"):
     lineplot = sns.lineplot(x=metric, y="spelling_percentage", data=df, hue=None, palette="crest", legend=True).set_title(title_string)
     plt.ylabel("Spelling Percentage")
     plt.xlabel(metric)
-    lineplot.get_figure().savefig(f'{SAVE_DIR}/lineplot_spelling_pecetange_{metric}.png')
+    lineplot.get_figure().savefig(f'{save_dir}/lineplot_spelling_pecetange_{metric}.png')
 
     plt.figure()
     title_string = f"Perplexity score (the lower the better)"
     lineplot = sns.lineplot(x=df[metric], y=df.perplexity, hue=None, palette="crest").set_title(title_string)
     plt.ylabel("Perplexity Score")
     plt.xlabel(metric)
-    lineplot.get_figure().savefig(f'{SAVE_DIR}/lineplot_perplexity_{metric}.png')
+    lineplot.get_figure().savefig(f'{save_dir}/lineplot_perplexity_{metric}.png')
 
     plt.figure()
     title_string = f"TTR score (the higher the better)"
     lineplot = sns.lineplot(x=df[metric], y=df.TTR, hue=None, palette="crest").set_title(title_string)
     plt.ylabel("TTR Score")
     plt.xlabel(metric)
-    lineplot.get_figure().savefig(f'{SAVE_DIR}/lineplot_TTR_{metric}.png')
+    lineplot.get_figure().savefig(f'{save_dir}/lineplot_TTR_{metric}.png')
 
     plt.figure()
     title_string = f"Bartscore (the higher the better)"
     lineplot = sns.lineplot(x=df[metric], y=df.bartscore, hue=None, palette="crest").set_title(title_string)
     plt.ylabel("Bartscore")
     plt.xlabel(metric)
-    lineplot.get_figure().savefig(f'{SAVE_DIR}/lineplot_bartscore_{metric}.png')
+    lineplot.get_figure().savefig(f'{save_dir}/lineplot_bartscore_{metric}.png')
 
     bleu1 = df[[metric, "hidden_size", "bleu1"]] 
     bleu1["bleu type"] = "bleu1"
@@ -281,23 +281,23 @@ def lineplot_metrics(metric="temperature"):
     plt.ylabel("BLEU Score")
     plt.xlabel(metric)
     plt.legend(["bleu1", '_nolegend_', "bleu2", '_nolegend_', "bleu3", '_nolegend_', "bleu4", '_nolegend_',])
-    plt.savefig(f'{SAVE_DIR}/lineplot_bleu_{metric}.png')
+    plt.savefig(f'{save_dir}/lineplot_bleu_{metric}.png')
     
 
     plt.figure()
-    bertscore = df[["temperature", "hidden_size", "bertscore"]] 
+    bertscore = df[[metric, "hidden_size", "bertscore"]] 
     bertscore["bertscore type"] = "bertscore"
     bertscore = bertscore.rename(columns={"bertscore":"bert"})
 
-    bertscore_precision = df[["temperature", "hidden_size", "bertscore_precision"]] 
+    bertscore_precision = df[[metric, "hidden_size", "bertscore_precision"]] 
     bertscore_precision["bertscore type"] = "bertscore_precision"
     bertscore_precision = bertscore_precision.rename(columns={"bertscore_precision":"bert"})
 
-    bertscore_recall = df[["temperature", "hidden_size", "bertscore_recall"]] 
+    bertscore_recall = df[[metric, "hidden_size", "bertscore_recall"]] 
     bertscore_recall["bertscore type"] = "bertscore_recall"
     bertscore_recall = bertscore_recall.rename(columns={"bertscore_recall":"bert"})
 
-    bertscore_f1 = df[["temperature", "hidden_size", "bertscore_f1"]] 
+    bertscore_f1 = df[[metric, "hidden_size", "bertscore_f1"]] 
     bertscore_f1["bertscore type"] = "bertscore_f1"
     bertscore_f1 = bertscore_f1.rename(columns={"bertscore_f1":"bert"})
 
@@ -312,8 +312,8 @@ def lineplot_metrics(metric="temperature"):
     
     plt.ylabel("Bert Score")
     plt.xlabel(metric)
-    plt.savefig(f"{SAVE_DIR}/lineplot_bert_{metric}.png")
-    # lineplot.get_figure().savefig(f'{SAVE_DIR}/lineplot_bert_types_{this_temp}.png')
+    plt.savefig(f"{save_dir}/lineplot_bert_{metric}.png")
+    # lineplot.get_figure().savefig(f'{save_dir}/lineplot_bert_types_{this_temp}.png')
 
 if __name__ == '__main__':
-    plot_string(save=True)
+    lineplot_metrics(data_dir="../results/generator_metric/top_p/top_p_check.csv", save_dir="", metric="top_p")
