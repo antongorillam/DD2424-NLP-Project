@@ -26,7 +26,7 @@ class Augment_data():
     def create_train_test_files(self):
         split_shakespeare(file="/augmented_shakespeare.txt")
 
-    def synonym_replacement(self, percentage=20):
+    def synonym_replacement(self, percentage=50):
         words_replaced = 0
         total_words = len(self.words)
         must_change = False
@@ -123,7 +123,7 @@ class Validation:
     def perp_norm(self):
         augmented_model = load_model(dir="../results/data_augmentation/lstm_hidden200_epoch12000_lr0.01_nlayer2nor.pth", hidden_size=200, num_layers=2)
         aug_seq = augmented_model.generate(initial_str="t", generated_seq_length=400, temperature=0.5)
-        self.perp_nor.append(metrics.getPerplexity(modelFile="../data/bigrams/testBigramsShakespeare.txt", generatedSequence=aug_seq))
+        self.perp_nor.append(metrics.getPerplexity(modelFile="../data/bigrams/test_aug_shakespeare.txt", generatedSequence=aug_seq))
 
 #norm
 #F the should shall them with the seent the son to should the soul and the soul the will the some to shall and the soul the lies
@@ -133,6 +133,8 @@ class Validation:
 #And what so he for the beater heaver that we contrief,
 #And the come the such come of the courther the counter the wear his counter the conster so the shall a so come the will what down the counted the present you me the be so the good the shall so whence the coult to the take the grain the consider for the state be the counter the counted the down the bed so so shall what to the stare
 
+#perp_aug 347.492965043225
+#Perp_nor 304.92498500147224
 
 if __name__ == '__main__':
     # Create Augment_data
