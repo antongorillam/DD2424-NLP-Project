@@ -33,7 +33,7 @@ def getSpellPercentage(genString):
         #     print('word : ', word)
     return correctcount / noWords
 
-
+# modelfile = bigram filen, generatedSequence = 200 chars
 def getPerplexity(modelFile, generatedSequence, type="string"):
     bigram_tester = BigramTester()
     bigram_tester.read_model(modelFile)
@@ -43,7 +43,9 @@ def getPerplexity(modelFile, generatedSequence, type="string"):
         bigram_tester.process_test_string(generatedSequence)
     return bigram_tester.logProb
 
-
+# Model 1 - Augmented
+# model 2 - non-augmented
+# candidate = 200 chars, reference = test_fil
 def getAdjustedBLEU(candidate, reference):
 
     scorer = Jury(metrics=["bleu"])
@@ -61,13 +63,13 @@ def getAdjustedBLEU(candidate, reference):
         adjBLEU[i + 1] = 100 * np.power(precision, (1 / (i + 1)))
     return adjBLEU, nGramPrecisionsDict
 
-
+# canidate = generated sequence på 200chars
 def getTypeTokenRatio(candidate):
     candidate = re.sub(r'[^\w]', ' ', candidate).lower()
     tokens = nltk.word_tokenize(candidate)
     #print('tokens: ', tokens)
     types = len(set(tokens))
-    return types / len(tokens)    
+    return types / len(tokens)
 
 
 def getMetrics(candidate, reference, testBigramsFile):
@@ -81,5 +83,3 @@ def getMetrics(candidate, reference, testBigramsFile):
     metrics["bartscore"] = score["bartscore"]
     metrics['TTR'] = getTypeTokenRatio(candidate)
     return metrics
-
-

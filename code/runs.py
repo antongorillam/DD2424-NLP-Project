@@ -18,7 +18,7 @@ class Run:
         self.index2char = self.data_dict["index2char"]
         self.char2index = self.data_dict["char2index"]
 
-    def run_lstm(self, hyper_params, save=True, print_every=500, return_model=False):
+    def run_lstm(self, hyper_params, save=True, print_every=500, return_model=False, fileName=""):
 
         lstm_gen = lstm.Generator(
         input_string=self.train_text,
@@ -45,27 +45,26 @@ class Run:
             label_smoothing=hyper_params.LABEL_SMOOTHING,
         )
 
-        if (return_model):
-            return lstm_gen
-
         if (save):
             """
             Save LSTM model
             """
-            torch.save(lstm_gen.lstm.state_dict(), f"{hyper_params.DIR}/lstm_hidden{hyper_params.HIDDEN_SIZE}_epoch{hyper_params.NUM_EPOCHS}_lr{hyper_params.LEARNING_RATE}_nlayer{hyper_params.NUM_LAYERS}.pth")
+            torch.save(lstm_gen.lstm.state_dict(), f"{hyper_params.DIR}/lstm_hidden{hyper_params.HIDDEN_SIZE}_epoch{hyper_params.NUM_EPOCHS}_lr{hyper_params.LEARNING_RATE}_nlayer{hyper_params.NUM_LAYERS}{fileName}.pth")
             lstm_df = pd.DataFrame(lstm_gen.history)
-            lstm_df.to_csv(f'{hyper_params.DIR}/lstm_hidden{hyper_params.HIDDEN_SIZE}_epoch{hyper_params.NUM_EPOCHS}_lr{hyper_params.LEARNING_RATE}_nlayer{hyper_params.NUM_LAYERS}.csv', index=False)
+            lstm_df.to_csv(f'{hyper_params.DIR}/lstm_hidden{hyper_params.HIDDEN_SIZE}_epoch{hyper_params.NUM_EPOCHS}_lr{hyper_params.LEARNING_RATE}_nlayer{hyper_params.NUM_LAYERS}{fileName}.csv', index=False)
 
-            sns.set_style("whitegrid")
-            title_string = f"LSTM: Loss vs iterations\nHidden Layers:{hyper_params.HIDDEN_SIZE}, lr:{hyper_params.LEARNING_RATE}"
-            lstm_fig = sns.lineplot(data=lstm_df, x="iterations", y="loss").set_title(title_string)
-            lstm_fig.get_figure().savefig(f'{hyper_params.DIR}/lstm_hidden{hyper_params.HIDDEN_SIZE}_epoch{hyper_params.NUM_EPOCHS}_lr{hyper_params.LEARNING_RATE}_nlayer{hyper_params.NUM_LAYERS}.png')
+            #sns.set_style("whitegrid")
+            #title_string = f"LSTM: Loss vs iterations\nHidden Layers:{hyper_params.HIDDEN_SIZE}, lr:{hyper_params.LEARNING_RATE}"
+            #lstm_fig = sns.lineplot(data=lstm_df, x="iterations", y="loss").set_title(title_string)
+            #lstm_fig.get_figure().savefig(f'{hyper_params.DIR}/lstm_hidden{hyper_params.HIDDEN_SIZE}_epoch{hyper_params.NUM_EPOCHS}_lr{hyper_params.LEARNING_RATE}_nlayer{hyper_params.NUM_LAYERS}.png')
             """
             To load model to cuda but it was saved on cpu (or vice versa) use:
             device = torch.device("cuda")
             lstm = lstm.RNN(*args, **kwargs)
             lstm.load_state_dict(torch.loadc(PATH, map_location=device))
             """
+        if (return_model):
+            return lstm_gen
 
     def run_rnn(self, hyper_params):
         rnn_gen =  rnn.Generator(

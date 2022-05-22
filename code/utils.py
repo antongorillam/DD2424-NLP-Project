@@ -50,7 +50,7 @@ def read_data():
     index2char = {index: char for index, char in enumerate(vocab)}
     return {"train_text": train_text, "test_text": test_text, "char2index": char2index, "index2char": index2char}
 
-def load_model(dir, hidden_size, num_layers):
+def load_model(dir, hidden_size, num_layers, file="/train_shakespeare.txt"):
     """
     Load a pre-trained LSTM model in a generator object
     (do not work for vanilla RNN for some reason)
@@ -65,13 +65,13 @@ def load_model(dir, hidden_size, num_layers):
     """
     import lstm
 
-    data_dict = read_data_shakespeare()
+    data_dict = read_data_shakespeare(file=file)
     train_text = data_dict["train_text"]
     test_text = data_dict["test_text"]
     index2char = data_dict["index2char"]
     char2index = data_dict["char2index"]
 
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    device = torch.device("cuda" if not torch.cuda.is_available() else "cpu")
     # create generator obejct
     lstm_gen = lstm.Generator(
         input_string=train_text,
@@ -123,7 +123,7 @@ def read_data_shakespeare(file="/train_shakespeare.txt"):
 
     return {"train_text": train_text, "test_text": test_text, "char2index": char2index, "index2char": index2char}
 
-def split_shakespeare(test_split=.3):
+def split_shakespeare(test_split=.3, file="/shakespeare.txt"):
     """
     Reads the Shakespeare text and splits the data int train- and test set in a coherent way
 
@@ -138,7 +138,7 @@ def split_shakespeare(test_split=.3):
     import re # import regex
 
     DIR = "../data/shakespeare"
-    text = open(f"{DIR}/shakespeare.txt", mode='r', encoding='utf-8').read()
+    text = open(DIR + file, mode='r', encoding='utf-8').read()
 
     text_array = np.array(re.split(r"\n\n", text))
     test_split = int (len(text_array) * test_split)
@@ -152,8 +152,8 @@ def split_shakespeare(test_split=.3):
     test_set = '\n\n'.join(text_array[test_idx])
     train_set = '\n\n'.join(text_array[train_idx])
 
-    with open(f"{DIR}/train_shakespeare.txt", 'w') as f:
+    with open(f"{DIR}/train_aug_shakespeare.txt", 'w') as f:
         f.write(train_set)
 
-    with open(f"{DIR}/test_shakespeare.txt", 'w') as f:
+    with open(f"{DIR}/test_aug_shakespeare.txt", 'w') as f:
         f.write(test_set)

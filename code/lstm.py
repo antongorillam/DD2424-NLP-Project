@@ -90,7 +90,7 @@ class Generator():
         self.char2index = char2index
         self.sequence_length = sequence_length
         self.batch_size = batch_size
-        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        self.device = torch.device("cuda" if not torch.cuda.is_available() else "cpu")
         self.iteration = 0
         self.history = {
             "iterations": [],
@@ -319,7 +319,7 @@ class Generator():
             if epoch % print_every == 0 or epoch == 1:
                 time_elapsed_sec = time.perf_counter() - toc
                 time_elapsed = time.strftime("%Hh:%Mm:%Ss", time.gmtime(time_elapsed_sec))
-                generated_seq = self.generate(temperature=temperature)
+                generated_seq = self.generate(temperature=temperature, generated_seq_length=400)
 
                 print(f"Epoch {epoch}/{num_epchs}, loss: {smooth_loss:.4f}, time elapsed: {time_elapsed}")
                 print('{:.1%} finished...'.format(epoch/num_epchs))
@@ -330,4 +330,4 @@ class Generator():
                 self.history["loss"].append(smooth_loss)
                 self.history["iterations"].append(self.iteration)
 
-            # writer.add_scalar("Training loss", loss, global_step=loss)       
+            # writer.add_scalar("Training loss", loss, global_step=loss)
