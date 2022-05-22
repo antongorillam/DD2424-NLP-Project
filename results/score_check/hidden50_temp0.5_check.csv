@@ -1,9 +1,0 @@
-temperature,hidden_size,generated_text,spelling_percentage,perplexity,TTR,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
-0.5,50,"US:
-Well, and should as her for the son, and my sees worth the
-That what the delent, and Henry, what come is and poising the lay the worth man.
-
-POMPEY:
-And hand make not and your more your will be comting in the manty the serve and the dear my man;
-And my shall for the was be the partalty not and and you and the restless
-To persing and mantunes with a more to be man-seel the such near your more no",0.8690476190476191,200.36665507881213,0.5647058823529412,90.58823529411765,66.49487670077282,31.735828657629344,0.0,0.9058823529411765,0.4880952380952381,0.07228915662650602,0.0,-6.2466888427734375,0.7821616530418396,0.7811232805252075,0.7832027673721313,0.7821616530418396

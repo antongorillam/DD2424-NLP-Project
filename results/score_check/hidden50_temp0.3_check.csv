@@ -1,7 +1,0 @@
-temperature,hidden_size,generated_text,spelling_percentage,perplexity,TTR,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
-0.3,50,"ment's will be shears be should hastery me the peace and shall be the such
-and heart of the man he sent the haster the man and of the seest the storn of the so mean the more and shall and of not,
-The sead in the man and hearth is not man of the man be with the such an are so and the come and be the world and and be come.
-
-CORIOLANUS:
-What me the brother striest we with the mart of the more lord the",0.9325842696629213,123.27053669742196,0.45555555555555555,93.33333333333333,77.31447529336043,32.3844346128269,0.0,0.9333333333333333,0.6404494382022472,0.056818181818181816,0.0,-6.3147807121276855,0.7714449763298035,0.772358775138855,0.7705334424972534,0.7714449763298035

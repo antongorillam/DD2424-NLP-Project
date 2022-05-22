@@ -1,0 +1,452 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,TTR,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1,top_p
+0,25,ze the prear the prear the prear the sear the prear the prear the prear the prear the prear the prear the sear the prear the sear the prear the sear the sear the sear the prear the prear the sear the sear the prear the prear the sear the prear the sear the prear the prear the sear the sear the prear the sear the prear the sear the prear the sear the sear the sear the sear the prear the sear the sea,0.7411764705882353,1973.579218493564,0.0588235294117647,51.76470588235295,7.850136932560092,0.0,0.0,0.5176470588235295,0.0119047619047619,0.0,0.0,-6.67929744720459,0.7160568237304688,0.7024027705192566,0.730252206325531,0.7160568237304688,0.1
+0,50,me the sees and the sees and she world the sees and the sees and she world the sees and the sees and she world the sees and the sees and the sees and she world the sees and she world the sees and she world the sees and she world the sees and the sees and the sees and the sees and she world the sees and the sees and the sees and she world the sees and the sees and she world the sees and she world th,0.9888888888888888,556.9198170201391,0.0777777777777777,81.11111111111111,43.74765911340425,0.0,0.0,0.8111111111111111,0.2359550561797752,0.0,0.0,-6.762133598327637,0.7590751647949219,0.7613688707351685,0.7567952871322632,0.7590751647949219,0.1
+0,250,ounger the with the with the with the with the with the with the with the with the with the with the with the with the with the with the with the with the with the with the with the with the with the with the with the with the with the with the with the with the with the with the with the with the with the with the with the with the with the with the with the with the with the with the with the wit,0.9887640449438202,68.16460671884884,0.0449438202247191,98.87640449438202,69.50870934032154,0.0,0.0,0.9887640449438202,0.4886363636363636,0.0,0.0,-6.720383167266846,0.7173647880554199,0.700122594833374,0.7354776263237,0.7173647880554199,0.1
+0,500,"ZALUS:
+I would that hath not to the world to the souls of the souls of the souls of the souls of the provost of the souls of the souls of the provost of the souls of the souls of the souls of the provost of the provost to the world to the souls of the souls of the souls of the souls of the provost of the souls of the souls of the provost of the souls of the souls of the souls of the souls of the pr",0.9777777777777776,62.09898814794458,0.1444444444444444,97.77777777777776,77.0232709618523,40.69931326268106,0.0,0.9777777777777776,0.6067415730337079,0.1136363636363636,0.0,-6.534878253936768,0.7558639645576477,0.752795934677124,0.758957028388977,0.7558639645576477,0.1
+0,25,"ORTENTIO:
+And and the say her and her and the the say her and and the her the prest the priest the the priest the dead and her and her her and and the prient and her her and and the her her and the her her her and the the prear the dear the see and the dear and the priest her the sear the prear the dead the dear her the prest and the her the her shall her her the say and the the the the sear the pr",0.9239130434782608,281.12927761205526,0.1630434782608695,92.3913043478261,67.59290469015914,17.18646548141238,0.0,0.9239130434782608,0.4945054945054945,0.0111111111111111,0.0,-6.572696685791016,0.7336002588272095,0.7262593507766724,0.7410910725593567,0.7336002588272095,0.3
+0,50,"
+The man heart the come and be and and be man and and the she shall and the many the man and and the many be me the man of the man and and the world the come and be and the she see and be many be and be and be she world she serve the come the she world she world she shall be and be and the many of and be mean
+The see with the serve the man the see and strick the worth of heart.
+
+DUKE OF YORK:
+The s",0.9789473684210528,150.50203102637752,0.2210526315789473,98.94736842105264,78.13618341008689,37.448734155806136,18.381815331642716,0.9894736842105264,0.6170212765957447,0.086021505376344,0.0217391304347826,-6.400504112243652,0.756551206111908,0.7475066184997559,0.7658173441886902,0.756551206111908,0.3
+0,250,", and the since the comes and the morning and with the with the morning the sense:
+And with me in my lord, the since the with the come to such and the with the with me in the services to me to sentle to me to the come to the sun with me in my love and such the with mean the come,
+That the services to me with mine the come to the morning and bear a morning the since and so the comes and such the com",0.9666666666666668,81.22956111069992,0.2808988764044944,97.75280898876404,81.6392322920415,53.51015254938608,0.0,0.9775280898876404,0.6818181818181818,0.2298850574712643,0.0,-6.490412712097168,0.7630895972251892,0.764256477355957,0.7619261741638184,0.7630895972251892,0.3
+0,500,"ful an in the father to my daughter and son to the souls of the world.
+
+LUCIO:
+I have not so life of the life,
+The souls to the provost to the world of him to the like an inder to he was to the world to my son.
+
+LUCIO:
+I am the shall so so like a shall of him some so some father to him to the like an in the souls of the world to my death,
+And thou shall the shall not shall to the souls of him to hi",0.9787234042553192,43.14461124048413,0.3404255319148936,96.80851063829788,87.7669800208033,58.572699656127504,0.0,0.9680851063829788,0.7956989247311828,0.2608695652173913,0.0,-6.239062309265137,0.7798687219619751,0.773093044757843,0.7867642641067505,0.7798687219619751,0.3
+0,25,"He with the man her his maint, the sear and sher the the brow my the preed my shall and a speed the shall her hattle there the make me my prenoun and his dear my preall there her hall there hear him is she down,
+The mester of my so there a seest our my shards there hear her sees the him is not me an there hear the dear in an her my the me a there a same her the the his not the pread her a sear with",0.9239130434782608,489.7251909242338,0.4456521739130434,89.13043478260869,55.98443575941912,0.0,0.0,0.8913043478260869,0.3516483516483517,0.0,0.0,-6.6154632568359375,0.7486428618431091,0.7498791217803955,0.7474105954170227,0.7486428618431091,0.5
+0,50,"pent, hears, the seen of here and son the can be world and man of my be and a world and be world have the so be a wranging to strick
+The was the such the was of best the peation, she was of and so and and stree of born heart,
+And stritter and shall be marrince hand a mart the grour and a shall
+Where so shall and heart, my cannot world a cannot be
+Where the granch of my come the worth of and a man a",0.9222222222222224,256.62881734964185,0.4130434782608695,91.11111111111111,67.11460003663437,29.469568825535795,0.0,0.9111111111111112,0.4943820224719101,0.0568181818181818,0.0,-6.518562316894531,0.7544275522232056,0.7542381882667542,0.7546170353889465,0.7544275522232056,0.5
+0,250,"ject the fines more breast in all the bland
+That with mistress than thou hast me that you with mister with the will sent with the morning with the disposed with the sun the will the will her for the come and the dead,
+I shall bear the blood with me well the come to my secress with the blands,
+Which with the comes to his more not so fathers to his foul well with the mother since
+What is my hands and",0.963855421686747,124.50222232928756,0.5783132530120482,93.97590361445783,73.39225942669641,34.170834298949046,0.0,0.9397590361445785,0.573170731707317,0.074074074074074,0.0,-6.319228649139404,0.7706955671310425,0.7797608375549316,0.7618386745452881,0.7706955671310425,0.5
+0,500,":
+And shows to he would have more to come to him sorrow.
+
+BUCKINGHAM:
+Where we to the prince, the world of the father.
+
+LUCIO:
+O, where I would the world to the good death of the wards to the word to stay
+And that it so some would be a to the fair in my lords we to him
+I am we most son to sir, thou hath some words stand as it.
+
+DUKE OF AUMERLE:
+O, my lord, and the will he would dead me to me any sa",0.956043956043956,35.33110998204491,0.5888888888888889,98.88888888888889,82.99933065325821,50.03364738565964,19.479006812763647,0.9888888888888888,0.6966292134831461,0.1818181818181818,0.0114942528735632,-6.178830623626709,0.7958992719650269,0.7989484071731567,0.7928733229637146,0.7958992719650269,0.5
+0,25,"qour and in she sour by burny premester to the dother of her bir hall we saurs.
+
+KING ERCABAD II:
+Which and will shall the desper here it some, I wereren with me.
+
+LUMIO:
+Thy a maily our wisst have in hall the say and precomes his the prom and maint her for her my loather, sir she sount, him himer his lord.
+
+DUKE VINCENSIO:
+What this me.
+
+GREMIO:
+
+ISALUS:
+Or on and her hall sant a was so to senst.
+",0.7407407407407407,465.4721879409244,0.7777777777777778,72.8395061728395,44.75585346916184,17.180436631277463,0.0,0.7283950617283951,0.275,0.0253164556962025,0.0,-6.195447444915772,0.7881470322608948,0.7870339751243591,0.7892633080482483,0.7881470322608948,0.7
+0,50,"re shall there so lord in him.
+
+PETRUCHIO:
+Her the concrecher and here myself, seen, and hand were not, son, the go mark of her,
+I done in me and be hast be to canted he will the more
+And with he blood for the beastering so be have not there of see the was
+There the carting instalf me, mare of the a ment
+day the braty, there bestertains.
+
+SAMPON ELAST:
+
+DUKE OF YORK:
+A chantering of your cannot be ",0.8765432098765432,170.55340015416553,0.6585365853658537,85.18518518518519,62.76794416591016,27.120825412434023,0.0,0.8518518518518519,0.4625,0.050632911392405,0.0,-6.191094398498535,0.7870103716850281,0.7849655151367188,0.7890660166740417,0.7870103716850281,0.7
+0,250,"HAM:
+Now, I have the worse to be go age.
+
+LADY ANNE:
+What he have before you well you and they world, as him,
+For what will thou own than a sister, and with a man'd thou soles
+To come, will a mill'd on the heaven to country,
+To fires that the subject in the time.
+
+HERMIONE:
+Makes it he would will go is the head, I am the desire.
+
+CATESBALET:
+Now with me all be bears, and news, the mother, surain me",0.927710843373494,69.5778564241062,0.6823529411764706,96.47058823529412,78.018169254947,43.20845136143616,0.0,0.9647058823529412,0.6309523809523809,0.1325301204819277,0.0,-6.2266106605529785,0.7989940643310547,0.8050711154937744,0.7930080890655518,0.7989940643310547,0.7
+0,500,"wall of myself would love any with her could daughter's hath lord.
+
+KING RICHARD II:
+No, fair, sir, if which not the bourse strait his head
+He was stand your did not hath see, to the proud thee of an one
+In the prince in too true sacred in heart,
+Because in matter storm'd for you will him.
+
+AUFIDIUS:
+My lord in was herefore
+He word and stay'd welcome one from us we more say.
+
+Provost:
+Soot to the d",0.9125,148.558404083755,0.7951807228915663,96.3855421686747,69.42101345006233,30.98529449111309,13.886545591773189,0.963855421686747,0.5,0.0617283950617283,0.0125,-6.1324076652526855,0.7984517812728882,0.8009199500083923,0.795998752117157,0.7984517812728882,0.7
+0,25,"juund I mad, it seavest my so coff
+Mare capnips thee wirth not len imaiunt an therither not troun prean miept we homed my the there my my sheir havint
+Mord
+Cinch.
+
+GRUMIO:
+Mister I sportae prevenen a pronour brome a wind; for to her, sir I man himes.
+And thin to a now darke his your me.
+
+CLARDUCSIO:
+In stan no prothis.
+
+ROKKAR:
+Anse of tood, be that dever a dale, your in haldles
+No bear, that sing ",0.6835443037974683,870.754998888141,0.8227848101265823,58.22784810126582,24.437853802544144,0.0,0.0,0.5822784810126582,0.1025641025641025,0.0,0.0,-6.224733352661133,0.7774397134780884,0.7708039283752441,0.7841906547546387,0.7774397134780884,0.9
+0,50,"vess of intell,
+The shet there can by deady word.
+And stall not of you have of thee now
+But I by would thou men home of hate anting.
+
+Seportint:
+And brain thee, what shall:
+You hath he's of should creacle in the brotity,
+And fetch'd bouse your sur.
+
+PRAND AD WARDow WI:
+It not fearth, some more-trame, theind that sidy thou me,
+To bray intent you instogeant:
+As should hown it and manam, entilly as
+As",0.7142857142857143,474.9534187531317,0.775,73.75,50.205274824993886,21.32267970023806,0.0,0.7375,0.3417721518987341,0.0384615384615384,0.0,-6.248441219329834,0.7858149409294128,0.7875131964683533,0.7841240167617798,0.7858149409294128,0.9
+0,250,",
+By Subcount, and well the subjeces, she's govert than thou this noble.
+
+QUEEN:
+The ears, make your base, and not of his county and go the was well,
+Althure worth at though spit friends, make our noble soldiers with you.
+
+LUCIO:
+Though more you morald thou of this might no body,
+Why call, me not deplied.
+
+GRUMIO:
+My so do stray to mindly night:
+O, he, come, he's great whom being brand;
+But with me",0.8289473684210527,141.3965907629051,0.7792207792207793,90.9090909090909,69.17144638660746,23.367243385657112,0.0,0.9090909090909092,0.5263157894736842,0.0266666666666666,0.0,-6.17402982711792,0.7967844605445862,0.8001132011413574,0.7934832572937012,0.7967844605445862,0.9
+0,500,"& news?
+Too your comes soor that to her togest you
+From any like stand breath as beginst my from his san,
+For if thousand any her bound, and not, for to call'd I doth denaters blood,
+Hath shall worthan still. Geor's to provil upon
+What in your live un my woost do myself of from a come in ear's hath cry him:
+Lest face of this stand you so great and matter:
+Were her drunks with hath is some fearful g",0.8536585365853658,464.84050027257047,0.7857142857142857,88.09523809523809,57.361172176277954,0.0,0.0,0.8809523809523809,0.3734939759036144,0.0,0.0,-6.253121852874756,0.7747176289558411,0.7843316197395325,0.7653364539146423,0.7747176289558411,0.9
+0,25,"pe.
+
+CAIO:
+My frous: anm's lately.
+
+KING MARCINWANSlI:
+Upate in right greet thould to thould opting me busers, bue; on
+no mians enest of Graer
+In fright igh you wikarer'd
+Ach way prut, grarwer, briin not cutcety.
+
+TOLO:
+Pulder. Bry my me a pleat Solant; her words griss whaile, thine
+Brespreing. Baust make. Filt.
+Priccled of shall tooff; I samar prind Eprave this pron hight.
+
+Micgen he panow:
+It I d",0.5211267605633803,1812.757747448848,0.9041095890410958,46.57534246575342,16.085767081103686,0.0,0.0,0.4657534246575342,0.0555555555555555,0.0,0.0,-6.2202982902526855,0.7811038494110107,0.772358238697052,0.7900499105453491,0.7811038494110107,1.1
+0,50,"NIS:
+A the curbengenous, o derepconkers, Perain, see yead sterpon the kions there froth an
+tink r excelcicues, bous,'d absibain; as destew my vingering of not:
+And proved points quy elpany soon.
+
+FRIAR:
+
+Nuyd Turnt:
+As thou den; my will and the his den, and quend:
+How whose me blietion oncely in wistle to man
+us more murdicitish I worl
+us! the facled Ploust of banch;
+And banvy of when I eut., the r",0.5675675675675675,814.7770293322161,0.8,62.66666666666667,24.347336461978607,9.32953542814466,0.0,0.6266666666666667,0.0945945945945946,0.0136986301369863,0.0,-6.240673542022705,0.7743231654167175,0.7663863301277161,0.782426118850708,0.7743231654167175,1.1
+0,250,"me conquerl'd the
+placts. O, our worse?
+
+OXEONE:
+But be morthor of you quraint in this dor my jrhonita sucion of city:
+See,
+You dum you! good surr on pople you by, then as your missess
+Shall to nature one, my deels,-a oris,
+Makns of mine of much to said not know thou look remose
+Upon thou will lea you.
+
+First Seaven:
+FFirst Mupsired upair you of a kinding willed it you
+hast not will jounts, sir, to",0.7564102564102564,436.3816269244972,0.7875,70.0,47.065803652096726,14.16137592296341,0.0,0.7,0.3164556962025316,0.0128205128205128,0.0,-6.195378303527832,0.7849707007408142,0.780745804309845,0.7892416715621948,0.7849707007408142,1.1
+0,500,"ver,
+This shung soldiers were trink.
+
+LUCIO:
+I am now of lichint, deather to Paugius my hath but son do us brings.
+'RUCHESSS OF YORK:
+You shalt when my eachter,
+And fate the due tast of;
+Whose fill leder wise in the pray him
+give in so son of do your smorter;
+Tool-concess opon Richmanded! say of was is tonders! Anabe
+Shall you stray, good Cladion's good with a flight
+Wieldness stay than too heavs s",0.7236842105263158,664.7876791239515,0.8461538461538461,74.35897435897436,46.09275566227436,22.36165357791232,11.05000871501696,0.7435897435897436,0.2857142857142857,0.0526315789473684,0.0133333333333333,-6.24755859375,0.7806984186172485,0.777915358543396,0.783501386642456,0.7806984186172485,1.1
+0,25,"R schour, then thitl
+Sy wrien; what iine: beefore in to man with hish an'ln the warinter an my moran.
+
+COMPUS:
+when same in ky is his pracursice
+Beavaw leme, but.
+
+CAMPELO:
+Has Kan mur, glant.
+
+KING COLIVEO:
+O.
+Hen hounce.
+
+GRENESTERK:
+And the livon
+For men which aly of them dime hooname with I comle edolent trasuch your eme offurs to so known
+The wnear an unmy mensenter, fulle?
+
+VILL II:
+Come:
+Is ",0.6081081081081081,1292.7647835296973,0.8933333333333333,53.333333333333336,25.468581598680533,0.0,0.0,0.5333333333333333,0.1216216216216216,0.0,0.0,-6.166517734527588,0.7831671237945557,0.7771171927452087,0.7893121242523193,0.7831671237945557,1.3
+0,50,"zed; Argues
+With tell the and is'tt, it, lay to be,
+That you, sweet inrtanted laves hile him this's groves
+now, looked strickst, iful came, now; an tell give to he treme?
+And brotigh, I homes, and kneed and from it me,
+That say dyencey a mewerart? as, now,
+And and beath a brotheet out to my chalt and striend:
+And me lord will bandted drustred accuel stough enhwingenty he grand'st
+we deadies hand bu",0.72,456.114443568991,0.782051282051282,67.94871794871796,44.06122945846997,13.66993795582715,0.0,0.6794871794871795,0.2857142857142857,0.0131578947368421,0.0,-6.339441776275635,0.7730941772460938,0.7736192345619202,0.7725698351860046,0.7730941772460938,1.3
+0,250,"Was id Parchaspent; we comesing of Ningnain, or the break tweaper,
+Wors Rome, shape is modest hastou and for new-death though
+Metent thou day you world.
+
+EXETER:
+Psfancidy menec regions they thank, say France 'What? I grughter uppoomon of guilt op frame:
+I wor you it ho!
+
+GLile:
+That Ruchmet; to shall hangingly the goy creft to not?
+What thou in anciousony Lock have bemnable be gone
+Bestangle fight",0.6811594202898551,928.561339647144,0.9,68.57142857142857,34.53326778413725,12.059301315859663,0.0,0.6857142857142857,0.1739130434782608,0.0147058823529411,0.0,-6.174829483032227,0.7819969058036804,0.7789410352706909,0.7850768566131592,0.7819969058036804,1.3
+0,500,"The save any--Lord as that in richot; lelse one Claud; what, I'll-straction.
+
+ANGELO:
+That 'sIGle of gland gland uppres!
+And not store show of Citizen's finds
+As you tongues most gealth of say.
+
+GLOUCESTER:
+Athee, repears wost swaughteless the vile the slorgard.
+
+DUKE OF ELWARWINA:
+Come death, in thou.
+
+Tidest naw their hourselved to-nade.
+
+DUKE VINCENTIO:
+Yes, as I half were you are myself with go",0.696969696969697,412.0909789471838,0.8169014084507042,73.23943661971832,43.3970021867036,0.0,0.0,0.7323943661971831,0.2571428571428571,0.0,0.0,-6.184829235076904,0.7908709645271301,0.7872798442840576,0.7944949865341187,0.7908709645271301,1.3
+0,25,"-ar enm: hame
+Wore comple so; one pre hoish a bray strain it Ave fraoke a an mamn
+I his shad were, I wis, fasiqae evervel. whime Sster three go jy let pire it bloum to me.
+
+SICINIUS:
+Sead, quome comen heer, you cothan; done. Dwent, nistlior a parend on
+Thi, done the anain of not the link; anvure baeal, terar brom thi hith mire Kame, periss; unput, rige with 'Gest.
+
+DUCHESTE:
+Gok in his of rose tond",0.5897435897435898,1555.0417706285507,0.8846153846153846,48.71794871794872,22.4980111601116,0.0,0.0,0.4871794871794871,0.1038961038961039,0.0,0.0,-6.2399582862854,0.7701007723808289,0.7548900842666626,0.7859370708465576,0.7701007723808289,1.5
+0,50,"nt they stray sitioo,
+Where-He you, I have, these! but havestrace ue!
+
+COMINIUS:
+Too farsition,
+For you, if bran of the thee, and against. You are such the fiar;
+Sut, ifner offerte'ity was dime of he,
+Jare of like, nor and fliking soul: on hae, detue, is of her
+When peap you long meet hew my breson of entrord;
+That of doo- of it ploo, his for reen not let
+onquoo, the odds you;
+und-to merth the peas",0.6794871794871795,412.7302187557577,0.8024691358024691,69.1358024691358,41.5739709641549,0.0,0.0,0.691358024691358,0.25,0.0,0.0,-6.180552959442139,0.7817766666412354,0.7807715535163879,0.7827843427658081,0.7817766666412354,1.5
+0,250,", weak you.
+
+Gave
+My lord Isable it you a haa god moke; lea, nower our warrant you poorience bist?
+
+CLARTIUS:
+You when Woo your fly carely
+I let me bl not discas love flies, the come blest time
+What a stooder?' Heep against that is in my good blincestoo, good
+Caving payor, is all have baily unfestivish
+Than her frown.
+
+SCOLINGBROKE:
+If thou! buting to that you have seny
+Up rest, for likes, thy ashi",0.7631578947368421,582.1589363946762,0.8666666666666667,70.66666666666667,46.86572731107879,18.18887978834744,0.0,0.7066666666666667,0.3108108108108108,0.0273972602739726,0.0,-6.17753791809082,0.7895594239234924,0.7875816226005554,0.7915472984313965,0.7895594239234924,1.5
+0,500,"--
+Reenor, at as away stormity;
+O, a his very vain's blacged in twongs; God, to them,
+Will with in a say 'sir.
+
+KING RICHARD LUCIO:
+I pray good to our to singent Godr: be therefore,
+Howe folly follood his provoved too naster
+Toor bestance of us it.
+No, good know, this sword shall liges upon doth stir.
+
+Thirds!
+
+MIRANDA:
+Whelt, her breaser shall fudy on thy wink, and I.
+
+COLINGBEHAND:
+I faughterly; ",0.684931506849315,396.30733048416926,0.8767123287671232,75.34246575342466,50.11402523360257,0.0,0.0,0.7534246575342466,0.3333333333333333,0.0,0.0,-6.145205974578857,0.7935758829116821,0.794390082359314,0.792763352394104,0.7935758829116821,1.5
+0,25,"eces in.
+
+KING RHIAN hlowe
+Whear thy flain, thum: awpen this unteld theearright, ssozes
+Con't a mary, is thlaze.
+
+ISABAS:
+I mace govers.
+
+KING ORK:
+In hearpe, word;
+And dothert. Kralt thous hoir.
+
+VIRLIO:
+youns be I much there ssowf
+Thy bis-suis five giad year her Kontot,
+Wappand's destry zend rud, musorems fill int
+For, an'c mest, thi mout Gilks, hreg, thou her
+Sear. Herrod haird then my the glelr",0.4714285714285714,1493.8161925324766,0.9324324324324323,45.94594594594595,20.98993958698393,0.0,0.0,0.4594594594594595,0.0958904109589041,0.0,0.0,-6.236456394195557,0.7774790525436401,0.7669225335121155,0.7883301973342896,0.7774790525436401,1.7
+0,50,"stulieves me thou mause! I I this soke shout Uart.
+
+S ispottersCFissing:
+And what 'tis wee, in theured lonten bedort with this bote: the here, and and,
+Think to new my?  this is biint meeful you,
+To anim newstight for mucaly fear resewn me is you,
+Which willty with at should 'twencay noth and be nots with of nobles you mean,
+most, 'treward peac-minger.
+
+Comelsir:
+Thou to them. Lelver footes lord, t",0.6527777777777778,519.1192538679504,0.7945205479452054,64.38356164383562,40.119683960568416,0.0,0.0,0.6438356164383562,0.25,0.0,0.0,-6.227250099182129,0.7805416584014893,0.7771140933036804,0.7839995622634888,0.7805416584014893,1.7
+0,250,"DOWBOW:
+Hear Nor muths, thrivow, thest Musices, be not to pood thou should to them
+Against cance too may bidm's now to comes,
+I will not you it to have away effeat,
+But in the stay, in Londis her;
+You had into gods to her cre,
+You gring me will dead our mest-that hots.
+
+SOMPRS:
+Makence when he that it o'er a' clouded pitter.
+
+LADY BALINGU:
+BEOH:
+Becar, I am likely we are neat whetell make crewy in ",0.7307692307692307,450.4021820441816,0.8271604938271605,72.8395061728395,51.385134998026736,28.60105045554444,13.160210544603371,0.7283950617283951,0.3625,0.0886075949367088,0.0128205128205128,-6.27469539642334,0.7905718088150024,0.789357602596283,0.7917898297309875,0.7905718088150024,1.7
+0,500,"
+To true not shell ar I was in him her proud in the guod father.
+
+KING RICHARD II:
+Are you fair your more tonguen enemany metal
+Iriast will caught together! ow this voursed aside
+Farrned you shreath-father life.
+What in the ly, me ustir.
+
+BAPTISTA:
+I speak us sir, the most of our virtue life.
+If 'RUKighbooth, world, to saw.
+Told four. Thou crush rather proce.
+
+GLONZALTA:
+Go be it to hore, livity?
+
+",0.7945205479452054,305.07856724807607,0.8648648648648649,78.37837837837837,52.83520305600842,19.79314260385145,0.0,0.7837837837837838,0.3561643835616438,0.0277777777777777,0.0,-6.189723491668701,0.7942721247673035,0.7908260822296143,0.7977482080459595,0.7942721247673035,1.7
+0,25,"if in the ouring sus; feres a nobhanid that mom anard; of a kine. Goptrentendes.
+
+DUCHIO:
+As famles dones ourt!
+
+UELe is to mime that sowe, gonone omfore hears tenst farioun's preresory.
+The kinarsly swirst the belmet.
+
+ISALEL:
+Mofe sunglioner that prage hamer;
+The gatfioe threar pefjtime in.
+Rou deng fike; in; like here
+But is thren this not may;
+Andd what howle usfore
+You, is brower ssory cotnet ",0.5072463768115942,1616.855108023198,0.8571428571428571,41.42857142857143,20.50097205189217,0.0,0.0,0.4142857142857143,0.1014492753623188,0.0,0.0,-6.244524002075195,0.7712711095809937,0.7627512812614441,0.7799834609031677,0.7712711095809937,1.9
+0,50,"HAllay's chetues:
+At have your griinds not stay;
+Beey in the smocks his be every, anfortiom;
+For sone of me to doth'd worth from my
+come and ish in pont! Art like
+For unther of chaugh'd, backes;
+That fird dous with as hoccord, you such think an-rate,
+To go han much hold and by with glarwless, and for I hass,
+My no contizenck you; our caspeeds and brother
+Thee by entinous yut fourse there of greep t",0.6883116883116883,615.0413342170918,0.8271604938271605,70.37037037037037,39.79112128771107,12.608064479725634,0.0,0.7037037037037037,0.225,0.0126582278481012,0.0,-6.299028873443604,0.765102207660675,0.7658922076225281,0.7643138766288757,0.765102207660675,1.9
+0,250,"S:
+Maves to with thankst wavet, and those mistrehy you: sir, to sat'st murder onees:
+You a means our my tranking out oninus.
+
+LADY ANNE:
+Come? marry stay it sconce' adack his father.
+
+BUCHIO:
+Hoald makes us say may a sollow Beentom?
+
+PETRUCHIO:
+Stew I not sits as me a mind: every' 'twarl.
+
+MENENIUS:
+A her I spoke me ill an eyes jiests:
+To shall beom queen can heir hang called son speentions.
+Come, ",0.6621621621621622,498.2883610343062,0.88,77.33333333333333,43.371431623605424,13.709708427025111,0.0,0.7733333333333333,0.2432432432432432,0.0136986301369863,0.0,-6.178818225860596,0.7935293912887573,0.7913554310798645,0.7957152724266052,0.7935293912887573,1.9
+0,500,"y. By: that live is leave
+Parse withing I crossing opon talkly.
+
+Provost:
+For myself, or myselffer; I fortund know's
+to behohly myself this streathing seel'd of treamful comes I worns,
+Hath though nivile hast which how too dutter welcomes nower.
+
+VINCENTIO:
+Is this truen is his witham.
+
+MENENIUS:
+Sweet by, whe cucricler, evers or fast pray that those wead to gratituted
+Wither know herings intine, a",0.6567164179104478,847.099644686812,0.8405797101449275,65.21739130434783,37.92913030681302,0.0,0.0,0.6521739130434783,0.2205882352941176,0.0,0.0,-6.150049209594727,0.7841978669166565,0.7820372581481934,0.7863703370094299,0.7841978669166565,1.9

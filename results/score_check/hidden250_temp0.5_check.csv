@@ -1,9 +1,0 @@
-temperature,hidden_size,generated_text,spelling_percentage,perplexity,TTR,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
-0.5,250,"o, I have to say, with make the morning mother,
-And bear to the come a more a bear more:
-And then a grace it part the well mean of the worn, thou good that such and the words:
-I will a with the love to be the high brafes it is the air,
-But shall be dead of my grief to her pity the fair thou such thou hast so and the man
-What by the with not party thanks
-To that he sir, and with him so daughters,
-By",0.967032967032967,92.81414333306067,0.6043956043956044,98.9010989010989,83.20502943378438,45.36248095194627,18.046871711046723,0.989010989010989,0.7,0.1348314606741573,0.011363636363636364,-6.381534576416016,0.7770703434944153,0.7832749485969543,0.770963191986084,0.7770703434944153
