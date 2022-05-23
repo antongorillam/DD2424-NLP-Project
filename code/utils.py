@@ -71,7 +71,7 @@ def load_model(dir, hidden_size, num_layers, file="/train_shakespeare.txt"):
     index2char = data_dict["index2char"]
     char2index = data_dict["char2index"]
 
-    device = torch.device("cuda" if not torch.cuda.is_available() else "cpu")
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     # create generator obejct
     lstm_gen = lstm.Generator(
         input_string=train_text,

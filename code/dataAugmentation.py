@@ -104,26 +104,34 @@ class Data_augmentation_tests:
 class Validation:
 
     def __init__(self):
+        self.augmented_model = load_model(dir="../results/data_augmentation/lstm_hidden200_epoch12000_lr0.01_nlayer2aug.pth", hidden_size=200, num_layers=2, file="/train_aug_shakespeare.txt")
+        self.augmented_model = load_model(dir="../results/data_augmentation/lstm_hidden200_epoch12000_lr0.01_nlayer2nor.pth", hidden_size=200, num_layers=2)
         self.perp_aug = []
         self.perp_nor = []
-        for i in range(30):
+        self.ttr_aug = []
+        self.ttr_nor = []
+        for i in range(100):
             self.perp_augmented()
             self.perp_norm()
         self.perp_aug = numpy.mean(self.perp_aug)
         self.perp_nor = numpy.mean(self.perp_nor)
+        self.ttr_aug = numpy.mean(self.ttr_aug)
+        self.ttr_nor = numpy.mean(self.ttr_nor)
         print("perp_aug", self.perp_aug)
         print("Perp_nor", self.perp_nor)
+        print("ttr_aug", self.ttr_aug)
+        print("ttr_nor", self.ttr_nor)
 
     def perp_augmented(self):
-        augmented_model = load_model(dir="../results/data_augmentation/lstm_hidden200_epoch12000_lr0.01_nlayer2aug.pth", hidden_size=200, num_layers=2, file="/train_aug_shakespeare.txt")
-        aug_seq = augmented_model.generate(initial_str="t", generated_seq_length=400, temperature=0.5)
-        #aug_seq = "And what so he for the beater heaver that we contrief, And the come the such come of the courther the counter the wear his counter the conster so the shall a so come the will what down the counted the present you me the be so the good the shall so whence the coult to the take the grain the consider for the state be the counter the counted the down the bed so so shall what to the stare"
+        aug_seq = self.augmented_model.generate(initial_str="t", generated_seq_length=400, temperature=0.5)
         self.perp_aug.append(metrics.getPerplexity(modelFile="../data/bigrams/test_aug_shakespeare.txt", generatedSequence=aug_seq))
+        self.ttr_aug.append(metrics.getTypeTokenRatio(candidate=aug_seq))
 
     def perp_norm(self):
-        augmented_model = load_model(dir="../results/data_augmentation/lstm_hidden200_epoch12000_lr0.01_nlayer2nor.pth", hidden_size=200, num_layers=2)
-        aug_seq = augmented_model.generate(initial_str="t", generated_seq_length=400, temperature=0.5)
+        aug_seq = self.augmented_model.generate(initial_str="t", generated_seq_length=400, temperature=0.5)
         self.perp_nor.append(metrics.getPerplexity(modelFile="../data/bigrams/test_aug_shakespeare.txt", generatedSequence=aug_seq))
+        self.ttr_nor.append(metrics.getTypeTokenRatio(candidate=aug_seq))
+
 
 #norm
 #F the should shall them with the seent the son to should the soul and the soul the will the some to shall and the soul the lies
@@ -141,5 +149,5 @@ if __name__ == '__main__':
     #d = Augment_data()
     #d.synonym_replacement()
     #d.create_train_test_files()
-    test = Data_augmentation_tests()
-    #Validation()
+    #test = Data_augmentation_tests()
+    Validation()

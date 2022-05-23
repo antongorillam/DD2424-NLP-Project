@@ -90,7 +90,7 @@ class Generator():
         self.char2index = char2index
         self.sequence_length = sequence_length
         self.batch_size = batch_size
-        self.device = torch.device("cuda" if not torch.cuda.is_available() else "cpu")
+        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.iteration = 0
         self.history = {
             "iterations": [],
