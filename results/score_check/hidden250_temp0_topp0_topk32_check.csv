@@ -1,0 +1,11 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,TTR,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+0,250,"'d nighting thou shall my know,
+Sole it action, I sey than nonely outhing,
+Is to long upon; and frown let more, pushes too come
+I have thy besalling thou into the rost inposting dare away,
+Against lords they are young ashay.
+
+CAMILLO:
+Not now your gracour thanks of this seal eye, be name:
+Mistigence it make a tollome I our lives me:
+All misfals go, and he sallegth of his morzand comes lead, all wit",0.7763157894736842,442.5957307113756,0.9078947368421053,81.57894736842105,50.0175407828585,21.646020642796753,0.0,0.8157894736842105,0.30666666666666664,0.04054054054054054,0.0,-6.157878398895264,0.7813032269477844,0.7830138206481934,0.7795999646186829,0.7813032269477844

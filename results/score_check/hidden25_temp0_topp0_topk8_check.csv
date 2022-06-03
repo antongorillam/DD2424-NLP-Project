@@ -1,0 +1,24 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,TTR,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+0,25,"post the then so hath.
+
+LEONTE:
+A mant my may, thee shear my me there is not their
+Whear hown, be in alfus
+My shery and bight; stats; shold,
+And me is mint ind of hince.
+
+GRASELO:
+And shere astomed stire,.-
+
+KALUMIO:
+Will.
+
+SI:
+This not with bloust in why
+were
+That momtnes, he surdy as be will
+Walfon mund what will streed shear, see to shall
+Bus igaing, a pliest to to main.
+
+DUKEAND OLISTANIUS:
+But",0.7012987012987013,825.2653375696922,0.8051948051948052,61.038961038961034,33.532102735671046,0.0,0.0,0.6103896103896104,0.18421052631578946,0.0,0.0,-6.1728196144104,0.7790656089782715,0.7739381194114685,0.7842613458633423,0.7790656089782715

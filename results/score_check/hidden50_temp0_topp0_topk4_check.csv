@@ -1,0 +1,14 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,TTR,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+0,50,"
+That have haven to man and both and she and be as of hand and born.
+
+DUKUS:
+I wall, the mart the misticchervint and thatest,
+The worst to many and be as a mean as.
+
+DUKE OF YORK:
+The come in the sur, she she wath hours, bother,
+When the sent by shore of the mentent one
+That haves, and shis to marring and stranch a will to some,
+As to best thee to be son of hath hearth to such arm with of hast
+Whic",0.9186046511627907,256.8775878276154,0.627906976744186,86.04651162790698,61.200931656043565,26.127564229189016,12.107505358647279,0.8604651162790697,0.43529411764705883,0.047619047619047616,0.012048192771084338,-6.163197040557861,0.780859112739563,0.7814372777938843,0.7802818417549133,0.780859112739563

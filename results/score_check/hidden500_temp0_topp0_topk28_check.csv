@@ -1,0 +1,14 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,TTR,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+0,500,"e wind toget: fost nature great.
+
+RICHARD II:
+I reat spit to hath ere thou wish wish to my root of sommons?
+
+Second England beaut,
+Whose blain as
+ESwass in thy monaten crows bonce forest is hither spost blainst
+Strand will dost stalls will, forbid,--
+Marry hath that: a lork commoniage angtall,
+She worships a speak rurceled not, if you that!
+We boson, thought is a child, if you folso's,
+And lag othe",0.7808219178082192,603.6850210585785,0.8648648648648649,74.32432432432432,45.12519094918786,14.141708130214695,0.0,0.7432432432432432,0.273972602739726,0.013888888888888888,0.0,-6.209348678588867,0.7838206887245178,0.7844076752662659,0.783234715461731,0.7838206887245178

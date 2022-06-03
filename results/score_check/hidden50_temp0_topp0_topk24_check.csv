@@ -1,0 +1,18 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,TTR,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+0,50,"s beming's eyes with in and klay!
+All worth two gried no likle is he dait.
+
+CORIOLANA:
+Are marrerefore that staid faars, good an a father batian: tell.
+
+NORTHUMBANN:
+As as destience; courst to bronth hum.
+
+RORE:
+I worth be love ut: factus I mean;
+The to not and a descan you woust is the mon of wrature; dut,
+Fares untlevest flawromer of notgeed, tord.
+
+COHARO EST:
+Ead watels, fells,
+There faoms; hom",0.6027397260273972,1119.3497685994407,0.8648648648648649,56.75675675675676,30.54484870322409,10.902208581751232,0.0,0.5675675675675675,0.1643835616438356,0.013888888888888888,0.0,-6.214437007904053,0.7819654941558838,0.775433361530304,0.7886086106300354,0.7819654941558838

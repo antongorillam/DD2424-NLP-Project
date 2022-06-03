@@ -1,0 +1,9 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,TTR,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+0,50,"her lets consmes appities, seem hand as sup it note,
+Inster fitter, theuss hanging: the hath the smeat of comman.
+Thy footh thack, long bay dight
+wintiating of was beary of minks, wow the fair
+come fraistoth of your duck their to commendany annot
+cortertizon there-but; and father: for the fere yourth
+Intend botroventiel to that them we have of head you bare
+The spatiis come ims of a deady to cursen",0.7083333333333334,1131.3574084245327,0.8356164383561644,68.4931506849315,35.166488129564755,12.031872389387969,0.0,0.684931506849315,0.18055555555555555,0.014084507042253521,0.0,-6.247939586639404,0.7683039903640747,0.7686628699302673,0.7679455280303955,0.7683039903640747

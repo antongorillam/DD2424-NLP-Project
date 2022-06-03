@@ -14,6 +14,8 @@ This file is part of the computer assignments for the course DD1418/DD2418 Langu
 Created 2017 by Johan Boye and Patrik Jonell.
 """
 
+'''Code skeleton provided in DD2417 course, completion made by Isac, Credit goes to original authors listed above'''
+
 
 class BigramTester(object):
     def __init__(self):

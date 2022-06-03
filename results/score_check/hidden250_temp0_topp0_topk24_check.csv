@@ -1,0 +1,9 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,TTR,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+0,250,"$st the lad m mistress,
+To you write come to els,
+But all reces o'er, how none sedient we, possibuing than your knaris:
+He say you your botting way in when how, let's morning favnes it behance sir;
+Wherefore, thus not the contal not of the walt;
+To clace and the goot it though, makest disurt raron!
+Just noy beaes not best mine say by my gone
+Hereful you better were'st me mother mean to latterfed th",0.7402597402597403,689.396783963551,0.8125,76.25,45.021092103337686,13.748199205691025,0.0,0.7625,0.26582278481012656,0.01282051282051282,0.0,-6.312002658843994,0.7738971710205078,0.7763749957084656,0.7714350819587708,0.7738971710205078

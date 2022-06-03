@@ -1,0 +1,16 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,TTR,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+0,500,"OLAS:
+I revenge, he were you: is brughts you
+you dial of my roffard battly as for cure on here,
+Tongue would store say.
+
+Ay:
+Diold from cogms, we more than matter, you hast dasting an enemy as a
+come love! and goodfuls bosom strant.
+
+DUKE OF AUMERLE:
+Ay, now twenty; if have great move wrong to ten preter's lastiatety.
+
+LUCIO:
+I traitors so as time our a too thork thou hast dead;
+Sort wanness a siff",0.7402597402597403,341.62807109293686,0.8589743589743589,82.05128205128204,51.61397740925091,15.190556609972711,0.0,0.8205128205128205,0.3246753246753247,0.013157894736842105,0.0,-6.174230098724365,0.7916858196258545,0.7893438339233398,0.7940416932106018,0.7916858196258545

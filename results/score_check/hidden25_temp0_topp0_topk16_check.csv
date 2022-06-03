@@ -1,0 +1,18 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,TTR,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+0,25,"Kanke no did the mair I ko primt me pone so,
+Threase, there from he gree, lomt:
+
+CADTIO:
+In lith, and be
+Unerer;
+And sise; ince, theur, those your peatno, I brentes,
+Thare your love. Gur, yual their mans. Whery her forst; there to hourfor:
+As prom ther them spue,
+They if white.
+
+DUKE ONIO:
+Bup.
+
+CLORITY:
+I frestlen, ane-clife our wiss
+Say. O well, and, pray, scition to hown, the but comest, I am at",0.6973684210526315,597.0161268694173,0.8831168831168831,55.84415584415584,25.715994475008884,9.589187149709925,0.0,0.5584415584415584,0.11842105263157894,0.013333333333333334,0.0,-6.21477746963501,0.7852166891098022,0.7828626036643982,0.7875849008560181,0.7852166891098022

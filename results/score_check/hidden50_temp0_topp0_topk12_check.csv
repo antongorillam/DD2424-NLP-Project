@@ -1,0 +1,17 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,TTR,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+0,50,"KINGHAM IV:
+The exhorne of me in then thee than
+Oness feir hear wroth to steer, his can to me borm.
+
+BROMEO:
+As your well a kold to-crurtion'd
+To lears stelcode shout you the geck.
+But tood toul bintugue, as an and his buccrodenon.
+
+SEBASTIAN:
+Is heat as he's son sur, I batiad,
+That an here, burt what, that shouth, or they bitiserine.
+
+AUTOLYCUS:
+
+Garrugation hand and hearth were incisainstistle ho",0.6901408450704225,475.4491930121853,0.8513513513513513,68.91891891891892,41.22342299567313,16.77497443046213,0.0,0.6891891891891891,0.2465753424657534,0.027777777777777776,0.0,-6.252224445343018,0.7790482640266418,0.7733492255210876,0.7848320007324219,0.7790482640266418

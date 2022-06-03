@@ -1,0 +1,17 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,TTR,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+0,50,"xiies off sheare.
+
+EBPAMOWA:
+O'wdshick, Perccusentingect nuel that name try.
+
+SICINIUS:
+A- with hand of brest thy tell;
+What with unstick raance upprenty undetsteed!
+
+AUTOBPASo:
+Why persuctish of burn of daues marthital;
+That be tristry and have be the thate at blood
+To neegiest whose of in the grows:
+For bonte you brectooke's of a the buther not fackine,
+That but years, hel,-rafy you
+You spehastio",0.6212121212121212,823.9385973044388,0.8115942028985508,63.76811594202898,34.91556005831566,12.208277924604987,0.0,0.6376811594202898,0.19117647058823528,0.014925373134328358,0.0,-6.169971942901611,0.7761088013648987,0.7701879739761353,0.7821213603019714,0.7761088013648987

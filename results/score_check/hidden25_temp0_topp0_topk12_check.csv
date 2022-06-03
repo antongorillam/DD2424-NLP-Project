@@ -1,0 +1,18 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,TTR,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+0,25,"nd made
+The leets, the home now't
+Ip a speak our thee not prive to thits your spist him his me.
+
+PODBY EONGENA:
+I may. Sir a proven to fruens biridy nor an feable
+Iw whembonouse teastire is ariellys me senior:
+Insed hay hark, bespris.
+
+HENRY VI:
+
+GRYERENMI
+Lroth tair both in to twill till to, it ster for you: my well theicn hear to tame,
+Her' a suse see hearge pient
+Turther
+What huve.' when neare
+O",0.6025641025641025,1004.1419282910185,0.8987341772151899,62.0253164556962,36.7672928047232,12.063616633581042,0.0,0.620253164556962,0.21794871794871795,0.012987012987012988,0.0,-6.197541236877441,0.7730092406272888,0.7646276950836182,0.7815765142440796,0.7730092406272888

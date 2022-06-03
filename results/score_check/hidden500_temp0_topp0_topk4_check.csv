@@ -1,0 +1,17 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,TTR,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+0,500,"zire the worlds of more as his destrish in my free,
+Took'd the prathor with thou,
+And there that its a preter as to the loves the least.
+
+KING EDWARD II:
+Why, take thou draughter and more sort thank to have hath say.
+
+LUCIO:
+I am the was the son in to my lord?
+
+LADY ANNE:
+This the wind a man is a more to time to my shall me is.
+
+BUCKINGHAM:
+We would wish is an imprough of here;
+For the frait allone",0.8333333333333334,102.95984821451317,0.7176470588235294,89.41176470588236,70.7304822579924,34.81323609283507,0.0,0.8941176470588236,0.5595238095238095,0.08433734939759036,0.0,-6.184607028961182,0.79250568151474,0.7912237048149109,0.7937917113304138,0.79250568151474

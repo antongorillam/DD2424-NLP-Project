@@ -1,0 +1,24 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,TTR,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+0,25,"!
+
+ISYUCALUS:
+Notsed; say, with lime! happly an;
+Rot wy ment
+Eve it theur dest all me aman hich he hath his in to gock,
+For berten.
+
+I her hown.
+
+SICINIUS:
+Thess
+A tich himpest they o' see,
+Awpertat;
+Swear;
+O! I herry hown, have fan to digh my mean beel to eye, and duse that hery.
+
+RMEOLEL IUS:
+S, falf have witise hind that decore alll and her frath helloof, decet lord.
+
+GRELUS:
+
+fereral lot wing s",0.5384615384615384,1013.3251527224938,0.8701298701298701,57.14285714285714,22.941573387056177,0.0,0.0,0.5714285714285714,0.09210526315789473,0.0,0.0,-6.141604423522949,0.7851827144622803,0.7788969278335571,0.791570782661438,0.7851827144622803

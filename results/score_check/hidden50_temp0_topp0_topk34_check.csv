@@ -1,0 +1,17 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,TTR,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+0,50,"Qheres. There?
+
+SICINDUS:
+Ceasbed to-mandatixene:
+I comert-fron! whoses not? Is is.
+
+DOH:
+As cout, at I had have thon used.
+
+ISAnNI:
+Louse should beery at give toint be menclie't:
+Thou day wus thich the cullom of jano: a say.
+This but lovebs at shad's persoplie she world latirn
+Ate of henchance their and whoses? 'Sharrind anis fair
+which oname not than he seepluens: inst hastingen-mens
+Worth it; Po",0.6323529411764706,1230.8553631652087,0.9041095890410958,53.42465753424658,22.790489084134723,0.0,0.0,0.5342465753424658,0.09722222222222222,0.0,0.0,-6.199491500854492,0.7815061211585999,0.7771733403205872,0.7858874201774597,0.7815061211585999

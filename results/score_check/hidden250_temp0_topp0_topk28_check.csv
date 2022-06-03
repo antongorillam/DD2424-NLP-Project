@@ -1,0 +1,12 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,TTR,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+0,250,"m here
+Father dead with your stall, how know me;
+Thus scand eld, that had valted in her clouded,
+Thet's come a madegy rage. May old not paint
+Withing speak, 'tis perquandence he stip you eyes But, since: he post; becurious with your pards of thusto
+Scifetm fley not thou one it,
+And gave for the geneman's word fight san,
+What, I would made the liliggle indares, if a paint him.
+
+BIANTA:
+It it is mast",0.7631578947368421,441.6405415816731,0.8717948717948718,78.2051282051282,49.3716764710541,14.747352196235534,0.0,0.782051282051282,0.3116883116883117,0.013157894736842105,0.0,-6.175735950469971,0.7791975140571594,0.7825170755386353,0.7759060859680176,0.7791975140571594

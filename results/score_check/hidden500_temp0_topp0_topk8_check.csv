@@ -1,0 +1,19 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,TTR,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+0,500,"LIZABETH:
+Yes you art to dismall, state of goot will been woes,
+Whosition on his hence.
+
+BUCKINGHAM:
+Alood is the sorrown to my wast not one thrown as so his bad at his prince, take are
+In my daughte him! in her that to this; town
+Werting wife of hind;
+And so heads and as much.
+
+PARIS:
+I will with have nature faitial.
+
+PARIS:
+Is' terroking of my hing, agently.
+
+Pedant:
+O, her my dirm, in ous hind w",0.759493670886076,243.35397173694764,0.759493670886076,79.74683544303798,56.29765102735338,20.19171804972592,0.0,0.7974683544303798,0.3974358974358974,0.025974025974025976,0.0,-6.177149772644043,0.7928538918495178,0.7939404249191284,0.791770339012146,0.7928538918495178

@@ -1,0 +1,10 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,TTR,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+0,250," the mord at then? what,
+I would not woulds, the with mine one so frown:
+Hear the singer to these will the made in thest all and was that your
+brown. Here I'll telling the soldier our son that thou heart
+To be an evill'd, all to before to say with you all to sure
+I told the madest the sight.
+
+PETRUCHIO:
+Now, we with you mortal forth, so, it we these worship to they to her fiers to be turns when the",0.927710843373494,154.56576724582217,0.6941176470588235,94.11764705882352,72.56794362924327,31.656326389844086,0.0,0.9411764705882353,0.5595238095238095,0.060240963855421686,0.0,-6.109912395477295,0.7889754772186279,0.7948609590530396,0.7831765413284302,0.7889754772186279

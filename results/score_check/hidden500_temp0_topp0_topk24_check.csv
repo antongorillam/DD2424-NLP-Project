@@ -1,0 +1,12 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,TTR,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+0,500,"QUEEN MARGARET:
+Thiss your very deave my pard to think beeth me own'd which wautres
+Which notly. Consimenate, my face, and man fair my mock.
+
+ISABELLA:
+I head to time any hore,
+Go an imontable ever soldier's make our was,
+Forgive thangess of revers. What your hury a
+streat gratitor; look you arms any set-hairs,
+No parding of on thou pay, my lord she'll'st; wherefore
+If then a thoo could sake your g",0.7671232876712328,673.99771514088,0.8717948717948718,79.48717948717949,45.43789238732431,17.579948030799265,0.0,0.7948717948717948,0.2597402597402597,0.02631578947368421,0.0,-6.154773712158203,0.7815765738487244,0.781650960445404,0.7815021276473999,0.7815765738487244

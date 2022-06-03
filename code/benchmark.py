@@ -28,8 +28,10 @@ class Benchmark:
         self,
         model_dir,
         hidden_size,
-        temperature,
         save_dir,
+        temperature=0,
+        top_p=0,
+        top_k=0,
         initial_str="ROMEO",
         generated_seq_length=200,
         iters=1,
@@ -114,7 +116,10 @@ class Benchmark:
                 initial_str=temp_inital_str,
                 generated_seq_length=generated_seq_length,
                 temperature=temperature,
+                top_p=top_p,
+                top_k=top_k,
             )
+            print(f"Running benchmark hidden: {hidden_size}, temp {temperature}, top k {top_k}, top p {top_p}")
             print(generated_text)
             metrics = getMetrics(generated_text, self.test_text, TEST_BIGRAMS)
 
@@ -168,7 +173,7 @@ class Benchmark:
 
         temp_df = pd.DataFrame([dic])
         temp_df.to_csv(
-            f"{SAVE_DIR}/hidden{hidden_size}_temp{temperature}_check.csv", index=False
+            f"{SAVE_DIR}/hidden{hidden_size}_temp{temperature}_topp{top_p}_topk{top_k}_check.csv", index=False
         )
 
     def run_benchmark_string(self, name, benchmark_str):
@@ -226,7 +231,7 @@ if __name__ == "__main__":
     TEST_BIGRAMS = "../data/bigrams/testBigramsShakespeare.txt"
     benchmark = Benchmark()
 
-    TEMPERATURES = [0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3, 1.5, 1.7, 1.9]
+    # TEMPERATURES = [0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3, 1.5, 1.7, 1.9]
     # df_check = pd.DataFrame(
     #     columns=[
     #         "temperature",
@@ -263,36 +268,39 @@ if __name__ == "__main__":
     #     df_check = pd.concat([df_check, temp_df], ignore_index=True)
 
     # df_check.to_csv(f"{SAVE_DIR}/metric_check.csv", index=False)
+    TOP_P = [0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3, 1.5, 1.7, 1.9]
+    TOP_K = [1, 4, 8, 12, 16, 20, 24, 28, 32, 34]
+    # TEMPERATURES = [0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3, 1.5, 1.7, 1.9]
+    HIDDEN_SIZES = [25, 50, 250, 500]
+    MODEL_DIRS = [
+        "../results/hidden_vs_loss/learning_rate_0_005/lstm_hidden25_epoch10000_lr0.005_nlayer2.pth",
+        "../results/hidden_vs_loss/learning_rate_0_005/lstm_hidden50_epoch10000_lr0.005_nlayer2.pth",
+        "../results/hidden_vs_loss/learning_rate_0_005/lstm_hidden250_epoch10000_lr0.005_nlayer2.pth",
+        "../results/hidden_vs_loss/learning_rate_0_005/lstm_hidden500_epoch10000_lr0.005_nlayer2.pth",
+    ]
+    for k in TOP_K:
+        for model, hidden in zip(MODEL_DIRS, HIDDEN_SIZES):
+            temp_dic = benchmark.run_benchmark(
+                model_dir=model,
+                hidden_size=hidden,
+                temperature=0,
+                top_p=0,
+                top_k=k,
+                initial_str=None,
+                generated_seq_length=400,
+                save_dir="../results/score_check",
+                iters=1,
+            )
+    # temp_df = pd.DataFrame([temp_dic])
 
-    # TEMPERATUREs = [0.3, 0.5, 0.7, 0.9]
-    # HIDDEN_SIZES = [25, 50, 250, 500]
-    # MODEL_DIRS = [
-    #     "../results/hidden_vs_loss/learning_rate_0_005/lstm_hidden25_epoch10000_lr0.005_nlayer2.pth",
-    #     "../results/hidden_vs_loss/learning_rate_0_005/lstm_hidden50_epoch10000_lr0.005_nlayer2.pth",
-    #     "../results/hidden_vs_loss/learning_rate_0_005/lstm_hidden250_epoch10000_lr0.005_nlayer2.pth",
-    #     "../results/hidden_vs_loss/learning_rate_0_005/lstm_hidden500_epoch10000_lr0.005_nlayer2.pth",
-    # ]
-    # for temp in TEMPERATURES:
-    #     for model, hidden in zip(MODEL_DIRS, HIDDEN_SIZES):
-    #         temp_dic = benchmark.run_benchmark(
-    #             model_dir=model,
-    #             hidden_size=hidden,
-    #             temperature=temp,
-    #             initial_str=None,
-    #             generated_seq_length=400,
-    #             save_dir="../results/score_check",
-    #             iters=1,
-    #         )
-    # # temp_df = pd.DataFrame([temp_dic])
+    # original_str = "MENENIUS:\nSir, I shall tell you. With a kind of smile,\nWhich ne'er came from the lungs, but even thus--\nFor, look you, I may make the belly smile\nAs well as speak--it tauntingly replied\nTo the discontented members, the mutinous parts\nThat envied his receipt; even so most fitly\nAs you malign our senators for that\nThey are not such as you.\n"
+    # original_df = benchmark.run_benchmark_string(name="orignal_str", benchmark_str=original_str)
 
-    original_str = "MENENIUS:\nSir, I shall tell you. With a kind of smile,\nWhich ne'er came from the lungs, but even thus--\nFor, look you, I may make the belly smile\nAs well as speak--it tauntingly replied\nTo the discontented members, the mutinous parts\nThat envied his receipt; even so most fitly\nAs you malign our senators for that\nThey are not such as you.\n"
-    original_df = benchmark.run_benchmark_string(name="orignal_str", benchmark_str=original_str)
+    # repition_str = "Second Servant:\nThe lords to the father to the provost of the word to the souls of the souls of the so to the live to the liest to the world to the some to the souls to the some to the world to the some to the provost of the world to the words,\nAnd that the souls to the world to the provost to the provost to the world to the some to the souls of the "
+    # repition_df = benchmark.run_benchmark_string(name="repition_str", benchmark_str=repition_str)
 
-    repition_str = "Second Servant:\nThe lords to the father to the provost of the word to the souls of the souls of the so to the live to the liest to the world to the some to the souls to the some to the world to the some to the provost of the world to the words,\nAnd that the souls to the world to the provost to the provost to the world to the some to the souls of the "
-    repition_df = benchmark.run_benchmark_string(name="repition_str", benchmark_str=repition_str)
+    # random_str = "Fiseraou:\nMy now! depost there head give voult's bacfontly\nTo good, a greefordicorte;--\nYou neo, live--\nSerancuher naice you gone goal in Frother,\nHethy brother breaty a tropphoss, aloneus pot's wiffoods:\never by.\n"
+    # random_df = benchmark.run_benchmark_string(name="random_str", benchmark_str=random_str)
 
-    random_str = "Fiseraou:\nMy now! depost there head give voult's bacfontly\nTo good, a greefordicorte;--\nYou neo, live--\nSerancuher naice you gone goal in Frother,\nHethy brother breaty a tropphoss, aloneus pot's wiffoods:\never by.\n"
-    random_df = benchmark.run_benchmark_string(name="random_str", benchmark_str=random_str)
-
-    df_text = pd.concat([original_df, repition_df, random_df] , ignore_index=True)
-    df_text.to_csv(f"{SAVE_DIR}/str_check.csv", index=False)
+    # df_text = pd.concat([original_df, repition_df, random_df] , ignore_index=True)
+    # df_text.to_csv(f"{SAVE_DIR}/str_check.csv", index=False)

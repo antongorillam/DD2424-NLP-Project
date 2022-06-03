@@ -1,0 +1,18 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,TTR,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+0,500,"ICK:
+No mother gratue of all your turn string of ever youre pray;
+'Willow along in voulder's grave, so, as it is unrows up me prelsue.
+ And turneting, for so, it noy cood fand:
+And breath, and thou.
+Wherefore,
+Which pies prettage!
+And wusty doy his tide, desecond?
+
+FLORIZEL:
+Where come to wind my buggard keep that.
+
+GLOUCESTER:
+I found. Cauut us your great myself.
+
+FRAANCA:
+O, sportue; I God's stee",0.7323943661971831,303.25042520447295,0.8767123287671232,73.97260273972603,47.54233873720076,21.216545027220995,10.807655367168207,0.7397260273972602,0.3055555555555556,0.04225352112676056,0.014285714285714285,-6.2318806648254395,0.7880670428276062,0.7875893712043762,0.7885453104972839,0.7880670428276062

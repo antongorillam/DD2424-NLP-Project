@@ -1,0 +1,17 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,TTR,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+0,25,", not buzd, our depare, heats, prock; as are of to are our there
+And as a ank prea, wo some and the there armes;
+Thy unfers a becur:
+Af in we derfure, gly the dight hcimen,
+Hourred oulds oness are the hood he will diven naminicd'd a howf the grive adear you-gonoungers,
+
+MURIUS:
+So, my senfmeel.
+
+LUCENTIO:
+All wraintor
+So loin's
+Swall ang this fole; in efur'd look down, all save pry dew?
+
+CARITO:
+Su",0.618421052631579,905.780924332333,0.810126582278481,56.9620253164557,35.23464259714285,11.72599411806181,0.0,0.569620253164557,0.21794871794871795,0.012987012987012988,0.0,-6.191646099090576,0.7756733298301697,0.764543354511261,0.7871320247650146,0.7756733298301697

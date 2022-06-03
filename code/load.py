@@ -38,11 +38,11 @@ if __name__ == '__main__':
     """ top_p=0
     
     """ 
-    top_p_gen = lstm_gen.generate(initial_str="MON", gen_type=0, top_k=0, top_p=0, temperature=0.6, beam_width=None, generated_seq_length=200, random_state=10)
+    top_p_gen = lstm_gen.generate(initial_str="MON", gen_type=0, top_k=0, top_p=1, temperature=0, beam_width=None, generated_seq_length=200, random_state=10)
     """
     
     """ 
-    combined_gen = lstm_gen.generate(initial_str="MON", gen_type=0, top_k=0, top_p=0, temperature=0.6, beam_width=None, generated_seq_length=200, random_state=10)
+    combined_gen = lstm_gen.generate(initial_str="MON", gen_type=1, top_k=0, top_p=0, temperature=0.6, beam_width=5, generated_seq_length=200, random_state=10)
     
     
     print(f"temperature_gen:\n\"\"\"\n{temperature_gen}\n\"\"\"")

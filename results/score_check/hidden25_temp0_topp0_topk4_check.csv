@@ -1,0 +1,12 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,TTR,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+0,25,"CI
+
+CORIOLO:
+As hall arand tan the shat thy hall him, me hall heartine, them her hill and this a seat,
+The that hearter to heall, that a man wark
+That make to shere my to may to sear this my the pan are half tay say hear hath our treest an him.
+
+BENVANGERLENY:
+Them and tay sour thericy. Cath hards
+Them, mant ansers,
+I to her them an a there may to to shearth that the that my ser all them and hath t",0.8470588235294118,766.4141745195703,0.6235294117647059,74.11764705882354,39.852669849304284,12.414967399251607,0.0,0.7411764705882353,0.21428571428571427,0.012048192771084338,0.0,-6.228886604309082,0.7699601650238037,0.7635248899459839,0.7765047550201416,0.7699601650238037

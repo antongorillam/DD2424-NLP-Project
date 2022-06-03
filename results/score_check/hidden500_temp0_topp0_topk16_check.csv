@@ -1,0 +1,15 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,TTR,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+0,500,"t to-mutessitue with that your lives on it,
+The hage to this before fasting burnfee you.
+
+CAcILLA:
+Thespy, of gate, sir, her talk,
+And tent ware: ig too feech allow,
+When a picer it; an speech me; the rack'd;
+For to gralt' tale him to lous from death,
+Would him waill my rater be, and more sile'lo in
+You made ssaud in town.
+
+Thisd Give:
+Your deaded;
+And strip your honour shepherd tongues! we dislace",0.7333333333333333,400.39648031402487,0.8461538461538461,78.2051282051282,50.38975629160692,14.94939582622792,0.0,0.782051282051282,0.3246753246753247,0.013157894736842105,0.0,-6.102997779846191,0.7833728790283203,0.7875267863273621,0.7792625427246094,0.7833728790283203

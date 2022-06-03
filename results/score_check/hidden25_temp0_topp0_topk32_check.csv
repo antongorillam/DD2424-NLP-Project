@@ -1,0 +1,14 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,TTR,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+0,25,"I:
+I chuep loof wather ould stalted heers'd yee, iged hapt; prack, anp'd a
+ a hiibles on shat
+Their predy:
+I gens pall, mird.
+
+GLIL:
+Muer that nike pith, and daurces thinsh is tich triet 'Le lovire; hy there a would hemell good hill by the hey me,
+To proTr weme-what my nistoest your mon ing a hith sorsues thear her taretpur,
+
+BRINCE:
+Mord thomers, therimy, a drighter. Thee.
+Sheer is you. I would hi",0.56,1468.4868855024772,0.8717948717948718,44.871794871794876,24.14022747926338,9.15285062551041,0.0,0.44871794871794873,0.12987012987012986,0.013157894736842105,0.0,-6.2336225509643555,0.7736520767211914,0.7618140578269958,0.7858637571334839,0.7736520767211914

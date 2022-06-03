@@ -1,0 +1,16 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,TTR,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+0,50,"ORD IV:
+
+BIONCA:
+Ay, and to can thou art, man mant mustent
+Ase them to that of your sheaks,
+Is beace a wearness and a mancy.
+Sir you, she have who the henceding heart.
+Is brinse the man has selvose and to-man the hose by
+Intortuon there tunion me in head.
+
+ANTONIO:
+So is thembrincoded:
+I come the say of the sur, he a mother both me to born
+Best him, best they be back to dim an he hold offers
+That o",0.8072289156626506,325.47467087472484,0.75,79.76190476190477,55.45410511362486,19.574672977432133,0.0,0.7976190476190477,0.3855421686746988,0.024390243902439025,0.0,-6.196024417877197,0.7848872542381287,0.7833941578865051,0.7863859534263611,0.7848872542381287

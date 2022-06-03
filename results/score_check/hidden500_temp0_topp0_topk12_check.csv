@@ -1,0 +1,11 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,TTR,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+0,500,"ion this when:
+That toot decreed in the world not's his blate one stone:
+And we shall she more and as we muching man that moreful too drank to to my grator on in face his a wus other.
+Would do you fage or lead; fagte the wards?
+
+AMle:
+For thousand your tribly so will not
+To by treach have too the wisht my cries;
+With welcolve our bold,
+And most to on have to my haves; a mowbrio that would must as t",0.7976190476190477,486.3370887444959,0.7411764705882353,80.0,55.205244747388335,24.489553070047965,0.0,0.8,0.38095238095238093,0.04819277108433735,0.0,-6.190813064575195,0.7765893340110779,0.780345618724823,0.7728691101074219,0.7765893340110779

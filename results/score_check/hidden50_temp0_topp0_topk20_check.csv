@@ -1,0 +1,15 @@
+temperature,hidden_size,generated_text,spelling_percentage,perplexity,TTR,bleu1,bleu2,bleu3,bleu4,ngram_precisions_1,ngram_precisions_2,ngram_precisions_3,ngram_precisions_4,bartscore,bertscore,bertscore_precision,bertscore_recall,bertscore_f1
+0,50,"se word to myself ilens, warr.
+Shouw and partay nectunood
+But swell yet's strickeding gharm'd oskers,
+And lew caugano be swell had.
+
+Taze:
+Thon the kranting to word, take usent,
+Whis must can deyvents me, and be you will a mare!
+
+GRUM:
+It montent imbere, and wich with be inthonged,
+Tremulal stoysought shoughlion that fathere
+A thithis chays sconven dawny on.
+His can the morticles: if, so, hears pla",0.5797101449275363,910.0125999363125,0.8450704225352113,54.929577464788736,25.055270894516095,12.208426795150142,0.0,0.5492957746478874,0.11428571428571428,0.028985507246376812,0.0,-6.282647609710693,0.7781215310096741,0.7728887796401978,0.7834256291389465,0.7781215310096741
